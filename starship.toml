@@ -152,7 +152,7 @@ style = "fg:color_directory"
 read_only_style = "fg:color_directory"
 repo_root_style = "bold fg:color_directory"
 format = "[ $path ]($style)"
-read_only = " "
+read_only = "󰌾"
 home_symbol = "~"
 truncation_symbol = "…/"
 truncation_length = 0
@@ -161,7 +161,7 @@ fish_style_pwd_dir_length = 0
 use_logical_path = true
 
 [git_branch]
-symbol = ""
+symbol = ""
 style = "fg:color_git"
 format = '[( $symbol $branch )]($style)'
 only_attached = true
@@ -217,7 +217,7 @@ am_or_rebase = "AM/REBASE"
 disabled = false
 
 [nodejs]
-symbol = ""
+symbol = ""
 style = "fg:color_env"
 format = '[( $symbol( $version) )]($style)'
 
@@ -301,7 +301,7 @@ style = "fg:color_container"
 format = '[ $symbol $name ]($style)'
 
 [jobs]
-symbol = "󰒋"
+symbol = ""
 style = "fg:color_other"
 format = '[ $symbol( $number) ]($style)'
 symbol_threshold = 1
