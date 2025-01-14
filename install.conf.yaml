@@ -1,0 +1,13 @@
+- link:
+    ~/.zshenv: .zshenv
+    ~/.tmux.conf: .tmux.conf
+    ~/.ideavimrc: .ideavimrc
+    ~/.my_aliases: .my_aliases
+
+    ~/.config/starship.toml: .config/starship.toml
+
+- create:
+    - ~/data/repo
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
