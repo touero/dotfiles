@@ -10,7 +10,7 @@ export https_proxy="http://127.0.0.1:7890"
 
 if [ "$OS_TYPE" = "Darwin" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew install fzf tmux the_silver_searcher git-delta
+  brew install git fzf tmux the_silver_searcher git-delta
   if [ -z "$ZHS_PATH" ]; then
     brew install zsh
   else
@@ -19,7 +19,7 @@ if [ "$OS_TYPE" = "Darwin" ]; then
 elif [ "$OS_TYPE" = "Linux" ]; then
   if [ -z "$ZHS_PATH" ]; then
     sudo apt update && sudo apt upgrade -y
-    sudo apt install zsh fzf tmux silversearcher-ag git-delta -y
+    sudo apt install zsh git fzf tmux silversearcher-ag git-delta -y
     latest_tag=$(curl -s https://api.github.com/repos/dandavison/delta/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
     deb_url="https://github.com/dandavison/delta/releases/download/${latest_tag}/git-delta_${latest_tag#v}_amd64.deb"
     curl -LO "$deb_url"
