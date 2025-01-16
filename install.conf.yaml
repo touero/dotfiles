@@ -5,6 +5,7 @@
     ~/.my_aliases: .my_aliases
 
     ~/.config/starship.toml: .config/starship.toml
+    ~/.config/nvim: .config/nvim
 
 - create:
     - ~/data/repo
