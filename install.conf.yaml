@@ -14,9 +14,9 @@
     ~/.my_aliases: .my_aliases
 
     ~/.config/starship.toml: .config/starship.toml
+    ~/.config/wezterm: .config/wezterm
     ~/.config/lazygit: .config/lazygit
     ~/.config/yazi: .config/yazi
-
 
 - create:
     - ~/data/repo
