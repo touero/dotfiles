@@ -14,6 +14,7 @@
     ~/.my_aliases: .my_aliases
 
     ~/.config/starship.toml: .config/starship.toml
+    ~/.config/nvim: .config/nvim
     ~/.config/wezterm: .config/wezterm
     ~/.config/lazygit: .config/lazygit
     ~/.config/yazi: .config/yazi
