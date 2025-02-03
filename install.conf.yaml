@@ -1,3 +1,12 @@
+- shell:
+  - 
+    command: sudo chmod +x ./init.sh
+    stdout: true
+
+  - 
+    command: ./init.sh
+    stdout: true
+
 - link:
     ~/.zshenv: .zshenv
     ~/.tmux.conf: .tmux.conf
@@ -6,9 +15,12 @@
 
     ~/.config/starship.toml: .config/starship.toml
     ~/.config/nvim: .config/nvim
+    ~/.config/wezterm: .config/wezterm
+    ~/.config/lazygit: .config/lazygit
+    ~/.config/yazi: .config/yazi
 
 - create:
     - ~/data/repo
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+  - [ git submodule update --init --recursive, Installing submodules ]
