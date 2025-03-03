@@ -35,13 +35,13 @@ return {
    win32_system_backdrop = 'Acrylic',
    background = {
       {
-         source = { File = wezterm.config_dir .. '/backdrops/bg_img2.jpg' },
+         source = { File = wezterm.config_dir .. '/backdrops/bg_img9.jpg' },
       },
       {
          source = { Color = '#1d2021' },
          height = '100%',
          width = '100%',
-         opacity = 0.90,
+         opacity = 0.97,
       },
    },
 
