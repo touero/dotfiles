@@ -97,3 +97,4 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
 Plug 'easymotion/vim-easymotion'
+
