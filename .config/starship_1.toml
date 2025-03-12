@@ -1,0 +1,193 @@
+# Order of modules on prompt
+format = """
+ $all 
+"""
+right_format = """$time"""
+
+        # $time\
+        # $hostname\
+        # $directory\
+        # $aws\
+        # $gcloud\
+        # $singularity\
+        # $kubernetes\
+        # $docker_context\
+        # (↓ Source control - for right side ↓)\
+        # $hg_branch\
+        # $git_branch\
+        # $git_commit\
+        # $git_status\
+        # $git_state\
+        # (↑ Source control - for right side ↑)\
+        # (↓ Toolchain version modules ↓)\
+        # $crystal\
+        # $dart\
+        # $dotnet\
+        # $elixir\
+        # $elm\
+        # $erlang\
+        # $golang\
+        # $java\
+        # $lua\
+        # $julia\
+        # $nim\
+        # $nodejs\
+        # $ocaml\
+        # $perl\
+        # $php\
+        # $purescript\
+        # $python\
+        # $ruby\
+        # $rust\
+        # $swift\
+        # $terraform\
+        # $zig\
+        # (↑ Toolchain version modules ↑)\
+        # (↓ Package modules ↓)\
+        # $helm\
+        # $package\
+        # $cmake\
+        # $conda\
+        # (↑ Package modules ↑)\
+        # $nix_shell\
+        # $memory_usage\
+        # $env_var\
+        # $custom\
+        # (↑ above input line ↑)\
+        # $line_break\
+        # (↓ on input line ↓)\
+        # $battery\
+        # $shlvl\
+        # $jobs\
+        # $cmd_duration\
+        # $status\
+        # $character"""
+
+
+
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~     DIRECTORY     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+[directory]
+style= "fg:#6A8AEA"
+truncation_length = 4
+truncate_to_repo = true
+fish_style_pwd_dir_length = 3
+
+[directory.substitutions]
+"Documents" = " 󰧮 "
+"Music" = "  "
+"Movies" = " 󰿏 "
+"Pictures" =  " "
+"Sources" = "  "
+"Downloads" = "  "
+"~" = "  "
+"/" = "  "
+
+[line_break]
+disabled = true # leave as TRUE  
+
+[character]
+success_symbol = " [󰁔](fg:#6A8AEA) "
+error_symbol =   " [ ](fg:#d56767)[ ](fg:#d56767) "
+format = "$symbol"
+disabled = false
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     ...........       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~ GIT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+[git_branch]
+disabled = false
+symbol = " "
+style = "fg:#b79999"
+truncation_length = 10
+format = '[$symbol$branch(:$remote_branch)]($style) ' # this sets path ../../../../
+
+[git_commit]
+disabled = false
+commit_hash_length = 1
+
+[git_state]
+disabled = false
+rebase = "rebasing"
+merge = "merging"
+revert = "reverting"
+cherry_pick = " picking"
+bisect = "bisecting"
+am = "am'ing"
+am_or_rebase = "am/rebase"
+
+[git_status]
+disabled = false
+style= "fg:#5F8575"
+stashed = " ${count} "
+ahead = "󰞙 ${count} "
+behind = "󰞒 ${count} "
+diverged = "󰵉 ${ahead_count} ${behind_count} "
+conflicted = " ${count} "
+deleted = " ${count} "
+renamed = " ${count} "
+modified = " ${count} "
+staged = " ${count} "
+untracked = "󱅘 ${count}"
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     ...........       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~     LANGUAGES     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+[java]
+disabled = false
+symbol = "•  "
+format = '[${symbol}]($style)'
+style = "fg:#a48989"
+
+[python]
+disabled = false
+pyenv_version_name= false
+python_binary = 'python'
+format = '[${symbol}(\($virtualenv\))]($style)'
+style = "fg:#a48989"
+symbol = "•  "
+
+[lua]
+disabled = false
+symbol = "• "
+format = '[${symbol}]($style)'
+style = "fg:#a48989"
+
+[nodejs]
+disabled = false
+symbol = "• 󰎙 "
+format = '[${symbol}]($style)'
+style = "fg:#a48989"
+
+[package]
+disabled = false
+symbol = "•  "
+display_private = false
+format = '[${symbol}]($style)'
+style = "fg:#a48989"
+
+[docker_context]
+disabled = false
+symbol = "•  "
+only_with_files = true
+format = '[${symbol}]($style)'
+style = "fg:#a48989"
+
+[golang]
+disabled = false
+symbol = "•  "
+format = '[${symbol}]($style)'
+style = "fg:#a48989"
+
+[c]
+disabled = false
+symbol = "•  "
+format = '[${symbol}]($style)'
+style = "fg:#a48989"
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     ...........       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
