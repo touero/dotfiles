@@ -63,13 +63,9 @@ right_format = """$time"""
         # $status\
         # $character"""
 
-
-
-
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~     DIRECTORY     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 [directory]
-style= "fg:#6A8AEA"
+style= "fg:#b8bb26"
 truncation_length = 4
 truncate_to_repo = true
 fish_style_pwd_dir_length = 3
@@ -85,25 +81,21 @@ fish_style_pwd_dir_length = 3
 "/" = "  "
 
 [line_break]
-disabled = true # leave as TRUE  
+disabled = true
 
 [character]
-success_symbol = " [󰁔](fg:#6A8AEA) "
-error_symbol =   " [ ](fg:#d56767)[ ](fg:#d56767) "
+success_symbol = " [󰁔](fg:#928374) "
+error_symbol =   " [ ](fg:#fb4934)[ ](fg:#fb4934) "
 format = "$symbol"
 disabled = false
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     ...........       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-
-
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~ GIT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 [git_branch]
 disabled = false
 symbol = " "
-style = "fg:#b79999"
+style = "fg:#fe8019"
 truncation_length = 10
-format = '[$symbol$branch(:$remote_branch)]($style) ' # this sets path ../../../../
+format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [git_commit]
 disabled = false
@@ -121,7 +113,7 @@ am_or_rebase = "am/rebase"
 
 [git_status]
 disabled = false
-style= "fg:#5F8575"
+style= "fg:#83a598"
 stashed = " ${count} "
 ahead = "󰞙 ${count} "
 behind = "󰞒 ${count} "
@@ -132,62 +124,56 @@ renamed = " ${count} "
 modified = " ${count} "
 staged = " ${count} "
 untracked = "󱅘 ${count}"
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     ...........       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-
-
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~     LANGUAGES     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 [java]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#a48989"
+style = "fg:#d3869b"
 
 [python]
 disabled = false
 pyenv_version_name= false
 python_binary = 'python'
 format = '[${symbol}(\($virtualenv\))]($style)'
-style = "fg:#a48989"
+style = "fg:#d3869b"
 symbol = "•  "
 
 [lua]
 disabled = false
 symbol = "• "
 format = '[${symbol}]($style)'
-style = "fg:#a48989"
+style = "fg:#d3869b"
 
 [nodejs]
 disabled = false
 symbol = "• 󰎙 "
 format = '[${symbol}]($style)'
-style = "fg:#a48989"
+style = "fg:#d3869b"
 
 [package]
 disabled = false
 symbol = "•  "
 display_private = false
 format = '[${symbol}]($style)'
-style = "fg:#a48989"
+style = "fg:#d3869b"
 
 [docker_context]
 disabled = false
 symbol = "•  "
 only_with_files = true
 format = '[${symbol}]($style)'
-style = "fg:#a48989"
+style = "fg:#d3869b"
 
 [golang]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#a48989"
+style = "fg:#d3869b"
 
 [c]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#a48989"
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     ...........       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+style = "fg:#d3869b"

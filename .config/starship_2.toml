@@ -11,7 +11,6 @@ $character
 [character]
 success_symbol = "╰⎯"
 error_symbol = "╰⎯"
-# ╭╴ ╰─
 
 [env_var]
 symbol = "╭╴"
@@ -19,15 +18,8 @@ variable = 'SHELL'
 format = "$symbol"
 disabled = false
 
-
-#warp-Drop ugly default prompt characters
-#success_symbol = ""
-#error_symbol = ""
-
-# ---
-
 [os]
-format = '[$symbol](bold white) '   
+format = '[$symbol](fg:#fabd2f) '   
 disabled = false
 
 [os.symbols]
@@ -37,47 +29,35 @@ Ubuntu = ''
 Macos = '󰀵'
 Unknown = '󰠥'
 
-# ---y
-
-# Shows the username
 [username]
-style_user = 'yellow bold'
-style_root = 'black bold'
-format = '[//](black bold) [$user](#2883ff) ' # 2883ff
+style_user = 'fg:#fabd2f bold'
+style_root = 'fg:#cc241d bold'
+format = '[//](fg:#928374) [$user](fg:#fabd2f) '
 disabled = false
 show_always = true
 
-# Shows the hostname
 [hostname]
 ssh_only = false
-format = '[//](black bold) [$hostname](bold blue) '
-disabled = false
+format = '[//](fg:#928374) [$hostname](fg:#83a598 bold) '
+disabled = true
 
-# Shows current directory
 [directory]
 truncation_length = 0
 truncation_symbol = '…/'
 home_symbol = '~'
-# read_only_style = '197'
 read_only = '  '
-format = '[//](black bold) [$path]($style)[$read_only]($read_only_style) '
-style = '#7ed1fb' # yellow bold
+format = '[//](fg:#928374) [$path]($style)[$read_only]($read_only_style) '
+style = 'fg:#83a598'
 
-
-# Shows current git branch
 [git_branch]
-# symbol = ' '
 symbol = ' '
-format = '[//](black bold) [$symbol\[$branch\]]($style) '
-# truncation_length = 0
-# truncation_symbol = '…/'
-style = 'bold green'
+format = '[//](fg:#928374) [$symbol\[$branch\]]($style) '
+style = 'fg:#b8bb26 bold'
 
-# Shows current git status
 [git_status]
 disabled = true
 format = '[ $all_status $ahead_behind]($style) '
-style = 'bold green'
+style = 'fg:#b8bb26 bold'
 conflicted = '🏳'
 up_to_date = ''
 untracked = ' '
@@ -86,16 +66,13 @@ diverged = '⇕⇡${ahead_count}⇣${behind_count}'
 behind = '⇣${count}'
 stashed = ' '
 modified = ' '
-staged = '[++\($count\)](green)'
+staged = '[++\($count\)](fg:#b8bb26)'
 renamed = '襁 '
 deleted = ' '
 
-# Shows kubernetes context and namespace
 [kubernetes]
-format = 'via [󱃾 $context\($namespace\)](bold purple) '
+format = 'via [󱃾 $context\($namespace\)](fg:#d3869b bold) '
 disabled = false
-
-# ---
 
 [vagrant]
 disabled = true
@@ -109,8 +86,8 @@ disabled = true
 [python]
 symbol = '󰌠'
 python_binary = ['./venv/bin/python', 'python', 'python3', 'python2']
-format = '[//](black bold) [${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
-
+format = '[//](fg:#928374) [${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
+style = 'fg:#fabd2f'
 
 [nodejs]
 disabled = true
