@@ -1,5 +1,6 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
+require("notify").setup({background_colour = "#000000"})
 local handle = io.popen("ip route | grep 'default' | awk '{print $3}'")
 local gateway = ""
 
