@@ -8,7 +8,7 @@ based [dotbot](https://github.com/anishathalye/dotbot)
 git clone https://github.com/touero/dotfiles.git && cd dotfiles
 ```
 
-[!IMPORTTANT]
+> [!IMPORTANT]
 > check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments)
 
 
