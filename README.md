@@ -1,8 +1,8 @@
 # touero's dotfiles
 
-based [dotbot](https://github.com/anishathalye/dotbot)
+Based [dotbot](https://github.com/anishathalye/dotbot)
 
-# usega
+# Usega
 
 ```
 git clone https://github.com/touero/dotfiles.git && cd dotfiles
@@ -12,11 +12,10 @@ git clone https://github.com/touero/dotfiles.git && cd dotfiles
 > check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments)
 
 
-# preview
+# Preview in tmux
 
 ## Ubuntu
 ![wezterm](./preview/wezterm.png)
-![tmux](./preview/tmux.png)
 ![yazi](./preview/yazi.png)
 ![nvim](./preview/nvim.png)
 ![lazygit](./preview/lazygit.png)
