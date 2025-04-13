@@ -15,7 +15,13 @@ git clone https://github.com/touero/dotfiles.git && cd dotfiles
 # Preview in tmux
 
 ## Ubuntu
-![wezterm](./preview/wezterm.png)
-![yazi](./preview/yazi.png)
-![nvim](./preview/nvim.png)
-![lazygit](./preview/lazygit.png)
+![wezterm](./preview/ubuntu/wezterm.png)
+![yazi](./preview/ubuntu/yazi.png)
+![nvim](./preview/ubuntu/nvim.png)
+![lazygit](./preview/ubuntu/lazygit.png)
+
+## Mac
+![wezterm](./preview/mac/wezterm.png)
+![yazi](./preview/mac/yazi.png)
+![nvim](./preview/mac/nvim.png)
+![lazygit](./preview/mac/lazygit.png)
