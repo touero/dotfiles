@@ -1,5 +1,5 @@
 local wezterm = require('wezterm')
-local colors = require('colors.custom')
+-- local colors = require('colors.custom')
 local platform = require('utils.platform')()
 
 local config = {}
@@ -35,13 +35,13 @@ return {
    win32_system_backdrop = 'Acrylic',
    background = {
       {
-         source = { File = wezterm.config_dir .. '/backdrops/bg_img9.jpg' },
+         source = { File = wezterm.config_dir .. '/backdrops/bg_img2.jpg' },
       },
       {
          source = { Color = '#1d2021' },
          height = '100%',
          width = '100%',
-         opacity = 0.97,
+         opacity = 0.95,
       },
    },
 
