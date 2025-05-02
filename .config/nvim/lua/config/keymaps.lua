@@ -15,5 +15,4 @@ vim.api.nvim_set_keymap("n", "<S-Enter>", ":normal O<CR>", {})
 vim.api.nvim_set_keymap("v", "<Tab>", ">>", {})
 vim.api.nvim_set_keymap("v", "<S-Tab>", "<<", {})
 
-vim.api.nvim_set_keymap("n", "<C-t>", ":FloatermToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-M>", ":MarkdownPreview<CR>", { noremap = true, silent = true })
