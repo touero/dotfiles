@@ -34,8 +34,8 @@ nnoremap <C-j> :action ClickLink<CR>
 nnoremap <C-j> :action GotoDeclaration<CR>
 nnoremap <S-l> :action NextTab<CR>
 nnoremap <S-h> :action PreviousTab<CR>
-nnoremap <C-A-K> :action Forward<CR>
-nnoremap <C-A-J> :action Back<CR>
+# nnoremap <C-A-K> :action Forward<CR>
+nnoremap <C-K> :action Back<CR>
 
 
 vnoremap <Tab> >gv
