@@ -1,3 +1,4 @@
+
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
@@ -119,27 +120,27 @@ style = "fg:color_os"
 format = '[$symbol]($style)'
 
 [os.symbols]
-Windows = "󰍲"
-Ubuntu = ""
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-Arch = "󰣇"
-Artix = "󰣇"
-EndeavourOS = ""
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
-RedHatEnterprise = "󱄛"
-Pop = ""
+windows = "󰍲"
+ubuntu = ""
+suse = ""
+raspbian = "󰐿"
+mint = "󰣭"
+macos = "󰀵"
+manjaro = ""
+linux = "󰌽"
+gentoo = "󰣨"
+fedora = "󰣛"
+alpine = ""
+amazon = ""
+android = ""
+arch = "󰣇"
+artix = "󰣇"
+endeavouros = ""
+centos = ""
+debian = "󰣚"
+redhat = "󱄛"
+redhatenterprise = "󱄛"
+pop = ""
 
 [username]
 show_always = true
@@ -207,13 +208,13 @@ disabled = false
 [git_state]
 style = "fg:color_danger"
 format = '[($state( $progress_current/$progress_total) )]($style bold)'
-rebase = "REBASING"
-merge = "MERGING"
-revert = "REVERTING"
-cherry_pick = "CHERRY-PICKING"
-bisect = "BISECTING"
-am = "AM"
-am_or_rebase = "AM/REBASE"
+rebase = "rebasing"
+merge = "merging"
+revert = "reverting"
+cherry_pick = "cherry-picking"
+bisect = "bisecting"
+am = "am"
+am_or_rebase = "am/rebase"
 disabled = false
 
 [nodejs]
@@ -309,7 +310,7 @@ number_threshold = 1
 
 [custom.memory_usage]
 command = "starship module memory_usage"
-when = '[ "${STARSHIP_COCKPIT_MEMORY_USAGE_ENABLED:-false}" = "true" ]'
+when = '[ "${starship_cockpit_memory_usage_enabled:-false}" = "true" ]'
 format = "( $output )"
 disabled = false
 
@@ -325,12 +326,12 @@ command = """
 battery_info=$(starship module battery)
 if [ -n "$battery_info" ]; then
     percent=$(echo "$battery_info" | grep -o '[0-9]*%%' | sed 's/%%//')
-    if [ "$percent" -le "${STARSHIP_COCKPIT_BATTERY_THRESHOLD:-0}" ]; then
+    if [ "$percent" -le "${starship_cockpit_battery_threshold:-0}" ]; then
         echo "$battery_info" | sed 's/%%/%/'
     fi
 fi
 """
-when = '[ "${STARSHIP_COCKPIT_BATTERY_ENABLED:-false}" = "true" ]'
+when = '[ "${starship_cockpit_battery_enabled:-false}" = "true" ]'
 format = "( $output )"
 disabled = false
 
@@ -357,7 +358,7 @@ style = "fg:color_other"
 
 [time]
 disabled = false
-time_format = "%R"
+time_format = "%r"
 style = "fg:color_time"
 format = '[ 󰔛 $time ]($style)'
 
@@ -397,17 +398,17 @@ vimcmd_visual_symbol = '[❮](bold fg:color_vimcmd_visual)'
 [custom.keyboard_layout]
 command = """
 
-# Set env variables if you want to use layout aliases (in uppercase)
-#     export STARSHIP_COCKPIT_KEYBOARD_LAYOUT_ABC=ENG
-#     export STARSHIP_COCKPIT_KEYBOARD_LAYOUT_UKRAINIAN=UKR
+# set env variables if you want to use layout aliases (in uppercase)
+#     export starship_cockpit_keyboard_layout_abc=eng
+#     export starship_cockpit_keyboard_layout_ukrainian=ukr
 # 
-# Implementations:
-#     macOS
+# implementations:
+#     macos
 
-if [ "$(uname -s)" = "Darwin" ]; then
-        input_source=$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID)
+if [ "$(uname -s)" = "darwin" ]; then
+        input_source=$(defaults read ~/library/preferences/com.apple.hitoolbox.plist applecurrentkeyboardlayoutinputsourceid)
         layout_id=$(echo "$input_source" | cut -d '.' -f4)
-        layout=$(printenv "STARSHIP_COCKPIT_KEYBOARD_LAYOUT_$(echo "$layout_id" | tr '[:lower:]' '[:upper:]')")
+        layout=$(printenv "starship_cockpit_keyboard_layout_$(echo "$layout_id" | tr '[:lower:]' '[:upper:]')")
         echo "$layout" || echo "$layout_id"
 fi
 
@@ -415,5 +416,5 @@ fi
 symbol = "󰌌"
 style = "fg:color_other"
 format = '[( $symbol $output )]($style)'
-when = '[ "${STARSHIP_COCKPIT_KEYBOARD_LAYOUT_ENABLED:-false}" = "true" ]'
+when = '[ "${starship_cockpit_keyboard_layout_enabled:-false}" = "true" ]'
 disabled = false
