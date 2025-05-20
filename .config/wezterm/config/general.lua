@@ -1,5 +1,9 @@
+local session_type = os.getenv("XDG_SESSION_TYPE")
+local is_wayland = session_type == "wayland"
+
 return {
-  -- behaviours
+  enable_wayland = is_wayland,
+  enable_zwlr_output_manager = is_wayland,
   automatically_reload_config = true,
   check_for_updates = false,
   exit_behavior = "CloseOnCleanExit", -- if the shell program exited with a successful status
