@@ -18,6 +18,7 @@
     ~/.config/wezterm: .config/wezterm
     ~/.config/lazygit: .config/lazygit
     ~/.config/yazi: .config/yazi
+    ~/.config/ttyper: .config/ttyper
 
 - create:
     - ~/data/repo
