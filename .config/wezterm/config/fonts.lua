@@ -10,7 +10,7 @@ return {
     { family = "Noto Sans SC:style=Regular" },
     { family = "Noto Sans Mono CJK SC" },
   }),
-  font_size = 11,
+  font_size = 16,
   line_height = 1.3,
 
   --ref: https://wezfurlong.org/wezterm/config/lua/config/freetype_pcf_long_family_names.html#why-doesnt-wezterm-use-the-distro-freetype-or-match-its-configuration
