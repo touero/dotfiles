@@ -1,65 +1,10 @@
 format = """
- $all 
+$directory$git_branch$git_commit$git_state$git_status$java$python$lua$nodejs$package$docker_context$golang$c
+$line_break$character
 """
 
-        # $time\
-        # $hostname\
-        # $directory\
-        # $aws\
-        # $gcloud\
-        # $singularity\
-        # $kubernetes\
-        # $docker_context\
-        # (↓ Source control - for right side ↓)\
-        # $hg_branch\
-        # $git_branch \
-        # $git_commit\
-        # $git_status\
-        # $git_state\
-        # (↑ Source control - for right side ↑)\
-        # (↓ Toolchain version modules ↓)\
-        # $crystal\
-        # $dart\
-        # $dotnet\
-        # $elixir\
-        # $elm\
-        # $erlang\
-        # $golang\
-        # $java\
-        # $lua\
-        # $julia\
-        # $nim\
-        # $nodejs\
-        # $ocaml\
-        # $perl\
-        # $php\
-        # $purescript\
-        # $python\
-        # $ruby\
-        # $rust\
-        # $swift\
-        # $terraform\
-        # $zig\
-        # (↑ Toolchain version modules ↑)\
-        # (↓ Package modules ↓)\
-        # $helm\
-        # $package\
-        # $cmake\
-        # $conda\
-        # (↑ Package modules ↑)\
-        # $nix_shell\
-        # $memory_usage\
-        # $env_var\
-        # $custom\
-        # (↑ above input line ↑)\
-        # $line_break\
-        # (↓ on input line ↓)\
-        # $battery\
-        # $shlvl\
-        # $jobs\
-        # $cmd_duration\
-        # $status\
-        # $character"""
+[line_break]
+disabled = false
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~     DIRECTORY     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 [directory]
@@ -67,9 +12,6 @@ style = "fg:#fe8019"
 truncation_length = 5
 truncate_to_repo = true
 fish_style_pwd_dir_length = 3
-
-[line_break]
-disabled = true
 
 [character]
 success_symbol = " [󰧂](fg:#928374) "
@@ -122,7 +64,7 @@ style = "fg:#d3869b"
 
 [python]
 disabled = false
-pyenv_version_name= false
+pyenv_version_name = false
 python_binary = 'python'
 format = '[${symbol}(\($virtualenv\))]($style)'
 style = "fg:#d3869b"
