@@ -9,7 +9,6 @@
 
 - link:
     ~/.zshenv: .zshenv
-    ~/.tmux.conf: .tmux.conf
     ~/.ideavimrc: .ideavimrc
     ~/.my_aliases: .my_aliases
 
@@ -19,6 +18,7 @@
     ~/.config/lazygit: .config/lazygit
     ~/.config/yazi: .config/yazi
     ~/.config/ttyper: .config/ttyper
+    ~/.config/tmux: .config/tmux
 
 - create:
     - ~/data/repo
