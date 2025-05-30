@@ -12,5 +12,5 @@ vim.api.nvim_set_keymap("n", "<S-Tab>", "<<", {})
 vim.api.nvim_set_keymap("n", "<CR>", ":normal o<CR>", {})
 vim.api.nvim_set_keymap("n", "<S-Enter>", ":normal O<CR>", {})
 
-vim.api.nvim_set_keymap("v", "<Tab>", ">>", {})
-vim.api.nvim_set_keymap("v", "<S-Tab>", "<<", {})
+vim.api.nvim_set_keymap("v", "<Tab>", ">gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
