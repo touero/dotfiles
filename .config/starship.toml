@@ -8,14 +8,14 @@ disabled = false
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~     DIRECTORY     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 [directory]
-style = "fg:#fe8019"
-truncation_length = 5
+style = "fg:#fe8019 bg:#3c3836"
+truncation_length = 10
 truncate_to_repo = true
-fish_style_pwd_dir_length = 3
+fish_style_pwd_dir_length = 20
 
 [character]
-success_symbol = " [󰧂](fg:#928374) "
-error_symbol =   " [](fg:#fb4934)[ ](fg:#fb4934) "
+success_symbol = " [❯](bold green) "
+error_symbol =   " [](bold red)[ ](bold red) "
 format = "$symbol"
 disabled = false
 
@@ -23,13 +23,14 @@ disabled = false
 [git_branch]
 disabled = false
 symbol = " "
-style = "fg:#b8bb26"
+style = "fg:#fabd2f bg:#3c3836"
 truncation_length = 10
 format = '[ $symbol$branch(:$remote_branch)]($style) '
 
 [git_commit]
 disabled = false
 commit_hash_length = 1
+style = "fg:#fe8019 bg:#3c3836"
 
 [git_state]
 disabled = false
@@ -40,10 +41,11 @@ cherry_pick = " picking"
 bisect = "bisecting"
 am = "am'ing"
 am_or_rebase = "am/rebase"
+style = "fg:#fb4934 bg:#3c3836"
 
 [git_status]
 disabled = false
-style= "fg:#83a598"
+style = "fg:#d3869b bg:#3c3836"
 stashed = " ${count} "
 ahead = "󰞙 ${count} "
 behind = "󰞒 ${count} "
@@ -60,50 +62,50 @@ untracked = "󱅘 ${count}"
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#d3869b"
+style = "fg:#b16286 bg:#504945"
 
 [python]
 disabled = false
 pyenv_version_name = false
 python_binary = 'python'
 format = '[${symbol}(\($virtualenv\))]($style)'
-style = "fg:#d3869b"
+style = "fg:#83a598 bg:#504945"
 symbol = "•  "
 
 [lua]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#d3869b"
+style = "fg:#8ec07c bg:#504945"
 
 [nodejs]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#d3869b"
+style = "fg:#b8bb26 bg:#504945"
 
 [package]
 disabled = false
 symbol = "• 󰏓 "
 display_private = false
 format = '[${symbol}]($style)'
-style = "fg:#d3869b"
+style = "fg:#fabd2f bg:#504945"
 
 [docker_context]
 disabled = false
 symbol = "•  "
 only_with_files = true
 format = '[${symbol}]($style)'
-style = "fg:#d3869b"
+style = "fg:#458588 bg:#504945"
 
 [golang]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#d3869b"
+style = "fg:#98971a bg:#504945"
 
 [c]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#d3869b"
+style = "fg:#cc241d bg:#504945"
