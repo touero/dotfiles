@@ -10,7 +10,7 @@
 - link:
     ~/.zshenv: .zshenv
     ~/.ideavimrc: .ideavimrc
-    ~/.my_aliases: .my_aliases
+    ~/.my_aliases.zsh: .my_aliases.zsh
 
     ~/.config/starship.toml: .config/starship.toml
     ~/.config/nvim: .config/nvim
@@ -19,6 +19,7 @@
     ~/.config/yazi: .config/yazi
     ~/.config/ttyper: .config/ttyper
     ~/.config/tmux: .config/tmux
+    ~/.config/neofetch: neofetch
 
 - create:
     - ~/data/repo

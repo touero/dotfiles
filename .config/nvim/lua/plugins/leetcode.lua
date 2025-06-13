@@ -55,7 +55,7 @@ return {
   },
   opts = {
     ---@type string
-    arg = "lt",
+    arg = "lc",
     ---@type lc.lang
     lang = "python3",
     cn = {
@@ -65,7 +65,7 @@ return {
     },
     description = {
       position = posision, ---@type lc.position
-      width = "35%", ---@type lc.size
+      width = "45%", ---@type lc.size
       show_stats = true, ---@type boolean
     },
   },

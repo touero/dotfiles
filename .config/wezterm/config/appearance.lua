@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 -- local colors = require('colors.custom')
 local platform = require("utils.platform")()
+local fonts = require("config.fonts")
 
 local config = {}
 if platform.is_mac then
@@ -35,13 +36,13 @@ return {
   win32_system_backdrop = "Acrylic",
   background = {
     {
-      source = { File = wezterm.config_dir .. "/backdrops/bg_img2.jpg" },
+      source = { File = wezterm.config_dir .. "/backdrops/bg_img6.jpg" },
     },
     {
       source = { Color = "#1d2021" },
       height = "100%",
       width = "100%",
-      opacity = 0.95,
+      opacity = 0.98,
     },
   },
 
@@ -84,7 +85,7 @@ return {
     active_titlebar_bg = "#282828",
     inactive_titlebar_bg = "#282828",
     -- font = fonts.font,
-    -- font_size = fonts.font_size,
+    font_size = fonts.font_size,
   },
   inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
 }
