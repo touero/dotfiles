@@ -8,17 +8,17 @@
     stdout: true
 
 - link:
-    ~/.zshenv: .zshenv
-    ~/.ideavimrc: .ideavimrc
-    ~/.my_aliases.zsh: .my_aliases.zsh
+    ~/.zshenv: zshenv
+    ~/.ideavimrc: ideavimrc
+    ~/.my_aliases.zsh: my_aliases.zsh
 
-    ~/.config/starship.toml: .config/starship.toml
-    ~/.config/nvim: .config/nvim
-    ~/.config/wezterm: .config/wezterm
-    ~/.config/lazygit: .config/lazygit
-    ~/.config/yazi: .config/yazi
-    ~/.config/ttyper: .config/ttyper
-    ~/.config/tmux: .config/tmux
+    ~/.config/starship.toml: starship.toml
+    ~/.config/nvim: nvim
+    ~/.config/wezterm: wezterm
+    ~/.config/lazygit: lazygit
+    ~/.config/yazi: yazi
+    ~/.config/ttyper: ttyper
+    ~/.config/tmux: tmux
     ~/.config/neofetch: neofetch
 
 - create:
