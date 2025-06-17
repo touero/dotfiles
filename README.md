@@ -15,13 +15,15 @@ git clone https://github.com/touero/dotfiles.git && cd dotfiles
 # Preview in tmux
 
 ## Ubuntu
-![wezterm](./.preview/ubuntu/wezterm.png)
+![neofetch](./.preview/ubuntu/neofetch.png)
 ![yazi](./.preview/ubuntu/yazi.png)
 ![nvim](./.preview/ubuntu/nvim.png)
 ![lazygit](./.preview/ubuntu/lazygit.png)
+![editor](./.preview/ubuntu/editor.png)
 
 ## Mac
-![wezterm](./.preview/mac/wezterm.png)
+![neofetch](./.preview/mac/neofetch.png)
 ![yazi](./.preview/mac/yazi.png)
 ![nvim](./.preview/mac/nvim.png)
 ![lazygit](./.preview/mac/lazygit.png)
+![editor](./.preview/mac/editor.png)
