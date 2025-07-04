@@ -8,7 +8,7 @@ disabled = false
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~     DIRECTORY     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 [directory]
-style = "fg:#fe8019 bg:#3c3836"
+style = "fg:#fe8019"
 truncation_length = 10
 truncate_to_repo = true
 fish_style_pwd_dir_length = 20
@@ -23,14 +23,14 @@ disabled = false
 [git_branch]
 disabled = false
 symbol = " "
-style = "fg:#fabd2f bg:#3c3836"
+style = "fg:#fabd2f"
 truncation_length = 10
 format = '[ $symbol$branch(:$remote_branch)]($style) '
 
 [git_commit]
 disabled = false
 commit_hash_length = 1
-style = "fg:#fe8019 bg:#3c3836"
+style = "fg:#fe8019"
 
 [git_state]
 disabled = false
@@ -41,11 +41,11 @@ cherry_pick = " picking"
 bisect = "bisecting"
 am = "am'ing"
 am_or_rebase = "am/rebase"
-style = "fg:#fb4934 bg:#3c3836"
+style = "fg:#fb4934"
 
 [git_status]
 disabled = false
-style = "fg:#d3869b bg:#3c3836"
+style = "fg:#d3869b"
 stashed = " ${count} "
 ahead = "󰞙 ${count} "
 behind = "󰞒 ${count} "
@@ -62,50 +62,50 @@ untracked = "󱅘 ${count}"
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#b16286 bg:#504945"
+style = "fg:#b16286"
 
 [python]
 disabled = false
 pyenv_version_name = false
 python_binary = 'python'
 format = '[${symbol}(\($virtualenv\))]($style)'
-style = "fg:#83a598 bg:#504945"
+style = "fg:#83a598"
 symbol = "•  "
 
 [lua]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#8ec07c bg:#504945"
+style = "fg:#8ec07c"
 
 [nodejs]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#b8bb26 bg:#504945"
+style = "fg:#b8bb26"
 
 [package]
 disabled = false
 symbol = "• 󰏓 "
 display_private = false
 format = '[${symbol}]($style)'
-style = "fg:#fabd2f bg:#504945"
+style = "fg:#fabd2f"
 
 [docker_context]
 disabled = false
 symbol = "•  "
 only_with_files = true
 format = '[${symbol}]($style)'
-style = "fg:#458588 bg:#504945"
+style = "fg:#458588"
 
 [golang]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#98971a bg:#504945"
+style = "fg:#98971a"
 
 [c]
 disabled = false
 symbol = "•  "
 format = '[${symbol}]($style)'
-style = "fg:#cc241d bg:#504945"
+style = "fg:#cc241d"
