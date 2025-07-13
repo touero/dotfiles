@@ -80,6 +80,8 @@ local keys = {
   -- fonts: resize
   { key = "UpArrow", mods = mod.SUPER, action = act.IncreaseFontSize },
   { key = "DownArrow", mods = mod.SUPER, action = act.DecreaseFontSize },
+  { key = "=", mods = "CTRL", action = act.IncreaseFontSize },
+  { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
   { key = "r", mods = mod.SUPER, action = act.ResetFontSize },
 
   -- key-tables --
