@@ -20,6 +20,7 @@
     ~/.config/ttyper: ttyper
     ~/.config/tmux: tmux
     ~/.config/neofetch: neofetch
+    ~/.config/rofi: rofi
 
 - create:
     - ~/data/repo
