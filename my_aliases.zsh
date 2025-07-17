@@ -28,8 +28,8 @@ alias docker1='ssh -p 2222 -o ServerAliveInterval=30 shoot@$COMPANY_DOCKER_IP'
 alias docker2='ssh -p 2223 -o ServerAliveInterval=30 shoot@$COMPANY_DOCKER_IP'
 
 for ((i=3; i<=15; i++)); do
-    port=$((2222 + $i))
-    alias "docker${i}=ssh -p $port -o ServerAliveInterval=30 shoot@$COMPANY_DOCKER_IP"
+    port=$((2222 + i))
+    eval "alias docker$i='ssh -p $port -o ServerAliveInterval=30 shoot@\$COMPANY_DOCKER_IP'"
 done
 
 alias gau='git update-index --assume-unchanged'
