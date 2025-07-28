@@ -25,36 +25,35 @@ return {
 
   -- color scheme
   -- colors = colors, if you want to setting your color custom
-  color_scheme = "Gruvbox dark, medium (base16)",
+  color_scheme = "GruvboxDarkHard",
 
   -- Set to deault rows and columns
   initial_cols = 175,
   initial_rows = 43,
 
   -- background
-  window_background_opacity = 1.00,
-  win32_system_backdrop = "Acrylic",
-  background = {
-    {
-      source = { File = wezterm.config_dir .. "/backdrops/bg_img6.jpg" },
-    },
-    {
-      source = { Color = "#1d2021" },
-      height = "100%",
-      width = "100%",
-      opacity = 0.98,
-    },
-  },
+  window_background_opacity = 0.85,
+  -- background = {
+  --   {
+  --     source = { File = wezterm.config_dir .. "/backdrops/bg_img6.jpg" },
+  --   },
+  --   {
+  --     source = { Color = "#1d2021" },
+  --     height = "100%",
+  --     width = "100%",
+  --     opacity = 0.98,
+  --   },
+  -- },
 
   -- scrollbar
-  enable_scroll_bar = true,
+  enable_scroll_bar = false,
   min_scroll_bar_height = "3cell",
   colors = {
     scrollbar_thumb = "#34354D",
   },
 
   -- tab bar
-  enable_tab_bar = true,
+  enable_tab_bar = false,
   hide_tab_bar_if_only_one_tab = false,
   use_fancy_tab_bar = true,
   tab_max_width = 25,
@@ -68,17 +67,17 @@ return {
   cursor_blink_rate = 0,
 
   -- window
-  adjust_window_size_when_changing_font_size = true,
+  adjust_window_size_when_changing_font_size = false,
   window_decorations = "INTEGRATED_BUTTONS|RESIZE",
   integrated_title_button_style = config.button_style,
   integrated_title_button_color = "#282828",
   integrated_title_button_alignment = config.button_alignment,
 
   window_padding = {
-    left = 5,
-    right = 10,
-    top = 12,
-    bottom = 7,
+    left = 15,
+    right = 15,
+    top = 15,
+    bottom = 15,
   },
   window_close_confirmation = "AlwaysPrompt",
   window_frame = {
