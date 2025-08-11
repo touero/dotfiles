@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+# @author nate zhou(touero fix enhanced)
+# @since 2025
+# mu: print human-readable memory usage by process name
+# Usage: mu [PROCESS NAME...]
+#    -h, --help          print this message
+# With no options mu prints the most memory heavy processes
+
+os_type=$(uname)
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+  echo "Usage: mu [PROCESS NAME...]"
+  echo "  -h, --help    print this message"
+  exit 0
+fi
+
+if [ -z "$@" ]; then
+  if [ "$os_type" = "Darwin" ]; then
+    ps -axo rss,pid,comm | sort -nr | awk '{printf "%s %s %.2f MB\n", $2, $3, $1/1024}' | head -20 | column -t
+  else
+    ps axh -o rss,pid,cmd:20 --sort=-rss | awk '{printf "%s %s %.2f MB\n", $2, $3, $1/1024}' | head -20 | column -t
+  fi
+else
+  if [ "$os_type" = "Darwin" ]; then
+    pids=$(pgrep -x "$@")
+    [ -n "$pids" ] && ps -o rss,pid,comm -p $pids | awk 'NR==1 {print; next} {printf "%s %s %.2f MB\n", $2, $3, $1/1024}' | column -t
+  else
+    ps -o rss,pid,cmd -p $(pidof -x "$@") | awk 'NR==1 {print; next} {printf "%s %s %.2f MB\n", $2, $3, $1/1024}' | column -t
+  fi
+fi

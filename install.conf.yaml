@@ -22,6 +22,8 @@
     ~/.config/neofetch: neofetch
     ~/.config/rofi: rofi
 
+    ~/.local/bin/mu: shell_scripts/mu
+
 - create:
     - ~/data/repo
 
