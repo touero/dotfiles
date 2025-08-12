@@ -38,3 +38,4 @@ alias gnau='git update-index --no-assume-unchanged'
 
 alias gaus="git ls-files -v | grep '^[a-z]'"
 
+alias gl='git log --graph --pretty=format:"%Cred%h%Creset%C(yellow)%d%Creset %s %Cblue%an %C(cyan)%ad%Creset" --abbrev-commit --date=iso'
