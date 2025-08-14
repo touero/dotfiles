@@ -33,17 +33,17 @@ return {
 
   -- background
   window_background_opacity = 0.85,
-  -- background = {
-  --   {
-  --     source = { File = wezterm.config_dir .. "/backdrops/bg_img6.jpg" },
-  --   },
-  --   {
-  --     source = { Color = "#1d2021" },
-  --     height = "100%",
-  --     width = "100%",
-  --     opacity = 0.98,
-  --   },
-  -- },
+  background = {
+    {
+      source = { File = wezterm.config_dir .. "/backdrops/bg_img1.jpg" },
+    },
+    {
+      source = { Color = "#1d2021" },
+      height = "100%",
+      width = "100%",
+      opacity = 0.95,
+    },
+  },
 
   -- scrollbar
   enable_scroll_bar = false,

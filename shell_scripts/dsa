@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# @author touero
+# @since 2025
+# das: stop all running docker containers
+
+running_containers_id=$(sudo docker ps -q)
+
+if [ -n "$running_containers_id" ]; then
+  sudo docker stop $running_containers_id
+else
+  sudo docker ps -a
+fi

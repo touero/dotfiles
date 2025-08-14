@@ -23,6 +23,7 @@
     ~/.config/rofi: rofi
 
     ~/.local/bin/mu: shell_scripts/mu
+    ~/.local/bin/dsa: shell_scripts/dsa
 
 - create:
     - ~/data/repo
