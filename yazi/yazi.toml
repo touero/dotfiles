@@ -2,7 +2,7 @@
 ratio = [1, 2, 3]
 sort_by = "natural"
 sort_translit = true
-linemode = "size_and_mtime"
+linemode = "size"
 scrolloff = 200
 
 [preview]
