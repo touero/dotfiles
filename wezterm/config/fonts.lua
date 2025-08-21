@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 return {
   font = wezterm.font_with_fallback({
-    { family = "Fira Code", weight = "Regular" },
+    { family = "FiraCode Nerd Font"},
     { family = "JetBrainsMono Nerd Font", weight = "Regular" },
     { family = "JetBrains Mono" },
     { family = "MesloLGS NF" },

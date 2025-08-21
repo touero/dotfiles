@@ -20,10 +20,15 @@
     ~/.config/ttyper: ttyper
     ~/.config/tmux: tmux
     ~/.config/neofetch: neofetch
-    ~/.config/rofi: rofi
+    ~/.config/albert: albert
 
     ~/.local/bin/mu: shell_scripts/mu
     ~/.local/bin/dsa: shell_scripts/dsa
+    ~/.local/bin/cx: shell_scripts/cx
+    ~/.local/bin/bk: shell_scripts/bk
+    ~/.local/bin/ck: shell_scripts/ck
+    ~/.local/bin/ocr: shell_scripts/ocr
+    ~/.local/bin/gbl: shell_scripts/gbl
 
 - create:
     - ~/data/repo
