@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# @Author nate zhou(touero fix enhanced)
+# @Since 2025
+# bk: create a backup of the file
+
+if [ -z "$1" ]; then
+  echo "Please specify the file"
+  exit 1
+fi
+
+echo "creating a backup as $1~"
+cp -i "$1" "./$1~"

@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+# Author: touero
+# Since: 2025
+# ck: GNOME Custom Shortcut Manager
+
+# Function: list all custom shortcuts
+list_shortcuts() {
+  paths=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings | tr -d "[],'")
+  IFS=' ' read -ra paths_array <<<"$paths"
+
+  if [ ${#paths_array[@]} -eq 0 ]; then
+    echo "No custom shortcuts found."
+    return
+  fi
+
+  echo -e "\n=== GNOME Custom Shortcuts ==="
+  INDEX=0
+  for path in "${paths_array[@]}"; do
+    path=$(echo $path | xargs)
+    name=$(gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$path name | tr -d "'")
+    command=$(gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$path command | tr -d "'")
+    binding=$(gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$path binding | tr -d "'")
+    echo -e "\n[$INDEX]"
+    echo "Name:    $name"
+    echo "Binding: $binding"
+    echo "Command: $command"
+    INDEX=$((INDEX + 1))
+  done
+  echo "==============================="
+}
+
+# Function: add a new shortcut
+add_shortcut() {
+  read -p "Enter shortcut name: " NEW_NAME
+  read -p "Enter command to execute: " NEW_COMMAND
+  read -p "Enter key binding (e.g. <Super>Alt+O): " NEW_BINDING
+
+  # Get current custom shortcut paths
+  paths=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings | tr -d "[],'")
+  IFS=' ' read -ra paths_array <<<"$paths"
+
+  # Determine next available path
+  INDEX=0
+  while true; do
+    NEW_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom$INDEX/"
+    if [[ ! " ${paths_array[@]} " =~ " $NEW_PATH " ]]; then
+      break
+    fi
+    INDEX=$((INDEX + 1))
+  done
+
+  # Update custom-keybindings list
+  if [[ -z "$paths" ]]; then
+    gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['$NEW_PATH']"
+  else
+    gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[${paths_array[@]}, '$NEW_PATH']"
+  fi
+
+  # Set the properties
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$NEW_PATH name "$NEW_NAME"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$NEW_PATH command "$NEW_COMMAND"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$NEW_PATH binding "$NEW_BINDING"
+
+  echo "Shortcut '$NEW_NAME' set: $NEW_BINDING -> $NEW_COMMAND"
+}
+
+# Function: delete a shortcut
+delete_shortcut() {
+  paths=$(gsettings get org.gnome.settings-daemon.plugins.media-keys custom-keybindings | tr -d "[],'")
+  IFS=' ' read -ra paths_array <<<"$paths"
+
+  if [ ${#paths_array[@]} -eq 0 ]; then
+    echo "No custom shortcuts to delete."
+    return
+  fi
+
+  echo "Select a shortcut to delete:"
+  INDEX=0
+  for path in "${paths_array[@]}"; do
+    path=$(echo $path | xargs)
+    name=$(gsettings get org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$path name | tr -d "'")
+    echo "[$INDEX] $name"
+    INDEX=$((INDEX + 1))
+  done
+
+  read -p "Enter the index number to delete: " del_index
+  if ! [[ "$del_index" =~ ^[0-9]+$ ]] || [ "$del_index" -ge "${#paths_array[@]}" ]; then
+    echo "Invalid index."
+    return
+  fi
+
+  DEL_PATH=$(echo ${paths_array[$del_index]} | xargs)
+  unset 'paths_array[$del_index]' # remove from array
+
+  # Update custom-keybindings list
+  NEW_LIST=$(printf "'%s', " "${paths_array[@]}")
+  NEW_LIST="[${NEW_LIST%, }]"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "$NEW_LIST"
+
+  echo "Shortcut deleted: $DEL_PATH"
+}
+
+# Main menu
+echo "GNOME Custom Shortcut Manager"
+echo "1) List existing shortcuts"
+echo "2) Add a new shortcut"
+echo "3) Delete a shortcut"
+read -p "Choose an option [1/2/3]: " choice
+
+case "$choice" in
+1) list_shortcuts ;;
+2) add_shortcut ;;
+3) delete_shortcut ;;
+*) echo "Invalid option." ;;
+esac

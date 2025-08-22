@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+# @author touero
+# @since 2025
+# gbl: check L? to L? commit details
+
+if echo "$1" | grep -q ","; then
+  git blame -L "$1" "$2"
+else
+  start=$(($1 - 10))
+  if [ "$start" -lt 1 ]; then
+    start=1
+  fi
+
+  total_lines=$(wc -l <"$2")
+
+  end=$(($1 + 10))
+  if [ "$end" -gt "$total_lines" ]; then
+    end=$total_lines
+  fi
+
+  git blame -L "$start,$end" "$2"
+fi
