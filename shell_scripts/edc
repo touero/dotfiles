@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# @author touero
+# @since 2025
+# edc: enter docker container shell
+
+if [ -z "$1" ]; then
+  echo "Please specify the docker container"
+  exit 1
+fi
+
+sudo docker exec -it $1 /bin/bash

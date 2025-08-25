@@ -13,6 +13,7 @@
     ~/.my_aliases.zsh: my_aliases.zsh
 
     ~/.config/starship.toml: starship.toml
+    ~/.config/bookmarks: bookmarks
     ~/.config/nvim: nvim
     ~/.config/wezterm: wezterm
     ~/.config/lazygit: lazygit
@@ -29,6 +30,10 @@
     ~/.local/bin/ck: shell_scripts/ck
     ~/.local/bin/ocr: shell_scripts/ocr
     ~/.local/bin/gbl: shell_scripts/gbl
+    ~/.local/bin/cpm: shell_scripts/cpm
+    ~/.local/bin/fcm: shell_scripts/fcm
+    ~/.local/bin/dm: shell_scripts/dm
+    ~/.local/bin/edc: shell_scripts/edc
 
 - create:
     - ~/data/repo

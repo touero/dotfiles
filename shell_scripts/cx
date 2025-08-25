@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# @author touero
+# @since 2025
+# cx: Add execution permissions
+
+if [ -z "$1" ]; then
+  echo "Please specify the file"
+  exit 1
+fi
+
+echo "Add execution permissions $1"
+chmod +x $1

@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+# @author touero
+# @since 2025
+# cpm: Check Port Monitor
+
+if [ -z "$1" ]; then
+  echo "Please specify the port"
+  exit 1
+fi
+
+PORT=$1
+
+while true; do
+  if ss -nt sport = :$PORT or dport = :$PORT | grep -q ESTAB; then
+    echo "$(date '+%Y-%m-%d %H:%M:%S') | port $PORT is communicating"
+  else
+    echo "$(date '+%Y-%m-%d %H:%M:%S') | port $PORT idel"
+  fi
+  sleep 5
+done
