@@ -1,0 +1,15 @@
+width=640
+
+height=400
+
+no_actions=true
+
+hide_scroll=true
+
+columns=2
+
+image_size=0
+
+prompt=Search
+
+term=wezterm
