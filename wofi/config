@@ -1,0 +1,10 @@
+width=600
+height=400
+mode=run
+colors=colors
+no_actions=true
+hide_scroll=true
+columns=1
+image_size=0
+prompt=Search
+term=wezterm
