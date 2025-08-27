@@ -1,62 +1,33 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "Fira Code", iosevka, Roboto, Helvetica, Arial, sans-serif, "Font Awesome 5 Free";
-    font-size: 14px;
+    font-family: "JetBrainsMono Nerd Font", iosevka, Roboto, Helvetica, Arial, sans-serif, "Font Awesome 5 Free";
+    font-size: 15px;
 }
 
+
 window#waybar {
-    /*    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
     color: #a89984;
     background-color: #282828;
-    /*    transition-property: background-color;
-    transition-duration: .5s;*/
 }
 
 window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-/*window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}*/
-
 #workspaces button {
     padding: 0 10px;
     background-color: #282828;
     color: #ebdbb2;
-    /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each workspace name */
     border: none;
     border-radius: 0;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
-    /*    box-shadow: inset 0 -3px #fbf1c7;
-*/
     background-color: #3c3836;
 }
 
 #workspaces button.focused {
-    /*    box-shadow: inset 0 -3px #fbf1c7;
-*/
     background-color: #3c3836;
     color: #ebdbb2;
 }
@@ -90,6 +61,8 @@ window#waybar.chromium {
     padding: 0 10px;
     background-color: #282828;
     color: #ebdbb2;
+    /* border: 0.5px solid #fabd2f; */
+    /* border-radius: 3px; */
 }
 
 #window,
@@ -97,14 +70,13 @@ window#waybar.chromium {
     margin: 0 4px;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
 .modules-left>widget:first-child>#workspaces {
     margin-left: 0;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
 .modules-right>widget:last-child>#workspaces {
     margin-right: 0;
+    border: 1px solid #fabd2f;
 }
 
 #clock {
@@ -167,19 +139,6 @@ label:focus {
     color: #9d0006;
 }
 
-/*#disk {
-    background-color: #964B00;
-}*/
-
-#pulseaudio {
-    color: #fe8019;
-}
-
-#pulseaudio.muted {
-    background-color: #fbf1c7;
-    color: #af3a03;
-}
-
 #tray {}
 
 #tray>.needs-attention {
@@ -198,17 +157,12 @@ label:focus {
 }
 
 #custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
+    background-color: #282828;
     min-width: 100px;
 }
 
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
 #custom-media.custom-vlc {
-    background-color: #ffa000;
+    background-color: #282828;
 }
 
 #mpd {
@@ -251,3 +205,4 @@ label:focus {
 #keyboard-state>label.locked {
     background: rgba(0, 0, 0, 0.2);
 }
+
