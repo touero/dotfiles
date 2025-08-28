@@ -84,7 +84,7 @@
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%Y-%m-%d %A %I:%M}",
+        "format": "{:%Y-%m-%d %A %H:%M}",
         "interval": 60
     },
     "cpu": {

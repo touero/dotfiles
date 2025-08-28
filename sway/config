@@ -19,6 +19,8 @@ set $term wezterm
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu wofi --show run
+set $fcitx fcitx5 -d
+
 
 include /etc/sway/config-vars.d/*
 
@@ -47,6 +49,12 @@ output * bg $HOME/.config/sway/wallhaven.jpg fill
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
+#
+input "type:keyboard" {
+    xkb_layout us,cn
+    xkb_variant ,
+    xkb_options "grp:alt_shift_toggle"
+}
 #
 # Example configuration:
 #
@@ -210,6 +218,7 @@ font pango:monospace 0
 titlebar_padding 1
 titlebar_border_thickness 0
 
+exec_always --no-startup-id fcitx5 -d
 
 
 include /etc/sway/config.d/*

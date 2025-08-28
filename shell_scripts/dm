@@ -5,18 +5,10 @@
 
 [[ -f "$HOME/.xprofile" ]] && source "$HOME/.xprofile"
 
-DMENU=(dmenu -i -l 3 -fn "Ubuntu Mono-24" -p "Command:")
+DMENU=(wofi --dmenu -i -p "Command:")
 CHOICE=$(echo -e "bm\npw\nocr\ncud\n" | "${DMENU[@]}")
 
 BOOKMARK_FILE="$HOME/.config/bookmarks"
-
-expand_env() {
-  local val="$1"
-  if [[ "$val" =~ ^\$[A-Za-z_][A-Za-z0-9_]*$ ]]; then
-    val=$(eval echo "$val")
-  fi
-  echo "$val"
-}
 
 copy_clipboard() {
   if command -v xclip &>/dev/null; then
@@ -33,20 +25,19 @@ bm)
     exit 1
   }
 
-  sleep 0.1
   KEY=$(cut -d'|' -f1 "$BOOKMARK_FILE" | "${DMENU[@]}")
   [[ -z "$KEY" ]] && exit 0
   VALUE=$(grep "^$KEY" "$BOOKMARK_FILE" | cut -d'|' -f2- | sed 's/^ *//;s/ *$//')
   echo "$VALUE" | tee >(copy_clipboard)
   ;;
 pw)
-  echo $DOCKER_PWD | tee >(copy_clipboard)
+  echo "$DOCKER_PWD" | tee >(copy_clipboard)
   ;;
 ocr)
-  $HOME/.local/bin/ocr
+  "$HOME/.local/bin/ocr"
   ;;
 cud)
-  echo $(date '+%Y_%m_%d_%H') | tee >(copy_clipboard)
+  echo "$(date '+%Y_%m_%d_%H')" | tee >(copy_clipboard)
   ;;
 *)
   exit 0
