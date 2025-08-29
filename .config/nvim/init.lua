@@ -1,5 +1,6 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
+vim.opt.clipboard = "unnamedplus"
 vim.opt.linespace = 13
 vim.g.lazyvim_check_order = false
 local handle = io.popen("ip route | grep 'default' | awk '{print $3}'")
