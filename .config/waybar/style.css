@@ -1,8 +1,7 @@
 * {
-    font-family: "JetBrainsMono Nerd Font", iosevka, Roboto, Helvetica, Arial, sans-serif, "Font Awesome 5 Free";
-    font-size: 15px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 17px;
 }
-
 
 window#waybar {
     color: #a89984;
@@ -28,7 +27,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.focused {
-    background-color: #3c3836;
+    background-color: #7c6f64;
     color: #ebdbb2;
 }
 

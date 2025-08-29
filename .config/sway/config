@@ -20,7 +20,7 @@ set $term wezterm
 # on the original workspace that the command was run on.
 set $menu wofi --show run
 set $fcitx fcitx5 -d
-
+set $dm ~/.local/bin/dm
 
 include /etc/sway/config-vars.d/*
 
@@ -181,6 +181,10 @@ input "type:keyboard" {
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+    bindsym Ctrl+Alt+M exec $dm
+    bindsym --release Alt+l exec swaylock
+
 #
 # Resizing containers:
 #
@@ -214,11 +218,12 @@ bar {
 # Title bar or Border
 default_border none
 default_floating_border none
-font pango:monospace 0
+font pango:FiraCode Nerd Font, JetBrainsMono Nerd Font, JetBrains Mono, MesloLGS NF, Monaco, "Noto Sans SC", "Noto Sans Mono CJK SC" 12
+
 titlebar_padding 1
 titlebar_border_thickness 0
 
 exec_always --no-startup-id fcitx5 -d
-
+exec_always --no-startup-id setsid /usr/bin/clash-verge >/dev/null 2>&1
 
 include /etc/sway/config.d/*

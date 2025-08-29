@@ -1,0 +1,30 @@
+#!/bin/bash
+# @author touero
+# @since 2025
+# ocr: ocr in gnome or sway wm
+
+FILE=$(mktemp --suffix=.png)
+if [ -n "$WAYLAND_DISPLAY" ] && [ -n "$SWAYSOCK" ]; then
+  ENVIRONMENT="sway"
+elif [ -n "$XDG_SESSION_DESKTOP" ] && [[ "$XDG_SESSION_DESKTOP" == "gnome" ]]; then
+  ENVIRONMENT="gnome"
+else
+  echo "Unknown environment"
+  exit 1
+fi
+
+if [ "$ENVIRONMENT" = "gnome" ]; then
+  gnome-screenshot -a -f "$FILE"
+elif [ "$ENVIRONMENT" = "sway" ]; then
+  grim -g "$(slurp)" "$FILE"
+fi
+
+TEXT=$(tesseract "$FILE" - -l chi_sim)
+
+if [ "$ENVIRONMENT" = "gnome" ]; then
+  echo "$TEXT" | xclip -selection clipboard
+  notify-send "OCR copy to xclip" "$TEXT"
+elif [ "$ENVIRONMENT" = "sway" ]; then
+  echo "$TEXT" | wl-copy
+fi
+rm -f "$FILE"

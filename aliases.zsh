@@ -12,9 +12,6 @@ alias frp_on='nohup /home/weiensong/Apps/frp_0.61.0_linux_amd64/frpc -c /home/we
 
 alias frp_off="ps aux | grep frp | grep -v grep | sort -k 9 | head -n 1 | awk '{print \$2}' | xargs kill -9"
 
-
-alias ubuntu='ssh -p $UBUNTU_SSH_PORT -o ServerAliveInterval=30 ubuntu@$UBUNTU_IP'
-
 alias ra='ranger'
 
 alias sa='yazi'

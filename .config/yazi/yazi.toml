@@ -5,6 +5,7 @@ sort_translit = true
 linemode = "size"
 scrolloff = 200
 show_syslink=false
+show_hidden=true
 
 
 [preview]

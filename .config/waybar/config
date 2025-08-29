@@ -1,14 +1,14 @@
-{
+  {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
+    "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "idle_inhibitor", "custom/suspend", "custom/poweroff", "sway/mode", "custom/media", "sway/window"],
     "modules-center": [],
     // 2020-10-21: disable "cpu" so it never forces a higher power state
-    "modules-right": ["tray", "pulseaudio", "network", "memory", "cpu", "keyboard-state", "battery", "clock"],
+    "modules-right": ["tray", "pulseaudio", "custom/lock", "network", "memory", "cpu", "keyboard-state", "battery", "clock"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -119,8 +119,8 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
         "format-bluetooth-muted": "{icon} {format_source}",
         "format-muted": " {format_source}",
         "format-source": "{volume}%",
@@ -147,6 +147,6 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
 }
 

@@ -68,7 +68,7 @@ return {
 
   -- window
   adjust_window_size_when_changing_font_size = false,
-  window_decorations = "INTEGRATED_BUTTONS|RESIZE",
+  window_decorations = "NONE",
   integrated_title_button_style = config.button_style,
   integrated_title_button_color = "#282828",
   integrated_title_button_alignment = config.button_alignment,

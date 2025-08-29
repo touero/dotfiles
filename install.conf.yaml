@@ -8,32 +8,36 @@
     stdout: true
 
 - link:
-    ~/.zshenv: zshenv
+    ~/.zshrc: .zshrc
     ~/.ideavimrc: ideavimrc
-    ~/.my_aliases.zsh: my_aliases.zsh
+    ~/.aliases.zsh: aliases.zsh
 
-    ~/.config/starship.toml: starship.toml
-    ~/.config/bookmarks: bookmarks
-    ~/.config/nvim: nvim
-    ~/.config/wezterm: wezterm
-    ~/.config/lazygit: lazygit
-    ~/.config/yazi: yazi
-    ~/.config/ttyper: ttyper
-    ~/.config/tmux: tmux
-    ~/.config/neofetch: neofetch
-    ~/.config/albert: albert
+    ~/.config/starship.toml: .config/starship.toml
+    # ~/.config/bookmarks: .config/bookmarks
+    ~/.config/nvim: .config/nvim
+    ~/.config/wezterm: .config/wezterm
+    ~/.config/lazygit: .config/lazygit
+    ~/.config/yazi: .config/yazi
+    ~/.config/ttyper: .config/ttyper
+    ~/.config/tmux: .config/tmux
+    ~/.config/neofetch: .config/neofetch
+    ~/.config/albert: .config/albert
+    ~/.config/sway: .config/sway
+    ~/.config/waybar: .config/waybar
+    ~/.config/wofi: .config/wofi
+    ~/.config/swaylock: .config/swaylock
 
-    ~/.local/bin/mu: shell_scripts/mu
-    ~/.local/bin/dsa: shell_scripts/dsa
-    ~/.local/bin/cx: shell_scripts/cx
-    ~/.local/bin/bk: shell_scripts/bk
-    ~/.local/bin/ck: shell_scripts/ck
-    ~/.local/bin/ocr: shell_scripts/ocr
-    ~/.local/bin/gbl: shell_scripts/gbl
-    ~/.local/bin/cpm: shell_scripts/cpm
-    ~/.local/bin/fcm: shell_scripts/fcm
-    ~/.local/bin/dm: shell_scripts/dm
-    ~/.local/bin/edc: shell_scripts/edc
+    ~/.local/bin/mu: .local/bin/mu
+    ~/.local/bin/dsa: .local/bin/dsa
+    ~/.local/bin/cx: .local/bin/cx
+    ~/.local/bin/bk: .local/bin/bk
+    ~/.local/bin/ck: .local/bin/ck
+    ~/.local/bin/ocr: .local/bin/ocr
+    ~/.local/bin/gbl: .local/bin/gbl
+    ~/.local/bin/cpm: .local/bin/cpm
+    ~/.local/bin/fcm: .local/bin/fcm
+    ~/.local/bin/dm: .local/bin/dm
+    ~/.local/bin/edc: .local/bin/edc
 
 - create:
     - ~/data/repo

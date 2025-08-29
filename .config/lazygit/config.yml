@@ -1,175 +1,110 @@
 gui:
   scrollHeight: 2
-
   scrollPastBottom: true
-
   scrollOffMargin: 2
-
   scrollOffBehavior: margin
-
   mouseEvents: true
-
   skipDiscardChangeWarning: false
-
   skipStashWarning: false
-
   skipNoStagedFilesWarning: false
-
   skipRewordInEditorWarning: false
-
   sidePanelWidth: 0.3
-
   expandFocusedSidePanel: false
-
   expandedSidePanelWeight: 2
-
   mainPanelSplitMode: flexible
-
   enlargedSideViewLocation: left
-
   wrapLinesInStagingView: true
-
   language: zh-CN
-
   timeFormat: 02 Jan 06
-
   shortTimeFormat: 3:04PM
-
   theme:
     activeBorderColor:
       - green
       - bold
-
     inactiveBorderColor:
       - default
-
     searchingActiveBorderColor:
       - cyan
       - bold
-
     optionsTextColor:
       - blue
-
     selectedLineBgColor:
       - blue
-
     inactiveViewSelectedLineBgColor:
       - bold
-
     cherryPickedCommitFgColor:
       - blue
-
     cherryPickedCommitBgColor:
       - cyan
-
     markedBaseCommitFgColor:
       - blue
-
     markedBaseCommitBgColor:
       - yellow
-
     unstagedChangesColor:
       - red
-
     defaultFgColor:
       - default
-
   commitLength:
     show: true
-
   showListFooter: true
-
   showFileTree: true
-
   showNumstatInFilesView: true
-
   showRandomTip: false
-
   showCommandLog: false
-
   showBottomLine: true
-
   showPanelJumps: true
-
   nerdFontsVersion: "3"
-
   showFileIcons: true
-
   commitAuthorShortLength: 14
-
   commitAuthorLongLength: 14
-
   commitHashLength: 8
-
   showBranchCommitHash: false
-
   showDivergenceFromBaseBranch: onlyArrow
-
   commandLogSize: 8
-
   splitDiff: auto
-  windowSize: normal
-
+  screenMode: normal
   border: double
-
   animateExplosion: true
-
   portraitMode: auto
-
   filterMode: fuzzy
-
   spinner:
     frames:
       - '|'
       - /
       - '-'
       - \
-
     rate: 100
-
   statusPanelView: dashboard
-
   switchToFilePanelOnStashPop: false
-
   enableColorLimit: false
-
 git:
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
   paging:
     # Value of the --color arg in the git diff command. Some pagers want this to be set to 'always' and some want it set to 'never'
     colorArg: always
-
     # e.g.
     # diff-so-fancy
     # delta --dark --paging=never
     # ydiff -p cat -s --wrap --width={{columnWidth}}
     pager: delta --paging=never
-
     # If true, Lazygit will use whatever pager is specified in `$GIT_PAGER`, `$PAGER`, or your *git config*. If the pager ends with something like ` | less` we will strip that part out, because less doesn't play nice with our rendering approach. If the custom pager uses less under the hood, that will also break rendering (hence the `--paging=never` flag for the `delta` pager).
     useConfig: false
-
     # e.g. 'difft --color=always'
     externalDiffCommand: ""
-
   # Config relating to committing
   commit:
     # If true, pass '--signoff' flag when committing
     signOff: false
-
     # Automatic WYSIWYG wrapping of the commit message as you type
     autoWrapCommitMessage: true
-
     # If autoWrapCommitMessage is true, the width to wrap to
     autoWrapWidth: 72
-
   # Config relating to merging
   merging:
     # If true, run merges in a subprocess so that if a commit message is required, Lazygit will not hang
     # Only applicable to unix users.
     manualCommit: false
-
     # Extra args passed to `git merge`, e.g. --no-ff
     args: ""
-
     # The commit message to use for a squash merge commit. Can contain "{{selectedRef}}" and "{{currentBranch}}" placeholders.
     squashMergeMessage: Squash merge {{selectedRef}} into {{currentBranch}}
