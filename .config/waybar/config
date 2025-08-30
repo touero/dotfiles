@@ -5,7 +5,7 @@
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "idle_inhibitor", "custom/suspend", "custom/poweroff", "sway/mode", "custom/media", "sway/window"],
+    "modules-left": ["sway/workspaces", "custom/suspend", "custom/poweroff", "sway/mode", "custom/media"],
     "modules-center": [],
     // 2020-10-21: disable "cpu" so it never forces a higher power state
     "modules-right": ["tray", "pulseaudio", "custom/lock", "network", "memory", "cpu", "keyboard-state", "battery", "clock"],
