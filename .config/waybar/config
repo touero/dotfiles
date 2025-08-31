@@ -5,7 +5,7 @@
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "custom/suspend", "custom/poweroff", "sway/mode", "custom/media"],
+    "modules-left": ["sway/workspaces", "custom/suspend", "custom/poweroff", "sway/mode"],
     "modules-center": [],
     // 2020-10-21: disable "cpu" so it never forces a higher power state
     "modules-right": ["tray", "pulseaudio", "custom/lock", "network", "memory", "cpu", "keyboard-state", "battery", "clock"],
@@ -79,8 +79,8 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
-        "spacing": 10
+        "icon-size": 18,
+        "spacing": 12
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -88,11 +88,14 @@
         "interval": 60
     },
     "cpu": {
-        "format": "CPU{usage}%",
-        "tooltip": false
+        "format": "󰍛 {usage}%",
+        "format-alt": "CPU usage {usage}%",
+        "tooltip-format": "CPU usage {usage}%"
     },
     "memory": {
-        "format": "MEM{}%"
+        "format": "󰔫 {}%",
+        "format-alt": "Memory usage {}%",
+        "tooltip-format": "Memory usage {}%"
     },
     "battery": {
         "states": {
@@ -147,6 +150,6 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
+    }
 }
 

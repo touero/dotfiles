@@ -217,8 +217,14 @@ bar {
 }
 
 # Title bar or Border
-default_border none
+default_border pixel 10
 default_floating_border none
+gaps inner 10
+client.focused          #00000000 #00000000 #00000000 #00000000 #00000000
+client.unfocused        #00000000 #00000000 #00000000 #00000000 #00000000
+client.focused_inactive #00000000 #00000000 #00000000 #00000000 #00000000
+client.urgent           #00000000 #00000000 #00000000 #00000000 #00000000
+
 font pango:FiraCode Nerd Font, JetBrainsMono Nerd Font, JetBrains Mono, MesloLGS NF, Monaco, "Noto Sans SC", "Noto Sans Mono CJK SC" 12
 
 titlebar_padding 1
