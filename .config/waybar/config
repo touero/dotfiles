@@ -113,11 +113,11 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "",
-        "format-ethernet": "󰛳",
+        "format-wifi": " ",
+        "format-ethernet": "󰛳 ",
         "tooltip-format": "{ifname} {ipaddr}/{cidr} {essid}",
-        "format-linked": "NoIP 󰲜",
-        "format-disconnected": "Disconnected 󰲛",
+        "format-linked": "NoIP 󰲜 ",
+        "format-disconnected": "Disconnected 󰲛 ",
         "format-alt": "{ifname} {ipaddr}/{cidr} {essid}"
     },
     "pulseaudio": {
