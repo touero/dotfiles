@@ -3,53 +3,40 @@ $username\
 $hostname\
 $directory\
 $git_branch\
-$git_state\
-$git_status\
+$git_status \
 $conda\
-$cmd_duration\
-$line_break\
 $python\
 $character"""
 
 [directory]
-style = "blue"
 truncation_length = 10
 truncate_to_repo = true
 fish_style_pwd_dir_length = 20
 
 
 [character]
-success_symbol = "[󰜴](purple)"
+success_symbol = "[󰜴](green)"
 error_symbol = "[󰜴](red)"
-vimcmd_symbol = "[󰜴](green)"
 
 [git_branch]
 format = "[$branch]($style)"
 style = "bright-black"
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+format = "[[( $conflicted$untracked$modified$staged$renamed$deleted$stashed) ](218)]($style)"
 style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
-
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "bright-black"
-
-[cmd_duration]
-format = "[$duration]($style) "
-style = "yellow"
+conflicted = ""
+untracked = ""
+modified = ""
+staged = ""
+renamed = ""
+deleted = "󰆳"
+stashed = "󰝪"
 
 [conda]
 format = "[$environment]($style) "
 style = "bright-black"
 
 [python]
-format = "[$version]($style) "
+format = "[$virtualenv]($style) "
 style = "bright-black"
