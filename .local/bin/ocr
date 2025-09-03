@@ -23,8 +23,8 @@ TEXT=$(tesseract "$FILE" - -l chi_sim)
 
 if [ "$ENVIRONMENT" = "gnome" ]; then
   echo "$TEXT" | xclip -selection clipboard
-  notify-send "OCR copy to xclip" "$TEXT"
 elif [ "$ENVIRONMENT" = "sway" ]; then
   echo "$TEXT" | wl-copy
 fi
+notify-send "OCR copy to clipboard" "$TEXT"
 rm -f "$FILE"
