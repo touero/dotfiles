@@ -38,6 +38,7 @@
     ~/.local/bin/fcm: .local/bin/fcm
     ~/.local/bin/dm: .local/bin/dm
     ~/.local/bin/edc: .local/bin/edc
+    ~/.local/bin/cw: .local/bin/cw
 
 - create:
     - ~/data/repo

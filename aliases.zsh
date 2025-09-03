@@ -20,13 +20,13 @@ alias ls='lsd'
 
 alias tlst='f() { tail -f -n ${1:-300} "$(ls -t | head -n1)"; unset -f f; }; f'
 
-alias docker1='ssh -p 2222 -o ServerAliveInterval=30 shoot@$COMPANY_DOCKER_IP'
+alias docker1='NUM=1; eval ssh -p 2222 -o ServerAliveInterval=30 shoot@$SGJ'
 
-alias docker2='ssh -p 2223 -o ServerAliveInterval=30 shoot@$COMPANY_DOCKER_IP'
+alias docker2='NUM=2; eval ssh -p 2223 -o ServerAliveInterval=30 shoot@$SGJ'
 
 for ((i=3; i<=15; i++)); do
     port=$((2222 + i))
-    eval "alias docker$i='ssh -p $port -o ServerAliveInterval=30 shoot@\$COMPANY_DOCKER_IP'"
+    eval "alias docker$i='NUM=$i; eval ssh -p $port -o ServerAliveInterval=30 shoot@\$SGJ'"
 done
 
 alias gau='git update-index --assume-unchanged'

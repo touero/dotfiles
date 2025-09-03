@@ -1,0 +1,25 @@
+#!/bin/bash
+# @author touero
+# @since 2025
+# cw: view the wifi list by fzf and nmcli then try to connect it
+
+CHOSEN=$(nmcli device wifi list | fzf --layout=reverse --height 40% --preview "nmcli device status" --preview-window="right:40%")
+
+if [[ $? -ne 0 || -z "$CHOSEN" ]]; then
+  exit 0
+fi
+
+SSID=$(echo "$CHOSEN" | awk '{print $2}')
+SECURITY=$(echo "$CHOSEN" | awk '{print $NF}')
+
+if nmcli device wifi connect "$SSID"; then
+  echo "connect $SSID"
+else
+  if [[ "$SECURITY" == "--" ]]; then
+    nmcli device wifi connect "$SSID"
+  else
+    read -sp "please input $SSID password: " PASSWORD
+    echo
+    nmcli device wifi connect "$SSID" password "$PASSWORD"
+  fi
+fi
