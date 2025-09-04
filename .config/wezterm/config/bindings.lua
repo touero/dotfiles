@@ -14,12 +14,6 @@ end
 
 local keys = {
   -- misc/useful --
-  { key = "F1", mods = "NONE", action = "ActivateCopyMode" },
-  { key = "F2", mods = "NONE", action = act.ActivateCommandPalette },
-  { key = "F3", mods = "NONE", action = act.ShowLauncher },
-  { key = "F4", mods = "NONE", action = act.ShowTabNavigator },
-  { key = "F11", mods = "NONE", action = act.ToggleFullScreen },
-  { key = "F12", mods = "NONE", action = act.ShowDebugOverlay },
   { key = "f", mods = mod.SUPER, action = act.Search({ CaseInSensitiveString = "" }) },
 
   -- copy/paste --
@@ -121,6 +115,22 @@ local keys = {
       end),
     }),
   },
+  {
+    key = "o",
+    mods = mod.SUPER,
+    action = wezterm.action.QuickSelectArgs({
+      label = "open url",
+      patterns = {
+        "https?://\\S+",
+      },
+      skip_action_on_paste = true,
+      action = wezterm.action_callback(function(window, pane)
+        local url = window:get_selection_text_for_pane(pane)
+        wezterm.log_info("opening: " .. url)
+        wezterm.open_with(url)
+      end),
+    }),
+  },
 }
 
 local key_tables = {
@@ -200,7 +210,7 @@ local mouse_bindings = {
 }
 
 return {
-  disable_default_key_bindings = true,
+  disable_default_key_bindings = false,
   disable_default_mouse_bindings = true,
   leader = { key = "Space", mods = "CTRL|SHIFT" },
   keys = keys,

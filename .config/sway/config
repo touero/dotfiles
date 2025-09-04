@@ -187,6 +187,8 @@ input "type:touchpad" {
     bindsym Ctrl+Alt+M exec $dm
     bindsym --release Alt+l exec swaylock
     bindsym Ctrl+Alt+O exec grim -g "$(slurp)" - | wl-copy
+    bindsym Ctrl+space exec fcitx5-remote -t
+
 
 # Resizing containers:
 #

@@ -1,0 +1,18 @@
+anchor=top-center
+layer=overlay
+
+width=300
+padding=10
+border-radius=8
+
+font=Monospace 12
+text-color=#ebdbb2
+background-color=#282828
+markup=1
+text-alignment=center
+
+default-timeout=3000
+max-visible=5
+
+border-size=2
+border-color=#665c54

@@ -26,6 +26,7 @@
     ~/.config/waybar: .config/waybar
     ~/.config/wofi: .config/wofi
     ~/.config/swaylock: .config/swaylock
+    ~/.config/mako: .config/mako
 
     ~/.local/bin/mu: .local/bin/mu
     ~/.local/bin/dsa: .local/bin/dsa
