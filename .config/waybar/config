@@ -113,8 +113,8 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": " ",
-        "format-ethernet": "󰛳 ",
+        "format-wifi": "  | ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}",
+        "format-ethernet": "󰛳 | ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}",
         "tooltip-format": "{ifname} {ipaddr}/{cidr} {essid}",
         "format-linked": "NoIP 󰲜 ",
         "format-disconnected": "Disconnected 󰲛 ",

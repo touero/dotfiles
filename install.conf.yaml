@@ -40,6 +40,7 @@
     ~/.local/bin/dm: .local/bin/dm
     ~/.local/bin/edc: .local/bin/edc
     ~/.local/bin/cw: .local/bin/cw
+    ~/.local/bin/scope: .local/bin/scope
 
 - create:
     - ~/data/repo

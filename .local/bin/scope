@@ -1,0 +1,65 @@
+#!/usr/bin/sh
+# @author touero
+# @since 2025
+# general file previewer in terminal (no cache version)
+
+show_img() {
+  if [ "$TERM_PROGRAM" = "WezTerm" ]; then
+    wezterm imgcat --height 10 "$1"
+
+  else
+    catimg -t -w 80 "$1"
+  fi
+}
+
+case "$(file -Lb --mime-type -- "$1")" in
+image/*xcf | image/heic)
+  convert "$1" -flatten -quality 50 /tmp/preview.jpg
+  show_img /tmp/preview.jpg "$2" "$3"
+  ;;
+image/*)
+  show_img "$1" "$2" "$3"
+  ;;
+video/*)
+  /usr/bin/ffmpegthumbnailer -i "$1" -s 480 -q 5 -o /tmp/preview.jpg
+  show_img /tmp/preview.jpg "$2" "$3"
+  ;;
+audio/*)
+  mid3v2 -l "$1"
+  ;;
+application/epub+zip)
+  /usr/bin/gnome-epub-thumbnailer "$1" /tmp/preview.png
+  show_img /tmp/preview.png "$2" "$3"
+  ;;
+application/pdf)
+  /usr/bin/pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" /tmp/preview
+  show_img /tmp/preview.jpg "$2" "$3"
+  ;;
+application/zip)
+  zipinfo "$1" | "$PAGER"
+  ;;
+application/gzip)
+  zless "$1" | "$PAGER"
+  ;;
+application/x-7z-compressed)
+  7z l -ba "$1" | grep -oP '\S+$' | "$PAGER"
+  ;;
+application/*tar | application/*zip* | application/zstd | application/*xz)
+  tar vvtf "$1" | "$PAGER"
+  ;;
+application/*opendocument*)
+  odt2txt "$1"
+  ;;
+text/html)
+  firejail --net=none w3m "$1"
+  ;;
+text/*)
+  cat $1
+  ;;
+application/octet-stream)
+  file -b "$1"
+  ;;
+*)
+  cat "$1"
+  ;;
+esac
