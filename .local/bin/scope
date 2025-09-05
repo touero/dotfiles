@@ -3,16 +3,19 @@
 # @since 2025
 # general file previewer in terminal (no cache version)
 
+file -b "$1"
+file_type=$(file -Lb --mime-type -- "$1" | tee /dev/tty)
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '='
+
 show_img() {
   if [ "$TERM_PROGRAM" = "WezTerm" ]; then
     wezterm imgcat --height 10 "$1"
-
   else
     catimg -t -w 80 "$1"
   fi
 }
 
-case "$(file -Lb --mime-type -- "$1")" in
+case "$file_type" in
 image/*xcf | image/heic)
   convert "$1" -flatten -quality 50 /tmp/preview.jpg
   show_img /tmp/preview.jpg "$2" "$3"
@@ -58,6 +61,12 @@ text/*)
   ;;
 application/octet-stream)
   file -b "$1"
+  ;;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
+  vd "$1"
+  ;;
+application/json)
+  jq '.' "$1"
   ;;
 *)
   cat "$1"
