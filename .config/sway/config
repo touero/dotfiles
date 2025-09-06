@@ -234,7 +234,7 @@ titlebar_padding 1
 titlebar_border_thickness 0
 
 exec_always --no-startup-id fcitx5 -d
-exec_always --no-startup-id setsid /usr/bin/clash-verge >/dev/null 2>&1
+exec_always --no-startup-id bash -c 'pgrep -x clash-verge >/dev/null || setsid /usr/bin/clash-verge >/dev/null 2>&1'
 exec mako
 
 include /etc/sway/config.d/*

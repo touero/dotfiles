@@ -95,25 +95,24 @@
     "memory": {
         "format": "󰔫 {}%",
         "format-alt": "Memory usage {}%",
+        "interval": 10,
         "tooltip-format": "Memory usage {}%"
     },
     "battery": {
         "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
+            "warning": 15,
+            "critical": 5,
         },
-        "format": "{icon}{capacity}%",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
+        "format-warning": " 󰁺{capacity}%",
+        "format-charging": "󰂄{capacity}%",
+        "format-critical": " 󰂎{capacity}%",
+        "format-plugged": "󰚥{capacity}%",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format": "{icon}{capacity}%",
+        "format-icons": ["󰁻", "󰁼", "󰁾", "󰁿", "󰂁"]
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "  | ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}",
         "format-ethernet": "󰛳 | ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}",
         "tooltip-format": "{ifname} {ipaddr}/{cidr} {essid}",
         "format-linked": "NoIP 󰲜 ",
