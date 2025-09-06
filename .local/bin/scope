@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env sh
 # @author touero
 # @since 2025
 # general file previewer in terminal (no cache version)
@@ -35,7 +35,7 @@ application/epub+zip)
   show_img /tmp/preview.png "$2" "$3"
   ;;
 application/pdf)
-  /usr/bin/pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" /tmp/preview
+  pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" /tmp/preview
   show_img /tmp/preview.jpg "$2" "$3"
   ;;
 application/zip)
