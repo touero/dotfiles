@@ -1,11 +1,8 @@
 - shell:
-  - 
-    command: sudo chmod +x ./init.sh
+  -
+    command: ./install_dependencies
     stdout: true
-
-  - 
-    command: ./init.sh
-    stdout: true
+    stderr: true
 
 - link:
     ~/.zshrc: .zshrc
@@ -41,9 +38,6 @@
     ~/.local/bin/edc: .local/bin/edc
     ~/.local/bin/cw: .local/bin/cw
     ~/.local/bin/scope: .local/bin/scope
-
-- create:
-    - ~/data/repo
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules ]
