@@ -34,14 +34,14 @@ return {
   -- background
   window_background_opacity = 0.85,
   background = {
+    -- {
+    --   source = { File = wezterm.config_dir .. "/backdrops/bg_img1.jpg" },
+    -- },
     {
-      source = { File = wezterm.config_dir .. "/backdrops/bg_img1.jpg" },
-    },
-    {
-      source = { Color = "#1d2021" },
+      source = { Color = "#282828" },
       height = "100%",
       width = "100%",
-      opacity = 0.95,
+      opacity = 0.9,
     },
   },
 

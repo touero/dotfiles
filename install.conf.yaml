@@ -24,6 +24,7 @@
     ~/.config/wofi: .config/wofi
     ~/.config/swaylock: .config/swaylock
     ~/.config/mako: .config/mako
+    ~/.config/swappy: .config/swappy
 
     ~/.local/bin/mu: .local/bin/mu
     ~/.local/bin/dsa: .local/bin/dsa
@@ -38,6 +39,8 @@
     ~/.local/bin/edc: .local/bin/edc
     ~/.local/bin/cw: .local/bin/cw
     ~/.local/bin/scope: .local/bin/scope
+
+    ~/.local/share/wallhaven.jpg: .local/share/wallhaven.jpg
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules ]

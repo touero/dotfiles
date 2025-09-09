@@ -6,7 +6,7 @@
 [[ -f "$HOME/.xprofile" ]] && source "$HOME/.xprofile"
 
 DMENU=(wofi --dmenu -i)
-CHOICE=$(echo -e "bm\npw\nocr\ncud\n" | "${DMENU[@]}")
+CHOICE=$(echo -e "bm\npw\nocr\ncud\ncrs\ncrsw\n" | "${DMENU[@]}")
 
 BOOKMARK_FILE="$HOME/.config/bookmarks"
 
@@ -40,13 +40,19 @@ bm)
   fi
   ;;
 pw)
-  echo "$DOCKER_PWD" | $CLIPBOARD
+  echo -n "$DOCKER_PWD" | $CLIPBOARD
   ;;
 ocr)
   "$HOME/.local/bin/ocr"
   ;;
 cud)
-  echo "$(date '+%Y_%m_%d_%H')" | $CLIPBOARD
+  echo -n "$(date '+%Y_%m_%d*')" | $CLIPBOARD
+  ;;
+crs)
+  grim -g "$(slurp)" - | ~/.local/bin/swappy -f -
+  ;;
+crsw)
+  grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)" - | ~/.local/bin/swappy -f -
   ;;
 *)
   exit 0
