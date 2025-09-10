@@ -9,31 +9,6 @@
     "modules-center": [],
     // 2020-10-21: disable "cpu" so it never forces a higher power state
     "modules-right": ["tray", "pulseaudio", "custom/lock", "network", "memory", "cpu", "keyboard-state", "battery", "clock"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -90,12 +65,13 @@
     "cpu": {
         "format": "󰍛 {usage}%",
         "format-alt": "CPU usage {usage}%",
-        "tooltip-format": "CPU usage {usage}%"
+        "tooltip-format": "CPU usage {usage}%",
+        "interval": 5
     },
     "memory": {
         "format": "󰔫 {}%",
         "format-alt": "Memory usage {}%",
-        "interval": 10,
+        "interval": 5,
         "tooltip-format": "Memory usage {}%"
     },
     "battery": {
