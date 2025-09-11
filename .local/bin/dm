@@ -5,7 +5,7 @@
 
 [[ -f "$HOME/.xprofile" ]] && source "$HOME/.xprofile"
 
-DMENU=(wofi --dmenu -i)
+DMENU=(wofi --show run --dmenu)
 CHOICE=$(echo -e "bm\npw\nocr\ncud\ncrs\ncrsw\n" | "${DMENU[@]}")
 
 BOOKMARK_FILE="$HOME/.config/bookmarks"

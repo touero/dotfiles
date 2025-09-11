@@ -1,47 +1,43 @@
-window {
-  margin: 0px;
-  background-color: #282828;
-  width: 50%;
-  height: 30px;
-  top: 0px;
-  left: 0px;
-  font-size: 30px;
-  color: #ebdbb2;
-  border: 1px solid #8ec07c;
-  border-radius: 20px;
+@define-color bg #282828;
+@define-color bg_alt #665c54;
+@define-color fg #ebdbb2;
+@define-color fg_alt #a89984;
+
+@define-color red #fb4934;
+@define-color green #b8bb26;
+@define-color yellow #fabd2f;
+@define-color blue #83a598;
+@define-color blue_alt #458488;
+@define-color purple #d3869b;
+@define-color aqua #8ec07c;
+@define-color orange #fe8019;
+
+#window {
+  border-radius: 0px;
+  font-size: 2.5rem;
+  background-color: @bg;
+  margin: 5px;
+}
+
+#entry {
+    color: @fg_alt;
+    border-radius: 0px;
+    margin-right: 20px;
 }
 
 #input {
-  top: 20px;
-  margin: 10px;
-  border: 1px solid #8ec07c;
-  color: #ebdbb2;
-  background-color: #1d2021;
-}
-
-#inner-box {
-  margin: 5px;
-  border: none;
-  background-color: #282828;
-}
-
-#outer-box {
-  margin: 5px;
-  border: none;
-  background-color: #282828;
-}
-
-#scroll {
-  margin: 0px;
-  border: none;
-}
-
-#text {
-  margin: 5px;
-  border: none;
-  color: #ebdbb2;
+  border-radius: 0px;
+  color: @fg_alt;
+  background-color: @bg;
+  min-width: 800px;
+  padding: 5px 15px;
 }
 
 #entry:selected {
-  background-color: #7c6f64;
+  background-color: @fg_alt;
 }
+
+#entry:selected label {
+  color: @bg_alt;
+}
+
