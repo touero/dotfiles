@@ -10,7 +10,6 @@
     ~/.aliases.zsh: aliases.zsh
 
     ~/.config/starship.toml: .config/starship.toml
-    # ~/.config/bookmarks: .config/bookmarks
     ~/.config/nvim: .config/nvim
     ~/.config/wezterm: .config/wezterm
     ~/.config/lazygit: .config/lazygit
@@ -18,27 +17,15 @@
     ~/.config/ttyper: .config/ttyper
     ~/.config/tmux: .config/tmux
     ~/.config/neofetch: .config/neofetch
-    ~/.config/albert: .config/albert
-    ~/.config/sway: .config/sway
-    ~/.config/waybar: .config/waybar
-    ~/.config/wofi: .config/wofi
-    ~/.config/swaylock: .config/swaylock
-    ~/.config/mako: .config/mako
-    ~/.config/swappy: .config/swappy
 
     ~/.local/bin/mu: .local/bin/mu
     ~/.local/bin/dsa: .local/bin/dsa
     ~/.local/bin/cx: .local/bin/cx
     ~/.local/bin/bk: .local/bin/bk
-    ~/.local/bin/ck: .local/bin/ck
-    ~/.local/bin/ocr: .local/bin/ocr
     ~/.local/bin/gbl: .local/bin/gbl
     ~/.local/bin/cpm: .local/bin/cpm
     ~/.local/bin/fcm: .local/bin/fcm
-    ~/.local/bin/dm: .local/bin/dm
     ~/.local/bin/edc: .local/bin/edc
-    ~/.local/bin/cw: .local/bin/cw
-    ~/.local/bin/scope: .local/bin/scope
 
     ~/.local/share/wallhaven.jpg: .local/share/wallhaven.jpg
 

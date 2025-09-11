@@ -2,7 +2,11 @@
 
 set -e
 
-CONFIG="install.conf.yaml"
+if [ "$(uname)" = "Darwin" ]; then
+  CONFIG="mac.yaml"
+else
+  CONFIG="linux.yaml"
+fi
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"

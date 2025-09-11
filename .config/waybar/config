@@ -55,7 +55,8 @@
     },
     "tray": {
         "icon-size": 18,
-        "spacing": 12
+        "spacing": 12,
+        "show-passive-items": true
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
