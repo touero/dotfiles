@@ -25,23 +25,14 @@
     ~/.config/swaylock: .config/swaylock
     ~/.config/mako: .config/mako
     ~/.config/swappy: .config/swappy
+    ~/.config/fcitx5: .config/fcitx5
 
-    ~/.local/bin/mu: .local/bin/mu
-    ~/.local/bin/dsa: .local/bin/dsa
-    ~/.local/bin/cx: .local/bin/cx
-    ~/.local/bin/bk: .local/bin/bk
-    ~/.local/bin/ck: .local/bin/ck
-    ~/.local/bin/ocr: .local/bin/ocr
-    ~/.local/bin/gbl: .local/bin/gbl
-    ~/.local/bin/cpm: .local/bin/cpm
-    ~/.local/bin/fcm: .local/bin/fcm
-    ~/.local/bin/dm: .local/bin/dm
-    ~/.local/bin/edc: .local/bin/edc
-    ~/.local/bin/cw: .local/bin/cw
-    ~/.local/bin/scope: .local/bin/scope
-    ~/.local/bin/hc: .local/bin/hc
+    ~/.local/bin/: 
+      glob: true
+      path: .local/bin/*
 
-    ~/.local/share/wallhaven.jpg: .local/share/wallhaven.jpg
+    ~/.local/share/wallhaven.jpg: .local/share/wallhaven.jpg 
+    ~/.local/share/fcitx5/themes/Gruvbox-Dark: .local/share/fcitx5/themes/Gruvbox-Dark
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules ]

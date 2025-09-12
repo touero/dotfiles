@@ -219,7 +219,7 @@ bar {
 }
 
 # Title bar or Border
-default_border pixel 8
+default_border pixel 5
 default_floating_border none
 gaps inner 10
 
