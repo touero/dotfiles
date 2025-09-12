@@ -1,0 +1,12 @@
+
+#!/usr/bin/env sh
+# @author touero
+# @since 2025
+# hc: select item from clipboard
+
+if [ -t 0 ] && [ -t 1 ] && [ -t 2 ]; then
+    cliphist list | fzf --no-sort | cliphist decode | wl-copy
+else
+    cliphist list | wofi -S dmenu | cliphist decode | wl-copy
+fi
+

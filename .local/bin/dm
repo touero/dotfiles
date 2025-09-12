@@ -6,7 +6,7 @@
 [[ -f "$HOME/.xprofile" ]] && source "$HOME/.xprofile"
 
 DMENU=(wofi --show run --dmenu)
-CHOICE=$(echo -e "bm\npw\nocr\ncud\ncrs\ncrsw\n" | "${DMENU[@]}")
+CHOICE=$(echo -e "bm\npw\nocr\ncud\ncrs\ncrsw\nhc\n" | "${DMENU[@]}")
 
 BOOKMARK_FILE="$HOME/.config/bookmarks"
 
@@ -53,6 +53,9 @@ crs)
   ;;
 crsw)
   grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)" - | ~/.local/bin/swappy -f -
+  ;;
+hc)
+  $HOME/.local/bin/hc
   ;;
 *)
   exit 0

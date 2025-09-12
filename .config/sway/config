@@ -219,7 +219,7 @@ bar {
 }
 
 # Title bar or Border
-default_border pixel 2
+default_border pixel 8
 default_floating_border none
 gaps inner 10
 
@@ -233,8 +233,9 @@ titlebar_border_thickness 0
 
 font pango:FiraCode Nerd Font, JetBrainsMono Nerd Font, JetBrains Mono, MesloLGS NF, Monaco, "Noto Sans SC", "Noto Sans Mono CJK SC" 12
 
-exec_always --no-startup-id fcitx5 -d
+exec_always --no-startup-id pkill fcitx5; fcitx5 -d
 exec_always --no-startup-id bash -c 'pgrep -x clash-verge >/dev/null || setsid /usr/bin/clash-verge >/dev/null 2>&1'
 exec mako
+exec wl-paste --watch cliphist store --max-items 50 --preview-width 30
 
 include /etc/sway/config.d/*

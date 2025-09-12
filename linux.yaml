@@ -39,6 +39,7 @@
     ~/.local/bin/edc: .local/bin/edc
     ~/.local/bin/cw: .local/bin/cw
     ~/.local/bin/scope: .local/bin/scope
+    ~/.local/bin/hc: .local/bin/hc
 
     ~/.local/share/wallhaven.jpg: .local/share/wallhaven.jpg
 
