@@ -38,3 +38,9 @@ alias gaus="git ls-files -v | grep '^[a-z]'"
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset%C(yellow)%d%Creset %s %Cblue%an %C(cyan)%ad%Creset" --abbrev-commit --date=iso'
 
 alias tmuxd='pgrep -x tmux || tmux attach || tmux'
+
+alias syshn="swaylock -f & sleep 1 && systemctl hibernate"
+
+alias syssp="swaylock -f & sleep 1 && systemctl suspend"
+
+
