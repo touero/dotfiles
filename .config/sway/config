@@ -18,7 +18,7 @@ set $term wezterm
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi --show
+set $menu env PATH=$HOME/.local/bin:$PATH wmenu-run -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828
 set $fcitx fcitx5 -d
 set $dm ~/.local/bin/dm
 
