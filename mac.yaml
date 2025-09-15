@@ -1,3 +1,6 @@
+- create:
+  - ~/Pictures/gif/
+
 - shell:
   -
     command: ./install_dependencies

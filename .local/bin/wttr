@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# @author touero
+# @since 2025
+# wttr: check current localtion weather
+#
+
+replace_space() {
+  WEATHER=$(echo "$WEATHER" | sed 's/  */ /g')
+}
+
+if [ $# -eq 0 ]; then
+  LOCATION=$(curl -s "https://api.myip.la/en?json" | jq -r '.location.city')
+  CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
+  WEATHER=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P")
+else
+  WEATHER=$(curl wttr.in/$1?format=%c+%t+%w+%p+%P)
+fi
+replace_space
+notify-send "$WEATHER"

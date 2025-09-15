@@ -48,6 +48,8 @@ output * bg $HOME/.local/share/wallhaven.jpg fill
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
+for_window [class="Bytedance-feishu" title="图片"] floating enable
+
 ### Input configuration
 #
 input "type:keyboard" {
@@ -184,7 +186,8 @@ input "type:touchpad" {
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 
-    bindsym $mod+m exec $dm
+    bindsym Ctrl+Alt+M exec $dm
+    bindsym --release Alt+l exec swaylock
     bindsym Ctrl+space exec fcitx5-remote -t
 
 
