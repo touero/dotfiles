@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# @Author touero
+# @Since 2025
+# kp: kill the process in fzf
+
+(
+  ps aux | head -1
+  {
+    ps aux | sed 1d | awk -v u="$USER" '$1==u' | grep -v '\[.*\]'
+    ps aux | sed 1d | awk -v u="$USER" '$1!=u' | grep -v '\[.*\]'
+  }
+) | fzf --multi --header-lines=1 --layout=reverse --no-clear |
+  awk '{print $2}' |
+  xargs -r kill -9

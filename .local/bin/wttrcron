@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# wttrcron: update current location weather
+
+WTTR="$HOME/.cache/wttr"
+[ -f "$WTTR" ] || touch "$WTTR"
+
+if [ ! -s "$WTTR" ] || [ $(($(date +%s) - $(stat -c %Y "$WTTR"))) -ge 3600 ]; then
+  LOCATION=$(curl -s "https://api.myip.la/en?json" | jq -r '.location.city')
+  CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
+  WEATHER=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P")
+  WEATHER=$(echo "$WEATHER" | sed 's/  */ /g')
+
+  echo "$WEATHER" >"$WTTR"
+  date '+%Y-%m-%d %H:%M:%S' >>"$WTTR"
+fi
