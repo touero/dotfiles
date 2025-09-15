@@ -5,7 +5,7 @@
 
 [[ -f "$HOME/.xprofile" ]] && source "$HOME/.xprofile"
 
-DMENU=(wofi --show run --dmenu)
+DMENU=(wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 -l 10)
 CHOICE=$(echo -e "bm\npw\nocr\ncud\ncrs\ncrsw\nhc\n" | "${DMENU[@]}")
 
 BOOKMARK_FILE="$HOME/.config/bookmarks"

@@ -7,6 +7,6 @@
 if [ -t 0 ] && [ -t 1 ] && [ -t 2 ]; then
     cliphist list | fzf --no-sort | cliphist decode | wl-copy
 else
-    cliphist list | wofi -S dmenu | cliphist decode | wl-copy
+    cliphist list | wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 -l 30 | cliphist decode | wl-copy
 fi
 
