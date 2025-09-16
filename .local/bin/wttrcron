@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # wttrcron: update current location weather
+# @author touero
+# @since 2025
 
 WTTR="$HOME/.cache/wttr"
 [ -f "$WTTR" ] || touch "$WTTR"

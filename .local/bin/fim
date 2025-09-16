@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# @author nate zhou(touero fix)
+# @since 2025
+# fim: editor a file in nvim with wmenu
+
+DOTFILES_DIR=$HOME/data/repo/dotfiles
+
+search_path=("$DOTFILES_DIR")
+
+selected_file=$(find "${search_path[@]}" -type f |
+  grep -ve "/.git/" |
+  wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 -l 10)
+
+if [ -n "$selected_file" ]; then
+  wezterm start --always-new-process nvim "$selected_file"
+fi
