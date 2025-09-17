@@ -5,6 +5,27 @@
 
 [[ -f "$HOME/.xprofile" ]] && source "$HOME/.xprofile"
 
+has_chrome_in_current_ws() {
+  local current_ws
+  current_ws=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused==true).name')
+
+  local has_chrome
+  has_chrome=$(swaymsg -t get_tree | jq --arg ws "$current_ws" '
+      .. | objects
+      | select(.type=="workspace" and .name==$ws)
+      | .. | objects
+      | select(.type=="con" and .name != null)
+      | select(.name | test("Chrome"))
+      | .name
+    ')
+
+  if [[ -n "$has_chrome" ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 DMENU=(wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 -l 10)
 CHOICE=$(echo -e "bm\npw\nocr\ncud\ncrs\ncrsw\nhc\n" | "${DMENU[@]}")
 
@@ -34,7 +55,11 @@ bm)
   VALUE=$(echo "$SELECTED_BOOKMARK" | cut -d'|' -f2- | sed 's/^ *//;s/ *$//')
 
   if [[ "$VALUE" =~ ^https?:// ]]; then
-    xdg-open "$VALUE"
+    if has_chrome_in_current_ws; then
+      xdg-open "$VALUE"
+    else
+      google-chrome --new-window "$VALUE"
+    fi
   else
     echo "$VALUE" | $CLIPBOARD
   fi
