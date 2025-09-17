@@ -9,9 +9,21 @@ WTTR="$HOME/.cache/wttr"
 if [ ! -s "$WTTR" ] || [ $(($(date +%s) - $(stat -c %Y "$WTTR"))) -ge 3600 ]; then
   LOCATION=$(curl -s "https://api.myip.la/en?json" | jq -r '.location.city')
   CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
-  WEATHER=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P")
-  WEATHER=$(echo "$WEATHER" | sed 's/  */ /g')
 
-  echo "$WEATHER" >"$WTTR"
-  date '+%Y-%m-%d %H:%M:%S' >>"$WTTR"
+  WEATHER=""
+  for i in {1..3}; do
+    RAW=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P")
+    WEATHER=$(echo "$RAW" | sed 's/  */ /g')
+
+    if [ -n "$(echo "$WEATHER" | tr -d '[:space:]')" ]; then
+      {
+        echo "$WEATHER"
+        date '+%Y-%m-%d %H:%M:%S'
+      } >"$WTTR"
+      break
+    fi
+
+    notify-send $WEATHER
+    sleep 2
+  done
 fi
