@@ -20,7 +20,6 @@ set $term wezterm
 # on the original workspace that the command was run on.
 set $menu env PATH=$HOME/.local/bin:$PATH wmenu-run -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828
 set $fcitx fcitx5 -d
-set $dm ~/.local/bin/dm
 
 include /etc/sway/config-vars.d/*
 
@@ -186,7 +185,6 @@ input "type:touchpad" {
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 
-    bindsym Ctrl+Alt+M exec $dm
     bindsym --release Alt+l exec swaylock
     bindsym Ctrl+space exec fcitx5-remote -t
 

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# @Author: touero
+# get_clipboard: get system clipboard type
+
+get_clipboard() {
+  local CLIPBOARD
+  if [ -n "$WAYLAND_DISPLAY" ] && [ -n "$SWAYSOCK" ]; then
+    CLIPBOARD="wl-copy"
+  elif [ -n "$XDG_SESSION_DESKTOP" ] && [[ "$XDG_SESSION_DESKTOP" == "gnome" ]]; then
+    CLIPBOARD="wl-copy"
+  else
+    CLIPBOARD="xclip -selection clipboard"
+  fi
+  echo "$CLIPBOARD"
+}
+

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# @author touero
+# @since 2025
+# screenshot: screenshot costom or by window
+
+choice=$(printf "Region\nWindow\nFullscreen" | wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 -p "screenshot mode: ")
+
+case "$choice" in
+"Window")
+  grim -g "$(swaymsg -t get_tree |
+    jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' |
+    slurp)" - | ~/.local/bin/swappy -f -
+  ;;
+"Fullscreen")
+  grim - | ~/.local/bin/swappy -f -
+  ;;
+*)
+  # 默认 Region
+  grim -g "$(slurp)" - | ~/.local/bin/swappy -f -
+  ;;
+esac
