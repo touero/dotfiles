@@ -7,12 +7,15 @@ local config = {}
 if platform.is_mac then
   config.button_style = "MacOsNative"
   config.button_alignment = "Left"
+  config.window_decorations = "RESIZE"
 elseif platform.is_linux then
   config.button_style = "Gnome"
   config.button_alignment = "Right"
+  config.window_decorations = "None"
 else
   config.buttun_style = "Windows"
   config.button_alignment = "Right"
+  config.window_decorations = "None"
 end
 
 return {
@@ -68,7 +71,7 @@ return {
 
   -- window
   adjust_window_size_when_changing_font_size = false,
-  window_decorations = "RESIZE",
+  window_decorations = config.window_decorations,
   integrated_title_button_style = config.button_style,
   integrated_title_button_color = "#282828",
   integrated_title_button_alignment = config.button_alignment,
