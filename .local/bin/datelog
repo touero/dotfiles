@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# @author touero
+# @since 2025
+# datelog: choice date style in menu
+
+source $HOME/.local/bin/get_clipboard
+CLIPBOARD=$(get_clipboard)
+
+options=""
+for i in $(seq 0 179); do
+  d=$(date -d "-$i day" '+%Y_%m_%d*')
+  options="$options$d\n"
+done
+
+choice=$(echo -e "$options" | wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 -l 10 -p "copy to clipboard")
+
+if [ -n "$choice" ]; then
+  echo -n "$choice" | $CLIPBOARD
+fi
