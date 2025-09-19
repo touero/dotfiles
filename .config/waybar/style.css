@@ -6,6 +6,7 @@
 @define-color red #fb4934;
 @define-color green #b8bb26;
 @define-color yellow #fabd2f;
+@define-color yellow_alt #d79921;
 @define-color blue #83a598;
 @define-color blue_alt #458488;
 @define-color purple #d3869b;
@@ -50,12 +51,13 @@
 #idle_inhibitor,
 #custom-poweroff,
 #custom-suspend,
+#custom-weather,
 #mpd {
     padding: 0em 0.5em;
     background-color: @fg_alt;
     color: @bg;
-    margin: 4px;
-    border-radius: 10px;
+    margin: 3px;
+    border-radius: 7px;
 }
 
 .modules-left > widget:first-child {
@@ -64,12 +66,5 @@
 
 .modules-right > widget:last-child {
     margin-right: 4px;
-}
-
-#custom-weather {
-  background-color: @bg_alt;
-  color: @fg_alt;
-  margin: 4px;
-  border-radius: 10px;
 }
 
