@@ -1,14 +1,26 @@
-  {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 0, // Gaps between modules (4px)
-    // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "custom/weather", "custom/suspend", "custom/poweroff", "sway/mode"],
-    "modules-center": [],
-    // 2020-10-21: disable "cpu" so it never forces a higher power state
-    "modules-right": ["tray", "pulseaudio", "custom/lock", "network", "memory", "cpu", "keyboard-state", "battery", "clock"],
+{
+    "layer": "top",
+    "height": 30,
+    "spacing": 0,
+    "modules-left": [
+        "sway/workspaces",
+        "custom/weather",
+        "sway/mode"
+    ],
+    "modules-center": [
+
+    ],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "custom/lock",
+        "network",
+        "memory",
+        "cpu",
+        "keyboard-state",
+        "battery",
+        "clock"
+    ],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -38,21 +50,6 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
-    // "custom/poweroff": {
-    //     "format": "",
-    //     "on-click": "swaymsg exec systemctl poweroff",
-    // },
-    // "custom/suspend": {
-    //     "format": "",
-    //    "on-click": "sh -c '(sleep 0.5s; systemctl suspend) & disown'",
-    // },
-    "idle_inhibitor": {
-         "format": "{icon}",
-         "format-icons": {
-            "activated": "",
-             "deactivated": ""
-        }
-    },
     "tray": {
         "icon-size": 18,
         "spacing": 12,
@@ -78,7 +75,7 @@
     "battery": {
         "states": {
             "warning": 15,
-            "critical": 5,
+            "critical": 5
         },
         "format-warning": " 󰁺{capacity}%",
         "format-charging": "󰂄{capacity}%",
@@ -86,7 +83,13 @@
         "format-plugged": "󰚥{capacity}%",
         "format-alt": "{time} {icon}",
         "format": "{icon}{capacity}%",
-        "format-icons": ["󰁻", "󰁼", "󰁾", "󰁿", "󰂁"]
+        "format-icons": [
+            "󰁻",
+            "󰁼",
+            "󰁾",
+            "󰁿",
+            "󰂁"
+        ]
     },
     "network": {
         "format-wifi": " | ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}",
@@ -97,7 +100,6 @@
         "format-alt": "{ifname} {ipaddr}/{cidr} {essid}"
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}% {format_source}",
         "format-bluetooth": "{icon} {volume}% {format_source}",
         "format-bluetooth-muted": "{icon} {format_source}",
@@ -111,7 +113,11 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
         "on-click": "pavucontrol"
     },
@@ -119,6 +125,5 @@
         "format": "{}",
         "exec": "head -1 $HOME/.cache/wttr",
         "interval": 300
-    }
+    },
 }
-
