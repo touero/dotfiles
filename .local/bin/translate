@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# @author touero
+# @since 2025
+# translate: translate yout clipboard content
+
+source ~/.local/bin/get_clipboard
+CLIP_CMD=$(get_clipboard)
+
+if command -v wl-paste >/dev/null 2>&1; then
+    TEXT=$(wl-paste)
+elif command -v xclip >/dev/null 2>&1; then
+    TEXT=$(xclip -o -selection clipboard)
+else
+    notify-send "get content from clipboard erroe"
+    exit 1
+fi
+
+if echo "$TEXT" | grep -P "[\p{Han}]" >/dev/null; then
+    DST="en"
+else
+    DST="zh"
+fi
+
+RESULT=$(trans -brief :"$DST" "$TEXT")
+
+notify-send "$RESULT"
+echo -n "$RESULT" | $CLIP_CMD
