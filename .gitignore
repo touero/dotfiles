@@ -1,4 +1,6 @@
-nvim/lazy-lock.json
-nvim/lazyvim.json
+.config/nvim/lazy-lock.json
+.config/nvim/lazyvim.json
 .config/tmux/plugins/*
 tmux/plugins/*
+.config/ttyper/language/*
+
