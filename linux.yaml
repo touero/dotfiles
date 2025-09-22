@@ -33,6 +33,7 @@
     ~/.config/mako: .config/mako
     ~/.config/swappy: .config/swappy
     ~/.config/fcitx5: .config/fcitx5
+    ~/.config/foot: .config/foot
 
     ~/.local/bin/: 
       glob: true

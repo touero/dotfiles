@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 # @author touero
 # @since 2025
-# wttr: check current localtion weather
-#
+# wttr: check current localtion weather in cache
 
-#!/bin/bash
 if [ "$1" = "cat" ]; then
   WEATHER=$(cat $HOME/.cache/wttr)
 else
