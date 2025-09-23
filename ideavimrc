@@ -37,6 +37,9 @@ nnoremap <S-h> :action PreviousTab<CR>
 # nnoremap <C-A-K> :action Forward<CR>
 nnoremap <C-K> :action Back<CR>
 
+nmap s <Action>(flash.search)
+xmap s <Action>(flash.search)
+
 
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv

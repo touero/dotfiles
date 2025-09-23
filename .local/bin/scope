@@ -6,13 +6,27 @@
 file -b "$1"
 file_type=$(file -Lb --mime-type -- "$1" | tee /dev/tty)
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '='
+cols=$(tput cols)
+lines=$(tput lines)
+cache_dir="$HOME/.cache/preview"
+[ -d "$cache_dir" ] || mkdir -p "$cache_dir"
 
 show_img() {
   if [ "$TERM_PROGRAM" = "WezTerm" ]; then
     wezterm imgcat --height 10 "$1"
+  elif command -v chafa >/dev/null 2>&1; then
+    chafa "$1"
   else
-    catimg -t -w 80 "$1"
+    catimg -t -w "$cols" "$1"
   fi
+}
+
+get_cache_file() {
+  file="$1"
+  ext="${2:-jpg}"
+  mtime=$(stat -c %Y "$file")
+  hash=$(echo "$file$mtime" | md5sum | awk '{print $1}')
+  echo "$cache_dir/${hash}.${ext}"
 }
 
 case "$file_type" in
@@ -24,19 +38,35 @@ image/*)
   show_img "$1" "$2" "$3"
   ;;
 video/*)
-  /usr/bin/ffmpegthumbnailer -i "$1" -s 480 -q 5 -o /tmp/preview.jpg
-  show_img /tmp/preview.jpg "$2" "$3"
+  cache_file=$(get_cache_file "$1")
+  max_side=$((cols * 10))
+  [ ! -f "$cache_file" ] && /usr/bin/ffmpegthumbnailer -i "$1" -s "$max_side" -q 5 -o "$cache_file"
+  show_img "$cache_file" "$2" "$3"
   ;;
 audio/*)
   mid3v2 -l "$1"
   ;;
 application/epub+zip)
-  /usr/bin/gnome-epub-thumbnailer "$1" /tmp/preview.png
-  show_img /tmp/preview.png "$2" "$3"
+  cache_file=$(get_cache_file "$1" png)
+  /usr/bin/gnome-epub-thumbnailer "$1" "$cache_file"
+  show_img "$cache_file" "$2" "$3"
   ;;
 application/pdf)
-  pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" /tmp/preview
-  show_img /tmp/preview.jpg "$2" "$3"
+  cache_file=$(get_cache_file "$1")
+  [ ! -f "$cache_file" ] && pdftoppm -f 1 -l 1 -singlefile -jpeg "$1" "${cache_file%.jpg}"
+  show_img "$cache_file" "$2" "$3"
+  ;;
+application/msword)
+  cache_file=$(get_cache_file "$1")
+  if [ ! -f "$cache_file" ]; then
+    tmp_pdf="/tmp/$(basename "$1" .doc).pdf"
+    tmp_jpg="/tmp/$(basename "$1").jpg"
+    libreoffice --headless --convert-to pdf "$1" --outdir /tmp
+    pdftoppm -f 1 -l 1 -singlefile -jpeg "$tmp_pdf" "${tmp_jpg%.jpg}"
+    rm -f "$tmp_pdf"
+    mv "$tmp_jpg" "$cache_file"
+  fi
+  show_img "$cache_file" "$2" "$3"
   ;;
 application/zip)
   zipinfo "$1" | "$PAGER"
@@ -54,7 +84,7 @@ application/*opendocument*)
   odt2txt "$1"
   ;;
 text/html)
-  firejail --net=none w3m "$1"
+  w3m "$1"
   ;;
 text/*)
   cat $1
