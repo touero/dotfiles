@@ -18,7 +18,7 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu env PATH=$HOME/.local/bin:$PATH wmenu-run -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828
+set $menu env PATH=$HOME/.local/bin:$PATH $HOME/.local/bin/menu run
 set $fcitx fcitx5 -d
 
 include /etc/sway/config-vars.d/*
@@ -233,6 +233,17 @@ titlebar_border_thickness 0
 
 font pango:FiraCode Nerd Font, JetBrainsMono Nerd Font, JetBrains Mono, MesloLGS NF, Monaco, "Noto Sans SC", "Noto Sans Mono CJK SC" 12
 
+exec_always {
+    width=$(swaymsg -t get_outputs | jq -r '.[0].rect.width')
+    if [ "$width" -ge 3840 ]; then
+        fontsize=30
+    elif [ "$width" -ge 2560 ]; then
+        fontsize=20
+    else
+        fontsize=10
+    fi
+    systemctl --user import-environment WMENU_FONT_SIZE=$fontsize
+}
 exec_always --no-startup-id pkill fcitx5; fcitx5 -d
 exec_always --no-startup-id bash -c 'pgrep -x clash-verge >/dev/null || setsid /usr/bin/clash-verge >/dev/null 2>&1'
 exec mako

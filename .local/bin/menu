@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# @author touer
+# @since 2025
+# menu general menu setting
+
+width=$(swaymsg -t get_outputs | jq -r '.[0].rect.width')
+if [ "$width" -ge 3840 ]; then
+  fontsize=30
+elif [ "$width" -ge 1920 ]; then
+  fontsize=15
+else
+  fontsize=10
+fi
+
+mode="$1"
+shift
+
+if [ "$mode" = "run" ]; then
+  wmenu-run -i -f "Fira Code Nerd Font $fontsize" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 "$@"
+else
+  wmenu -i -f "Fira Code Nerd Font $fontsize" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 "$@"
+fi

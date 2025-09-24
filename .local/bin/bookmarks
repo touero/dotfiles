@@ -33,7 +33,7 @@ has_chrome_in_current_ws() {
   fi
 }
 
-DMENU=(wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 -l 20 -p "bookmarks")
+DMENU=($HOME/.local/bin/menu show -l 15 -p "bookmarks")
 SELECTED_BOOKMARK=$(cat "$BOOKMARK_FILE" | "${DMENU[@]}")
 if [[ -z "$SELECTED_BOOKMARK" ]]; then
   exit 0
