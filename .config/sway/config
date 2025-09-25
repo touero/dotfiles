@@ -1,36 +1,19 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
 ### Variables
-#
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-# Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
 set $term foot
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
 set $menu env PATH=$HOME/.local/bin:$PATH $HOME/.local/bin/menu run
 set $fcitx fcitx5 -d
 
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $HOME/.local/share/wallhaven.jpg fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+output HDMI-A-1 resolution 1080x1920 transform 270 position 0 0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -50,16 +33,14 @@ output * bg $HOME/.local/share/wallhaven.jpg fill
 for_window [class="Bytedance-feishu" title="图片"] floating enable
 
 ### Input configuration
-#
 input "type:keyboard" {
-    xkb_layout us,cn
-    xkb_variant ,
-    xkb_options "grp:alt_shift_toggle"
+    xkb_layout us
+    repeat_delay 200
+    repeat_rate 30
+    xkb_options "caps:escape,altwin:swap_lalt_lwin"
 }
-#
-# Example configuration:
-#
-  # input "2:14:SynPS/2_Synaptics_TouchPad" {
+
+### Touchpad configuration:
 input "type:touchpad" {
     dwt enabled
     tap enabled
