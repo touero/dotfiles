@@ -5,9 +5,9 @@
 
 width=$(swaymsg -t get_outputs | jq -r '.[0].rect.width')
 if [ "$width" -ge 3840 ]; then
-  fontsize=30
+  fontsize=20
 elif [ "$width" -ge 1920 ]; then
-  fontsize=15
+  fontsize=12
 else
   fontsize=10
 fi
