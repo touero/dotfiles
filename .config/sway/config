@@ -220,7 +220,7 @@ client.urgent           #00000000 #98971a #98971a #ffffff #98971a
 titlebar_padding 1
 titlebar_border_thickness 0
 
-font pango:FiraCode Nerd Font, JetBrainsMono Nerd Font, JetBrains Mono, MesloLGS NF, Monaco, "Noto Sans SC", "Noto Sans Mono CJK SC" 12
+font pango:JetBrainsMono Nerd Font, FiraCode Nerd Font, JetBrains Mono, MesloLGS NF, Monaco, "Noto Sans SC", "Noto Sans Mono CJK SC" 12
 
 exec_always {
     width=$(swaymsg -t get_outputs | jq -r '.[0].rect.width')

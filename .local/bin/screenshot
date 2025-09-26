@@ -3,7 +3,7 @@
 # @since 2025
 # screenshot: screenshot costom or by window
 
-choice=$(printf "Region\nWindow\nFullscreen" | wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 -p "screenshot mode: ")
+choice=$(printf "Region\nWindow\nFullscreen" | "$HOME/.local/bin/menu" show -p "screenshot mode: ")
 
 case "$choice" in
 "Window")

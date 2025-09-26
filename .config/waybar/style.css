@@ -14,7 +14,7 @@
 @define-color orange #fe8019;
 
 * {
-    font-family: "Fira Code Nerd Font";
+    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font Mono", monospace;;
     font-size: 1.2rem;
 }
 
