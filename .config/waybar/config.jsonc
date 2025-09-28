@@ -62,13 +62,13 @@
     "interval": 60
   },
   "cpu": {
-    "format": "[󰍛 {usage}%]",
+    "format": "[󰍛{usage}%]",
     "format-alt": "[CPU usage {usage}%]",
     "tooltip-format": "CPU usage {usage}%",
     "interval": 5
   },
   "memory": {
-    "format": "[󰔫 {}%]",
+    "format": "[󰔫{}%]",
     "format-alt": "[Memory usage {}%]",
     "interval": 5,
     "tooltip-format": "Memory usage {}%"
@@ -93,11 +93,11 @@
     ]
   },
   "network": {
-    "format-wifi": "[  ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}]",
-    "format-ethernet": "[󰛳  ↓ {bandwidthDownBytes} ↑ {bandwidthUpBytes}]",
+    "format-wifi": "[  {bandwidthDownBytes}↓, {bandwidthUpBytes}↑]",
+    "format-ethernet": "[󰛳 {bandwidthDownBytes}↓, {bandwidthUpBytes}↑]",
     "tooltip-format": "[{ifname} {ipaddr}/{cidr} {essid}]",
-    "format-linked": "[NoIP 󰲜 ]",
-    "format-disconnected": "[Disconnected 󰲛 ]",
+    "format-linked": "[󰲜 NoIP]",
+    "format-disconnected": "[󰲛 Disconnected]",
     "format-alt": "[{ifname} {ipaddr}/{cidr} {essid}]"
   },
   "pulseaudio": {

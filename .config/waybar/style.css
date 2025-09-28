@@ -17,11 +17,9 @@
     font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font Mono", monospace;;
     font-size: 1.2rem;
     background-color: @bg;
-}
-
-#workspaces button {
     padding: 0em 0.2em;
 }
+
 
 #workspaces button.focused {
     color: @yellow_alt;
@@ -50,7 +48,6 @@
 #custom-suspend,
 #custom-weather,
 #mpd {
-    padding: 0em 0.5em;
     background-color: @bg;
     color: @fg;
     border-radius: 1px;
