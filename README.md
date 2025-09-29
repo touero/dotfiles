@@ -1,29 +1,46 @@
-# touero's dotfiles
+# dotfiles
+Based [dotbot](https://github.com/anishathalye/dotbot) manage.  
+![preview](./.preview/ubuntu/preview.png)
 
-Based [dotbot](https://github.com/anishathalye/dotbot)
-
-# Usega
+## Usega
 
 ```
 git clone https://github.com/touero/dotfiles.git && cd dotfiles
 ```
 
-> [!IMPORTANT]
-> check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments)
+> [!CAUTION]
+> It might link to configuration files you don't need, please check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments)
 
+> [!NOTE]
+> Not perfect at present
+> - Incomplete installation software script, some software maybe install manually
+> - The software repositories in different versions of Ubuntu contain different versions of software, and you may need to compile it manually.
+> - Once I switch to Arch Linux, the two issues mentioned above are likely to be resolved.
 
-# Preview in tmux
+## software I used
+As a vimer, I prefer software similar to vim operations, which is free as in freedom is better.
+```
+- /usr/bin/sh:              dash
+- Login shell:              zhs
+- Terminlal Multiplexer:    tmux
+- Terminal Emulator:        foot
+- WM/Compositor:            sway
+- Status bar:               waybar
+- Application Launcher:     wmenu
+- Fuzzy Finder:             fzf
+- Editor:                   neovim
+- Picture eeditor:          gimp
+- File manager:             yazi | ranger
+- Web Browser:              chrome | qutebrowser
+- Downloader:               curl | wget
+- screenshot:               grim + slurp + swappy
+- Dotfiles Manager:         git & dotbot
+```
 
-## Ubuntu
-![neofetch](./.preview/ubuntu/neofetch.png)
-![yazi](./.preview/ubuntu/yazi.png)
-![nvim](./.preview/ubuntu/nvim.png)
-![lazygit](./.preview/ubuntu/lazygit.png)
-![editor](./.preview/ubuntu/editor.png)
+## License
+A few scripts or config files come from others, and a credit to the respective authors should be spotted.
 
-## Mac
-![neofetch](./.preview/mac/neofetch.png)
-![yazi](./.preview/mac/yazi.png)
-![nvim](./.preview/mac/nvim.png)
-![lazygit](./.preview/mac/lazygit.png)
-![editor](./.preview/mac/editor.png)
+Referenced:
+- [gnuunixchat/dotfiles](https://github.com/gnuunixchad/dotfiles)
+
+[GNU GPL-3.0](./LICENSE)
