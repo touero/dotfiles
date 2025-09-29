@@ -13,7 +13,6 @@ else
   else
     WEATHER=$(curl wttr.in/$1?format=%c+%t+%w+%p+%P)
   fi
-  replace_space
 fi
 
 notify-send "$WEATHER"

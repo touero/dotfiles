@@ -15,15 +15,14 @@ if [ ! -s "$WTTR" ] || [ $(($(date +%s) - $(stat -c %Y "$WTTR"))) -ge 3600 ]; th
     RAW=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P")
     WEATHER=$(echo "$RAW" | sed 's/  */ /g')
 
-    if [ -n "$(echo "$WEATHER" | tr -d '[:space:]')" ]; then
+    if [[ -n "$(echo "$WEATHER" | tr -d '[:space:]')" && "$WEATHER" == *°C* ]]; then
       {
         echo "$WEATHER"
-        date '+%Y-%m-%d %H:%M:%S'
+        echo "update time: $(date '+%Y-%m-%d %H:%M:%S')"
       } >"$WTTR"
+      notify-send $WEATHER
       break
     fi
-
-    notify-send $WEATHER
     sleep 2
   done
 fi
