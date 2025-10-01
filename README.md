@@ -29,7 +29,7 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Application Launcher:     wmenu
 - Fuzzy Finder:             fzf
 - Editor:                   neovim
-- Picture eeditor:          gimp
+- Picture editor:          gimp
 - File manager:             yazi | ranger
 - Web Browser:              chrome | qutebrowser
 - Downloader:               curl | wget
