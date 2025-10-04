@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+# @author touero
+# @since 2025
+# showkey: show key in wayland
+# dependency: https://github.com/ammgws/wshowkeys.git
+
+wshowkeys -b 282828 -f d79921 -F 'Fira Code Nerd Font 30' -t 1 -a bottom -a left -m 100
