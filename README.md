@@ -1,6 +1,8 @@
 # dotfiles
 Based [dotbot](https://github.com/anishathalye/dotbot) manage.  
-![preview](./.preview/ubuntu/preview.png)
+
+![ubuntu preview](./.preview/arch/preview.png)
+![arch preview](./.preview/ubuntu/preview.png)
 
 ## Usega
 
@@ -31,9 +33,10 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Editor:                   neovim
 - Picture editor:           gimp
 - File manager:             yazi | ranger
-- Web Browser:              chrome | qutebrowser
+- Web Browser:              firefox | chrome | qutebrowser
 - Downloader:               curl | wget
-- screenshot:               grim + slurp + swappy
+- Screenshot:               grim + slurp + swappy
+- Clipboard Manager:        wl-clipboard + cliphist
 - Dotfiles Manager:         git & dotbot
 ```
 
