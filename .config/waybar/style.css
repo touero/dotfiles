@@ -20,6 +20,9 @@
     padding: 0em 0.2em;
 }
 
+#workspaces button {
+    color: @fg_alt;
+}
 
 #workspaces button.focused {
     color: @yellow_alt;
