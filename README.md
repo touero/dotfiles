@@ -23,16 +23,16 @@ git clone https://github.com/touero/dotfiles.git && cd dotfiles
 As a vimer, I prefer software similar to vim operations, which is free as in freedom is better.
 ```
 - /usr/bin/sh:              dash
-- Login shell:              zhs
+- Login Shell:              zhs
 - Terminlal Multiplexer:    tmux
-- Terminal Emulator:        foot
+- Terminal Emulator:        foot | wezterm
 - WM/Compositor:            sway
-- Status bar:               waybar
+- Status Bar:               waybar
 - Application Launcher:     wmenu
 - Fuzzy Finder:             fzf
 - Editor:                   neovim
-- Picture editor:           gimp
-- File manager:             yazi | ranger
+- Picture Editor:           gimp
+- File Manager:             yazi | ranger
 - Web Browser:              firefox | chrome | qutebrowser
 - Downloader:               curl | wget
 - Screenshot:               grim + slurp + swappy
