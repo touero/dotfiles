@@ -4,18 +4,18 @@
 # screenshot: screenshot costom or by window
 
 choice=$(printf "Region\nWindow\nFullscreen" | "$HOME/.local/bin/menu" show -p "screenshot mode: ")
+swappy=$(which swappy)
 
 case "$choice" in
 "Window")
   grim -g "$(swaymsg -t get_tree |
     jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' |
-    slurp)" - | ~/.local/bin/swappy -f -
+    slurp)" - | "$swappy" -f -
   ;;
 "Fullscreen")
-  grim - | ~/.local/bin/swappy -f -
+  grim - | "$swappy" -f -
   ;;
 *)
-  # 默认 Region
-  grim -g "$(slurp)" - | ~/.local/bin/swappy -f -
+  grim -g "$(slurp)" - | "$swappy" -f -
   ;;
 esac
