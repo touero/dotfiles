@@ -177,6 +177,14 @@ input "type:touchpad" {
     bindsym --release Alt+l exec swaylock
     bindsym Ctrl+space exec fcitx5-remote -t
 
+#
+# Volume:
+#
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
 
 # Resizing containers:
 #
