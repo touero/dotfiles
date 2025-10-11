@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# @author touero
+# @name btconnect
+# @desc fzf bluetooth scan connect tool
+
+set -e
+
+devices=$(bluetoothctl devices | awk '{$1=""; print substr($0,2)}')
+
+if [ -z "$devices" ]; then
+  echo "Not found any bluetooth devices"
+  exit 1
+fi
+
+choice=$(echo "$devices" | fzf --prompt="Choise bluetooth" --height=15 --border --ansi)
+
+if [ -z "$choice" ]; then
+  echo "Canceled"
+  exit 0
+fi
+
+mac=$(echo "$choice" | awk '{print $1}')
+name=$(echo "$choice" | cut -d' ' -f2-)
+
+echo "Connecting to: $name ($mac)"
+
+bluetoothctl <<EOF
+trust $mac
+pair $mac
+connect $mac
+exit
+EOF
+
+if bluetoothctl info "$mac" | grep -q "Connected: yes"; then
+  echo "Successfully connected to $name"
+else
+  echo "Unable to connect to $name，please check if the device is available."
+fi
