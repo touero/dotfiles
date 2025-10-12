@@ -1,6 +1,8 @@
 # dotfiles
 Based [dotbot](https://github.com/anishathalye/dotbot) manage.  
-![preview](./.preview/ubuntu/preview.png)
+
+![ubuntu preview](./.preview/arch/preview.png)
+![arch preview](./.preview/ubuntu/preview.png)
 
 ## Usega
 
@@ -21,19 +23,20 @@ git clone https://github.com/touero/dotfiles.git && cd dotfiles
 As a vimer, I prefer software similar to vim operations, which is free as in freedom is better.
 ```
 - /usr/bin/sh:              dash
-- Login shell:              zhs
+- Login Shell:              zhs
 - Terminlal Multiplexer:    tmux
-- Terminal Emulator:        foot
+- Terminal Emulator:        foot | wezterm
 - WM/Compositor:            sway
-- Status bar:               waybar
+- Status Bar:               waybar
 - Application Launcher:     wmenu
 - Fuzzy Finder:             fzf
 - Editor:                   neovim
-- Picture editor:           gimp
-- File manager:             yazi | ranger
-- Web Browser:              chrome | qutebrowser
+- Picture Editor:           gimp
+- File Manager:             yazi | ranger
+- Web Browser:              firefox | chrome | qutebrowser
 - Downloader:               curl | wget
-- screenshot:               grim + slurp + swappy
+- Screenshot:               grim + slurp + swappy
+- Clipboard Manager:        wl-clipboard + cliphist
 - Dotfiles Manager:         git & dotbot
 ```
 

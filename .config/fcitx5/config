@@ -11,6 +11,8 @@ EnumerateSkipFirst=False
 ActivateKeys=
 # 取消激活输入法
 DeactivateKeys=
+# 触发修饰键快捷键的时限 (毫秒)
+ModifierOnlyKeyTimeout=250
 
 [Hotkey/TriggerKeys]
 0=Control+space
@@ -43,6 +45,8 @@ DeactivateKeys=
 [Behavior]
 # 默认状态为激活
 ActiveByDefault=False
+# 重新聚焦时重置状态
+resetStateWhenFocusIn=No
 # 共享输入状态
 ShareInputState=Program
 # 在程序中显示预编辑文本
@@ -58,7 +62,7 @@ ShowFirstInputMethodInformation=True
 # 默认页大小
 DefaultPageSize=5
 # 覆盖 Xkb 选项
-OverrideXkbOption=False
+OverrideXkbOption=True
 # 自定义 Xkb 选项
 CustomXkbOption=
 # Force Enabled Addons
