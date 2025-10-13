@@ -7,8 +7,11 @@ if [ "$1" = "cat" ]; then
   WEATHER=$(cat $HOME/.cache/wttr)
 else
   if [ $# -eq 0 ]; then
-    LOCATION=$(curl -s "https://api.myip.la/en?json" | jq -r '.location.city')
-    CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
+    # Uncomment not in mainland China:
+    # LOCATION=$(curl -s "https://api.myip.la/en?json" | jq -r '.location.city')
+    # CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
+    LOCATION=$(curl -s "http://myip.ipip.net")
+    CITY=$(echo "$LOCATION" | awk '{print $5}')
     WEATHER=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P")
   else
     WEATHER=$(curl wttr.in/$1?format=%c+%t+%w+%p+%P)

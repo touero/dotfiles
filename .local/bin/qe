@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 # @author nate zhou(touero fix)
 # @since 2025
-# fim: editor a file in nvim with wmenu
+# qe: quick edit a file in nvim with wmenu
 
-DOTFILES_DIR=$HOME/data/repo/dotfiles
+if [ "$1" ]; then
+  DOTFILES_DIR=$1
+else
+  DOTFILES_DIR=$HOME/data/repo/dotfiles
+fi
 
 search_path=("$DOTFILES_DIR")
 
 selected_file=$(find "${search_path[@]}" -type f |
-  grep -vE '/(\.git|dotbot|tmux/plugins)/' |
+  grep -vE '/(\.git|dotbot|tmux/plugins|__pycache__|site-packages)/' |
   $HOME/.local/bin/menu show -l 15 -p "editor")
 
 if [ -n "$selected_file" ]; then

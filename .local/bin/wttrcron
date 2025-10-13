@@ -7,8 +7,11 @@ WTTR="$HOME/.cache/wttr"
 [ -f "$WTTR" ] || touch "$WTTR"
 
 if [ ! -s "$WTTR" ] || [ $(($(date +%s) - $(stat -c %Y "$WTTR"))) -ge 3600 ]; then
-  LOCATION=$(curl -s "https://api.myip.la/en?json" | jq -r '.location.city')
-  CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
+  # Uncomment not in mainland China:
+  # LOCATION=$(curl -s "https://api.myip.la/en?json" | jq -r '.location.city')
+  # CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
+  LOCATION=$(curl -s "http://myip.ipip.net")
+  CITY=$(echo "$LOCATION" | awk '{print $5}')
 
   WEATHER=""
   for i in {1..3}; do

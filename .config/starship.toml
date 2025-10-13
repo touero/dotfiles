@@ -1,6 +1,5 @@
 format = """
-$username\
-$hostname\
+$username$hostname\
 $directory\
 $git_branch\
 $git_status \
@@ -8,11 +7,22 @@ $conda\
 $python\
 $character"""
 
+[hostname]
+ssh_only = false
+format = '[@$hostname](bold #fbf1c7 bg:#427b58) '
+disabled = false
+
+[username]
+style_user = 'bold #fbf1c7 bg:#427b58'
+format = '[$user]($style)'
+disabled = false
+show_always = true
+aliases = { "corpuser034g" = "matchai" }
+
 [directory]
-truncation_length = 10
+truncation_length = 3
 truncate_to_repo = true
 fish_style_pwd_dir_length = 20
-
 
 [character]
 success_symbol = "[󰜴](green)"
