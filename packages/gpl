@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# author: weiensong
+# email: touer0018@gmail.com
+# gpl: generate diff platform packages list
+
+OS_TYPE=$(uname)
+GENERATE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if [ "$OS_TYPE" = "Darwin" ]; then
+  platform='macos'
+elif [ -f /etc/os-release ]; then
+  . /etc/os-release
+  if [ "$ID" = "ubuntu" ]; then
+    platform='ubuntu'
+  else
+    echo "Other Linux: $NAME"
+    exit 0
+  fi
+else
+  echo "Unknown OS"
+  exit 0
+fi
+
+if [ "$platform" = "ubuntu" ]; then
+  dpkg-query -W -f='${binary:Package}\n' | sed 's/:.*//g' >"$GENERATE_DIR/ubuntu_packages.txt"
+  echo "Ubuntu packages exported to $GENERATE_DIR/ubuntu_packages.txt"
+elif [ "$platform" = "macos" ]; then
+  brew list >"$GENERATE_DIR/macos_packages.txt"
+  echo "macOS packages exported to $GENERATE_DIR/macos_packages.txt"
+fi
