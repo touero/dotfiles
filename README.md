@@ -11,8 +11,8 @@ git clone https://github.com/touero/dotfiles.git && cd dotfiles
 ```
 
 > [!CAUTION]
-> It might link to configuration files you don't need, please check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments)
-> It is best to make the execution result of the written script idempotent.
+> - It might link to configuration files you don't need, please check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments).  
+> - It is best to make the execution result of the written script idempotent.
 
 > [!NOTE]
 > - [`boot`](https://github.com/touero/dotfiles/blob/master/boot): first initialization execution.
