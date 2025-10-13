@@ -13,6 +13,7 @@
       path: Pictures/gif/**
 
     ~/.zshrc: .zshrc
+    ~/.zimrc: .zimrc
     ~/.ideavimrc: ideavimrc
     ~/.aliases.zsh: aliases.zsh
 
