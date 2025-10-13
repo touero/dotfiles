@@ -12,12 +12,16 @@ git clone https://github.com/touero/dotfiles.git && cd dotfiles
 
 > [!CAUTION]
 > - It might link to configuration files you don't need, please check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments).  
-> - It is best to make the execution result of the written script idempotent.
 
 > [!NOTE]
+> - The software repositories in different versions of Ubuntu or Macos contain different versions of software, and you may need to compile it manually.  
+> - It is best to make the execution result of the written script idempotent.
+
+> [!TIP]
+> ideal order  
 > - [`boot`](https://github.com/touero/dotfiles/blob/master/boot): first initialization execution.
 > - [`install_packages`](https://github.com/touero/dotfiles/blob/master/install_packages): install dependency packages.
-> - The software repositories in different versions of Ubuntu contain different versions of software, and you may need to compile it manually in ubuntu or macos.
+> - [`install`](https://github.com/touero/dotfiles/blob/master/install): dotbot install script.
 
 ## software I used
 As a vimer, I prefer software similar to vim operations, which is free as in freedom is better.
