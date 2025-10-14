@@ -126,5 +126,5 @@
     "format": "[{}]",
     "exec": "head -1 $HOME/.cache/wttr",
     "interval": 300
-  },
+  }
 }
