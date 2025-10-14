@@ -35,6 +35,7 @@
     ~/.config/swappy: .config/swappy
     ~/.config/fcitx5: .config/fcitx5
     ~/.config/foot: .config/foot
+    ~/.config/git: .config/git
 
     ~/.local/bin/: 
       glob: true

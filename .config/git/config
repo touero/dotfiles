@@ -1,0 +1,26 @@
+[user]
+	name = touero
+	email = touer0018@gmail.com
+[core]
+	pager = delta
+  quotepath = false
+  excludesfile = ~/.config/git/ignore
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = true
+	syntax-theme = gruvbox-dark
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = false
+[sendemail]
+	suppresscc = self
+[color]
+	ui = auto
+[commit]
+    template = ~/.config/git/template/commit_message.txt
+[url "git@github.com:touero/"]
+  insteadOf = "githubtouero:"
+[url "https://github.com/"]
+  insteadOf = "github:"
