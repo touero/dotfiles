@@ -3,6 +3,7 @@ Based [dotbot](https://github.com/anishathalye/dotbot) manage.
 
 ![ubuntu preview](./.preview/arch/preview.png)
 ![arch preview](./.preview/ubuntu/preview.png)
+![mac](./.preview/mac/preview.png)
 
 ## Usega
 

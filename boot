@@ -14,22 +14,6 @@ default_shell_setting() {
   fi
 }
 
-git_info_setting() {
-  if ! git config --global user.name &>/dev/null; then
-    echo "Git configuring..."
-    git config --global user.name "touero"
-    git config --global user.email "touer0018@gmail.com"
-    git config --global color.ui auto
-    git config --global diff.tool nvimdiff
-    git config --global difftool.prompt false
-    git config --global sendemail.suppresscc self
-    git config --global delta.navigate true
-    git config --global delta.line-numbers true
-    git config --global delta.side-by-side true
-    git config --global delta.syntax-theme gruvbox-dark
-  fi
-}
-
 install_zim() {
   local ZIM_HOME="${ZIM_HOME:-$HOME/.zim}"
   if [ ! -d "$ZIM_HOME" ]; then
