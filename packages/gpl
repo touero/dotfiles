@@ -12,8 +12,10 @@ elif [ -f /etc/os-release ]; then
   . /etc/os-release
   if [ "$ID" = "ubuntu" ]; then
     platform='ubuntu'
+  elif [ "$ID" = "arch" ]; then
+    platform='arch'
   else
-    echo "Other Linux: $NAME"
+    echo "Other Linux: $NAME, $ID"
     exit 0
   fi
 else
@@ -21,7 +23,11 @@ else
   exit 0
 fi
 
-if [ "$platform" = "ubuntu" ]; then
+if [ "$platform" = "arch" ]; then
+  pacman -Qqe >"$GENERATE_DIR/arch_packages.txt"
+  yay -Qqem >"$GENERATE_DIR/arch_aur_packages.txt"
+  echo "Ubuntu packages exported to $GENERATE_DIR/arch_packages.txt, $GENERATE_DIR/arch_aur_packages.txt"
+elif [ "$platform" = "ubuntu" ]; then
   dpkg-query -W -f='${binary:Package}\n' | sed 's/:.*//g' >"$GENERATE_DIR/ubuntu_packages.txt"
   echo "Ubuntu packages exported to $GENERATE_DIR/ubuntu_packages.txt"
 elif [ "$platform" = "macos" ]; then

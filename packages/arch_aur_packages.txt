@@ -1,0 +1,8 @@
+archlinuxcn-keyring
+fcitx5-input-support
+google-chrome
+qqmusic-bin
+sway-im
+wdisplays
+yay-bin
+yay-bin-debug
