@@ -11,8 +11,10 @@ elif [ -f /etc/os-release ]; then
   . /etc/os-release
   if [ "$ID" = "ubuntu" ]; then
     platform='ubuntu'
+  elif [ "$ID" = "arch" ]; then
+    platform='arch'
   else
-    echo "Other Linux: $NAME"
+    echo "Other Linux: $NAME, $ID"
     exit 0
   fi
 else
@@ -23,6 +25,9 @@ fi
 if [ "$platform" = "ubuntu" ]; then
   sudo apt update
   sudo xargs -a ./packages/ubuntu_packages.txt packages.txt apt install -y
+elif [ "$platform" = "arch" ]; then
+  sudo pacman -Syu --needed - <arch_packages.txt
+  yay -S --needed - <arch_aur_packages.txt
 elif [ "$platform" = "macos" ]; then
   xargs brew install <./packages/mac_packages.txt
 fi
@@ -30,18 +35,4 @@ fi
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "Changing default shell to zsh..."
   chsh -s "$(which zsh)"
-fi
-
-if ! git config --global user.name &>/dev/null; then
-  echo "Git configuring..."
-  git config --global user.name "touero"
-  git config --global user.email "touer0018@gmail.com"
-  git config --global color.ui auto
-  git config --global diff.tool nvimdiff
-  git config --global difftool.prompt false
-  git config --global sendemail.suppresscc self
-  git config --global delta.navigate true
-  git config --global delta.line-numbers true
-  git config --global delta.side-by-side true
-  git config --global delta.syntax-theme gruvbox-dark
 fi
