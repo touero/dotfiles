@@ -8,11 +8,12 @@ set $right l
 set $term foot
 set $menu env PATH=$HOME/.local/bin:$PATH $HOME/.local/bin/menu run
 set $fcitx fcitx5 -d
+set $wallpapers_path $HOME/.local/share/wallhavens/
 
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
-output * bg $HOME/.local/share/wallhaven.jpg fill
+output * bg `find -L $wallpapers_path -type f | shuf -n 1` fill
 
 exec_always {
     if swaymsg -t get_outputs | grep -q "eDP-1"; then
