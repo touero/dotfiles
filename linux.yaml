@@ -18,7 +18,6 @@
     ~/.aliases.zsh: aliases.zsh
 
     ~/.config/starship.toml: .config/starship.toml
-    ~/.config/bookmarks: .config/bookmarks
     ~/.config/nvim: .config/nvim
     ~/.config/wezterm: .config/wezterm
     ~/.config/lazygit: .config/lazygit

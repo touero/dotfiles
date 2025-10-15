@@ -1,3 +1,11 @@
+# [fix] 
+# [chore] 
+# [feat] 
+# [docs] 
+# [style] 
+# [refactor] 
+# [perf] 
+# [test] 
 # fix: 
 # feat: 
 # docs: 
