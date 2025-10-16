@@ -57,5 +57,8 @@ eval "$(pyenv init - zsh)"
 
 export EDITOR="nvim"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 eval "$(starship init zsh)"
