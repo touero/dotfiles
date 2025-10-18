@@ -25,6 +25,7 @@
     ~/.config/ttyper: .config/ttyper
     ~/.config/tmux: .config/tmux
     ~/.config/neofetch: .config/neofetch
+    ~/.config/git: .config/git
 
     ~/.local/bin/mu: .local/bin/mu
     ~/.local/bin/dsa: .local/bin/dsa

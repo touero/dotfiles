@@ -1,0 +1,38 @@
+#!/bin/bash
+# author: weiensong
+# email: touer0018@gmail.com
+# install_packages: install packages in diff platform
+
+OS_TYPE=$(uname)
+
+if [ "$OS_TYPE" = "Darwin" ]; then
+  platform='macos'
+elif [ -f /etc/os-release ]; then
+  . /etc/os-release
+  if [ "$ID" = "ubuntu" ]; then
+    platform='ubuntu'
+  elif [ "$ID" = "arch" ]; then
+    platform='arch'
+  else
+    echo "Other Linux: $NAME, $ID"
+    exit 0
+  fi
+else
+  echo "Unknown OS"
+  exit 0
+fi
+
+if [ "$platform" = "ubuntu" ]; then
+  sudo apt update
+  sudo xargs -a ./packages/ubuntu_packages.txt packages.txt apt install -y
+elif [ "$platform" = "arch" ]; then
+  sudo pacman -Syu --needed - <arch_packages.txt
+  yay -S --needed - <arch_aur_packages.txt
+elif [ "$platform" = "macos" ]; then
+  xargs brew install <./packages/mac_packages.txt
+fi
+
+if [ "$SHELL" != "$(which zsh)" ]; then
+  echo "Changing default shell to zsh..."
+  chsh -s "$(which zsh)"
+fi
