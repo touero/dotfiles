@@ -3,6 +3,7 @@ Based [dotbot](https://github.com/anishathalye/dotbot) manage.
 
 ![ubuntu preview](./.preview/arch/preview.png)
 ![arch preview](./.preview/ubuntu/preview.png)
+![mac](./.preview/mac/preview.png)
 
 ## Usega
 
@@ -11,13 +12,17 @@ git clone https://github.com/touero/dotfiles.git && cd dotfiles
 ```
 
 > [!CAUTION]
-> It might link to configuration files you don't need, please check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments)
+> It might link to configuration files you don't need, please check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments).  
 
 > [!NOTE]
-> Not perfect at present
-> - Incomplete installation software script, some software maybe install manually
-> - The software repositories in different versions of Ubuntu contain different versions of software, and you may need to compile it manually.
-> - Once I switch to Arch Linux, the two issues mentioned above are likely to be resolved.
+> - The software repositories in different versions of Ubuntu or Macos contain different versions of software, and you may need to compile it manually.  
+> - It is best to make the execution result of the written script idempotent.
+
+> [!TIP]
+> theoretical sequence:  
+> - [`boot`](https://github.com/touero/dotfiles/blob/master/boot): first initialization execution.
+> - [`install_packages`](https://github.com/touero/dotfiles/blob/master/install_packages): install dependency packages.
+> - [`install`](https://github.com/touero/dotfiles/blob/master/install): dotbot install script.
 
 ## software I used
 As a vimer, I prefer software similar to vim operations, which is free as in freedom is better.
