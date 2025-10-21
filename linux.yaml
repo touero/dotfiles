@@ -37,7 +37,7 @@
     ~/.config/foot: .config/foot
     ~/.config/git: .config/git
 
-    ~/.local/bin/: 
+    ~/.local/bin/:
       glob: true
       path: .local/bin/*
 
@@ -45,7 +45,9 @@
       glob: true
       path: .local/share/wallhavens/*
 
-    ~/.local/share/fcitx5/themes/Gruvbox-Dark: .local/share/fcitx5/themes/Gruvbox-Dark
+    ~/.local/share/fcitx5/themes:
+      glob: true
+      path: .local/share/fcitx5/themes/*
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules ]
