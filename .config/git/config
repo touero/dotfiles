@@ -20,6 +20,16 @@
 	ui = auto
 [commit]
     template = ~/.config/git/template/commit_message.txt
+[sendemail]
+    smtpServer = smtp.gmail.com
+    smtpServerPort = 587
+    smtpEncryption = tls
+    smtpUser = touer0018@gmail.com
+    from = "weiensong <touer0018@gmail.com>"
+    suppresscc = self
+    confirm = always
+[credential]
+    helper = store
 [url "git@github.com:touero/"]
   insteadOf = "githubtouero:"
 [url "https://github.com/"]
