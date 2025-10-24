@@ -17,6 +17,7 @@
     ~/.zimrc: .zimrc
     ~/.ideavimrc: ideavimrc
     ~/.aliases.zsh: aliases.zsh
+    ~/.gnupg/gpg-agent.conf: .gnupg/gpg-agent.conf
 
     ~/.config/starship.toml: .config/starship.toml
     ~/.config/nvim: .config/nvim
