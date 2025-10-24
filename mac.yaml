@@ -26,6 +26,7 @@
     ~/.config/tmux: .config/tmux
     ~/.config/neofetch: .config/neofetch
     ~/.config/git: .config/git
+    ~/.config/aerc: .config/aerc
 
     ~/.local/bin/mu: .local/bin/mu
     ~/.local/bin/dsa: .local/bin/dsa
