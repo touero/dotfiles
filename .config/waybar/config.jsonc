@@ -10,9 +10,11 @@
   "modules-center": [],
   "modules-right": [
     "tray",
+    "bluetooth",
     "pulseaudio",
     "custom/lock",
     "network",
+    "temperature",
     "memory",
     "cpu",
     "keyboard-state",
@@ -58,17 +60,17 @@
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "[{:%Y-%m-%d %A %H:%M}]",
-    "interval": 60
+    "format": "[{:%Y-%m-%d %A %H:%M:%S}]",
+    "interval": 1
   },
   "cpu": {
-    "format": "[󰍛{usage}%]",
+    "format": "[ {usage}%]",
     "format-alt": "[CPU usage {usage}%]",
     "tooltip-format": "CPU usage {usage}%",
     "interval": 5
   },
   "memory": {
-    "format": "[󰔫{}%]",
+    "format": "[ {}%]",
     "format-alt": "[Memory usage {}%]",
     "interval": 5,
     "tooltip-format": "Memory usage {}%"
@@ -93,7 +95,7 @@
     ]
   },
   "network": {
-    "format-wifi": "[  {bandwidthDownBytes}↓, {bandwidthUpBytes}↑]",
+    "format-wifi": "[󰖩 {bandwidthDownBytes}↓, {bandwidthUpBytes}↑]",
     "format-ethernet": "[󰛳 {bandwidthDownBytes}↓, {bandwidthUpBytes}↑]",
     "tooltip-format": "[{ifname} {ipaddr}/{cidr} {essid}]",
     "format-linked": "[󰲜 NoIP]",
@@ -121,6 +123,19 @@
       ]
     },
     "on-click": "pavucontrol"
+  },
+  "bluetooth": {
+    "format": "[ {status}]",
+    "format-no-controller": "[ {status}]",
+    "format-connected": "[ {device_alias}]",
+    "format-connected-battery": "[ {device_alias}{device_battery_percentage}%]",
+    "tooltip-format": "[{status} {controller_alias} {controller_address} {num_connections} connected]",
+    "tooltip-format-connected": "[{controller_alias} {controller_address} {num_connections} connected {device_enumerate}]",
+    "tooltip-format-enumerate-connected": "[{device_alias} {device_address}}",
+    "tooltip-format-enumerate-connected-battery": "[{device_alias} {device_address} {device_battery_percentage}%]"
+  },
+  "temperature": {
+    "format": "[{temperatureC}°C]"
   },
   "custom/weather": {
     "format": "[{}]",
