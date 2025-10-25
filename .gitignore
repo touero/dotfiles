@@ -3,4 +3,4 @@
 .config/tmux/plugins/*
 tmux/plugins/*
 .config/ttyper/language/*
-
+.config/aerc/accounts.conf
