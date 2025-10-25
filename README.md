@@ -27,22 +27,24 @@ git clone https://github.com/touero/dotfiles.git && cd dotfiles
 ## software I used
 As a vimer, I prefer software similar to vim operations, which is free as in freedom is better.
 ```
-- /usr/bin/sh:              dash
-- Login Shell:              zhs
-- Terminlal Multiplexer:    tmux
-- Terminal Emulator:        foot | wezterm
-- WM/Compositor:            sway
-- Status Bar:               waybar
-- Application Launcher:     wmenu
-- Fuzzy Finder:             fzf
-- Editor:                   neovim
-- Picture Editor:           gimp
-- File Manager:             yazi | ranger
-- Web Browser:              firefox | chrome | qutebrowser
-- Downloader:               curl | wget
-- Screenshot:               grim + slurp + swappy
-- Clipboard Manager:        wl-clipboard + cliphist
-- Dotfiles Manager:         git & dotbot
+- /usr/bin/sh:                    dash
+- Login Shell:                    zhs
+- Terminlal Multiplexer:          tmux
+- Terminal Emulator:              foot | wezterm
+- WM/Compositor:                  sway
+- Status Bar:                     waybar
+- Application Launcher:           wmenu
+- Fuzzy Finder:                   fzf
+- Text Editor:                    neovim
+- Picture Editor:                 gimp
+- Email:                          aerc
+- Encryption Decryption:          gpg
+- File Manager:                   yazi | ranger
+- Web Browser:                    firefox | chrome | qutebrowser
+- Downloader:                     curl | wget
+- Screenshot:                     grim + slurp + swappy
+- Clipboard Manager:              wl-clipboard + cliphist
+- Dotfiles Manager:               git & dotbot
 ```
 
 ## License
