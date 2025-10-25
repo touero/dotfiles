@@ -221,12 +221,12 @@ bar {
 # Title bar or Border
 default_border pixel 5
 default_floating_border none
-gaps inner 10
+gaps outer 2
 
-client.focused          #00000000 #98971a #98971a #ffffff #98971a
+client.focused          #00000000 #427b58 #427b58 #ffffff #427b58
 client.unfocused        #00000000 #00000000 #00000000 #00000000 #00000000
 client.focused_inactive #00000000 #00000000 #00000000 #00000000 #00000000
-client.urgent           #00000000 #98971a #98971a #ffffff #98971a
+client.urgent           #00000000 #427b58 #427b58 #ffffff #427b58
 
 titlebar_padding 1
 titlebar_border_thickness 0
