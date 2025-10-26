@@ -1,6 +1,7 @@
 - create:
   - ~/Pictures/gif/
   - ~/.local/share/wallhavens/
+  - ~/.local/share/kbd/keymaps/i386/qwerty/
 
 - shell:
   -
@@ -9,6 +10,8 @@
     stderr: true
 
 - link:
+    /etc/vconsole.conf: etc/vconsole.conf
+
     ~/Pictures/gif/: 
       glob: true
       path: Pictures/gif/**
@@ -50,6 +53,8 @@
     ~/.local/share/fcitx5/themes:
       glob: true
       path: .local/share/fcitx5/themes/*
+
+    ~/.local/share/kbd/keymaps/i386/qwerty/us-custom.map.gz: .local/share/kbd/keymaps/i386/qwerty/us-custom.map.gz
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules ]
