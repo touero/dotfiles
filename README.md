@@ -7,12 +7,24 @@ Based [dotbot](https://github.com/anishathalye/dotbot) manage.
 
 ## Usega
 
-```
-git clone https://github.com/touero/dotfiles.git && cd dotfiles
-```
-
 > [!CAUTION]
 > It might link to configuration files you don't need, please check  [dotbot command line arguments](https://github.com/anishathalye/dotbot/blob/master/README.md#command-line-arguments).  
+```
+# Clone this repo on github:
+git clone https://github.com/touero/dotfiles.git
+# Or on codeberg:
+git clone https://codeberg.org/touero/dotfiles.git
+
+# Check dotbot help:
+./install --help
+
+# Execute with root privileges:
+sudo ./install [OPTIONS]
+
+# Execute with current user privileges:
+./install [OPTIONS]
+```
+
 
 > [!NOTE]
 > - The software repositories in different versions of Ubuntu or Macos contain different versions of software, and you may need to compile it manually.  
