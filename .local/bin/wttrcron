@@ -21,7 +21,7 @@ if [ ! -s "$WTTR" ] || [ $(($(date +%s) - $(stat -c %Y "$WTTR"))) -ge 3600 ]; th
     if [[ -n "$(echo "$WEATHER" | tr -d '[:space:]')" && "$WEATHER" == *°C* ]]; then
       {
         echo "$WEATHER"
-        echo "update time: $(date '+%Y-%m-%d %H:%M:%S')"
+        echo "update time: $(date '+%Y-%m-%d %H:%M:%S') in $CITY"
       } >"$WTTR"
       notify-send $WEATHER
       break
