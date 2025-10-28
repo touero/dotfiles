@@ -10,8 +10,6 @@
     stderr: true
 
 - link:
-    /etc/vconsole.conf: etc/vconsole.conf
-
     ~/Pictures/gif/: 
       glob: true
       path: Pictures/gif/**
