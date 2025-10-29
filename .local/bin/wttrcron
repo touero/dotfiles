@@ -23,7 +23,7 @@ if [ ! -s "$WTTR" ] || [ $(($(date +%s) - $(stat -c %Y "$WTTR"))) -ge 3600 ]; th
         echo "$WEATHER"
         echo "update time: $(date '+%Y-%m-%d %H:%M:%S') in $CITY"
       } >"$WTTR"
-      notify-send "$WEATHER"
+      notify-send "$(cat $WTTR)"
       break
     fi
     sleep 2

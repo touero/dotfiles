@@ -1,5 +1,6 @@
-anchor=top-center
+anchor=top-right
 layer=overlay
+on-notify=exec mpv --no-terminal --quiet /usr/share/sounds/freedesktop/stereo/message.oga
 
 width=500
 padding=10
@@ -11,7 +12,7 @@ background-color=#282828
 markup=1
 text-alignment=center
 
-default-timeout=3000
+default-timeout=7000
 max-visible=5
 
 border-size=1
