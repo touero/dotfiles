@@ -1,6 +1,8 @@
 [Hotkey]
 # 反复按切换键时进行轮换
 EnumerateWithTriggerKeys=True
+# 临时在当前和第一个输入法之间切换
+AltTriggerKeys=
 # 向前切换输入法
 EnumerateForwardKeys=
 # 向后切换输入法
@@ -11,15 +13,9 @@ EnumerateSkipFirst=False
 ActivateKeys=
 # 取消激活输入法
 DeactivateKeys=
-# 触发修饰键快捷键的时限 (毫秒)
-ModifierOnlyKeyTimeout=250
 
 [Hotkey/TriggerKeys]
-0=Control+space
-1=Zenkaku_Hankaku
-
-[Hotkey/AltTriggerKeys]
-0=Shift_L
+0=Zenkaku_Hankaku
 
 [Hotkey/EnumerateGroupForwardKeys]
 0=Super+space
@@ -45,10 +41,8 @@ ModifierOnlyKeyTimeout=250
 [Behavior]
 # 默认状态为激活
 ActiveByDefault=False
-# 重新聚焦时重置状态
-resetStateWhenFocusIn=No
 # 共享输入状态
-ShareInputState=Program
+ShareInputState=False
 # 在程序中显示预编辑文本
 PreeditEnabledByDefault=True
 # 切换输入法时显示输入法信息
