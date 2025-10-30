@@ -1,21 +1,45 @@
 #!/usr/bin/env bash
 # @author touero
 # @since 2025
-# screenshot: screenshot costom or by window
+# screenshot: region / window / fullscreen, supports menu or argument
 
-choice=$(printf "Region\nWindow\nFullscreen" | "$HOME/.local/bin/menu" show -p "screenshot mode: ")
+mode=$1
 swappy=$(which swappy)
+SAVE_DIR=/tmp/screenshot
+[ -d "$SAVE_DIR" ] || mkdir -p "$SAVE_DIR"
 
-case "$choice" in
-"Window")
+if [ -z "$mode" ]; then
+  mode=$(printf "Region\nWindow\nFullscreen" | "$HOME/.local/bin/menu" show -p "screenshot mode: ")
+  case "$mode" in
+  Region) mode="region" ;;
+  Window) mode="window" ;;
+  Fullscreen) mode="fullscreen" ;;
+  *) exit 0 ;;
+  esac
+fi
+
+latest_file_before=$(ls -t "$SAVE_DIR"/* 2>/dev/null | head -n 1 || true)
+
+case "$mode" in
+window)
   grim -g "$(swaymsg -t get_tree |
     jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' |
     slurp)" - | "$swappy" -f -
   ;;
-"Fullscreen")
+fullscreen)
   grim - | "$swappy" -f -
   ;;
-*)
+region | *)
   grim -g "$(slurp)" - | "$swappy" -f -
   ;;
 esac
+
+latest_file_after=$(ls -t "$SAVE_DIR"/* 2>/dev/null | head -n 1 || true)
+
+if [ "$latest_file_before" != "$latest_file_after" ]; then
+  notify-send "📸 screenshot save to" "$latest_file_after"
+elif wl-paste --type image >/dev/null 2>&1; then
+  notify-send "📋 screenshot to clipboard"
+else
+  notify-send "screenshot cancel"
+fi

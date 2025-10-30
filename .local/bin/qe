@@ -17,5 +17,6 @@ selected_file=$(find "${search_path[@]}" -type f |
 
 if [ -n "$selected_file" ]; then
   # wezterm start --always-new-process nvim "$selected_file"
-  foot -e nvim "$selected_file"
+  # foot -e nvim "$selected_file"
+  footclient -e nvim "$selected_file"
 fi

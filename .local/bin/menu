@@ -3,7 +3,7 @@
 # @since 2025
 # menu general menu setting
 
-width=$(swaymsg -t get_outputs | jq -r '.[0].rect.width')
+width=$(swaymsg -t get_outputs -r | jq -r '.[] | select(.focused).rect.width')
 if [ "$width" -ge 3840 ]; then
   fontsize=22
 elif [ "$width" -ge 1920 ]; then

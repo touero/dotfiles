@@ -14,7 +14,7 @@ else
     CITY=$(echo "$LOCATION" | awk '{print $5}')
     WEATHER=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P")
   else
-    WEATHER=$(curl wttr.in/$1?format=%c+%t+%w+%p+%P)
+    WEATHER=$(curl -s "wttr.in/$1?format=%c+%t+%w+%p+%P")
   fi
 fi
 
