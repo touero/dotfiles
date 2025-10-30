@@ -5,7 +5,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term foot
+set $term footclient
 set $menu env PATH=$HOME/.local/bin:$PATH $HOME/.local/bin/menu run
 set $fcitx fcitx5 -d
 set $wallpapers_path $HOME/.local/share/wallhavens/
@@ -176,9 +176,9 @@ input "type:touchpad" {
     bindsym $mod+minus scratchpad show
 
     bindsym --release Alt+l exec swaylock
-    bindsym Ctrl+space exec fcitx5-remote -t
+    bindsym Ctrl+space exec fcitx5-remote -t && notify-send -u normal -r 3289 -t 1100 "$(fcitx5-remote -n)"
     bindsym $mod+m exec $HOME/.local/bin/bookmarks
-    bindsym $mod+Ctrl+o exec sh -c 'grim -g "$(slurp)" - | swappy -f -'
+    bindsym $mod+Ctrl+o exec ~/.local/bin/screenshot region
 
 #
 # Volume:
@@ -233,18 +233,8 @@ titlebar_border_thickness 0
 
 font pango:JetBrainsMono Nerd Font, FiraCode Nerd Font, JetBrains Mono, MesloLGS NF, Monaco, "Noto Sans SC", "Noto Sans Mono CJK SC" 12
 
-exec_always {
-    width=$(swaymsg -t get_outputs | jq -r '.[0].rect.width')
-    if [ "$width" -ge 3840 ]; then
-        fontsize=30
-    elif [ "$width" -ge 2560 ]; then
-        fontsize=20
-    else
-        fontsize=10
-    fi
-    systemctl --user import-environment WMENU_FONT_SIZE=$fontsize
-}
-exec_always --no-startup-id pkill fcitx5; fcitx5 -d
+exec_always --no-startup-id sh -c 'pgrep -fa "foot --server" >/dev/null || foot --server'
+exec_always --no-startup-id fcitx5 -d
 exec_always --no-startup-id bash -c 'pgrep -x clash-verge >/dev/null || setsid /usr/bin/clash-verge >/dev/null 2>&1'
 exec mako
 exec wl-paste --watch cliphist store --max-items 50 --preview-width 30
