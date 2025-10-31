@@ -9,11 +9,13 @@ $character"""
 
 [hostname]
 ssh_only = false
-format = '[@$hostname](bold #fbf1c7 bg:#427b58) '
+format = '[@$hostname](#fbf1c7 bg:#427b58)$ssh_symbol '
 disabled = false
+ssh_symbol=' '
 
 [username]
-style_user = 'bold #fbf1c7 bg:#427b58'
+style_user = '#fbf1c7 bg:#427b58'
+style_root = '#fb4934 bg:#427b58'
 format = '[$user]($style)'
 disabled = false
 show_always = true
