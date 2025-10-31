@@ -233,10 +233,11 @@ titlebar_border_thickness 0
 
 font pango:JetBrainsMono Nerd Font, FiraCode Nerd Font, JetBrains Mono, MesloLGS NF, Monaco, "Noto Sans SC", "Noto Sans Mono CJK SC" 12
 
-exec_always --no-startup-id sh -c 'pgrep -fa "foot --server" >/dev/null || foot --server'
 exec_always --no-startup-id fcitx5 -d
 exec_always --no-startup-id bash -c 'pgrep -x clash-verge >/dev/null || setsid /usr/bin/clash-verge >/dev/null 2>&1'
 exec mako
+# if use wezterm, comment out the following line
+exec foot --server
 exec wl-paste --watch cliphist store --max-items 50 --preview-width 30
 
 include /etc/sway/config.d/*
