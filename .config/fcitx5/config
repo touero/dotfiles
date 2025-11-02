@@ -1,7 +1,13 @@
 [Hotkey]
-# 反复按切换键时进行轮换
+# 切换输入法
+TriggerKeys=
+# 按住切换键的修饰键时进行轮换切换
 EnumerateWithTriggerKeys=True
-# 临时在当前和第一个输入法之间切换
+# 激活输入法
+ActivateKeys=
+# 取消激活输入法
+DeactivateKeys=
+# 临时切换输入法
 AltTriggerKeys=
 # 向前切换输入法
 EnumerateForwardKeys=
@@ -9,13 +15,8 @@ EnumerateForwardKeys=
 EnumerateBackwardKeys=
 # 轮换输入法时跳过第一个输入法
 EnumerateSkipFirst=False
-# 激活输入法
-ActivateKeys=
-# 取消激活输入法
-DeactivateKeys=
-
-[Hotkey/TriggerKeys]
-0=Zenkaku_Hankaku
+# 触发修饰键快捷键的时限 (毫秒)
+ModifierOnlyKeyTimeout=250
 
 [Hotkey/EnumerateGroupForwardKeys]
 0=Super+space
@@ -41,8 +42,10 @@ DeactivateKeys=
 [Behavior]
 # 默认状态为激活
 ActiveByDefault=False
+# 重新聚焦时重置状态
+resetStateWhenFocusIn=No
 # 共享输入状态
-ShareInputState=False
+ShareInputState=No
 # 在程序中显示预编辑文本
 PreeditEnabledByDefault=True
 # 切换输入法时显示输入法信息
@@ -55,9 +58,9 @@ CompactInputMethodInformation=True
 ShowFirstInputMethodInformation=True
 # 默认页大小
 DefaultPageSize=5
-# 覆盖 Xkb 选项
+# 覆盖 XKB 选项
 OverrideXkbOption=True
-# 自定义 Xkb 选项
+# 自定义 XKB 选项
 CustomXkbOption=
 # Force Enabled Addons
 EnabledAddons=

@@ -4,3 +4,4 @@
 tmux/plugins/*
 .config/ttyper/language/*
 .config/aerc/accounts.conf
+.config/fcitx5/conf/cached_layouts

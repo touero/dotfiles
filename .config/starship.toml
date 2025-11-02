@@ -9,22 +9,22 @@ $character"""
 
 [hostname]
 ssh_only = false
-format = '[@$hostname](#fbf1c7 bg:#427b58)$ssh_symbol '
+format = '[@$hostname](#282828 bg:#689d6a)$ssh_symbol '
 disabled = false
 ssh_symbol=' '
 
 [username]
-style_user = '#fbf1c7 bg:#427b58'
-style_root = '#fb4934 bg:#427b58'
+style_user = '#282828 bg:#689d6a'
+style_root = '#fb4934 bg:#689d6a'
 format = '[$user]($style)'
 disabled = false
 show_always = true
 aliases = { "corpuser034g" = "matchai" }
 
 [directory]
-truncation_length = 3
+truncation_length = 1
 truncate_to_repo = true
-fish_style_pwd_dir_length = 20
+style = '#b57614'
 
 [character]
 success_symbol = "[󰜴](green)"
@@ -36,7 +36,7 @@ style = "bright-black"
 
 [git_status]
 format = "[[( $conflicted$untracked$modified$staged$renamed$deleted$stashed) ](218)]($style)"
-style = "cyan"
+style = "#8f3f71"
 conflicted = " "
 untracked = " "
 modified = " "
