@@ -5,11 +5,11 @@
 
 width=$(swaymsg -t get_outputs -r | jq -r '.[] | select(.focused).rect.width')
 if [ "$width" -ge 3840 ]; then
-  fontsize=22
+  fontsize=25
 elif [ "$width" -ge 1920 ]; then
-  fontsize=14
+  fontsize=15
 else
-  fontsize=10
+  fontsize=12
 fi
 
 mode="$1"

@@ -31,7 +31,7 @@ has_browser_in_current_ws() {
   [[ -n "$has_browser" ]]
 }
 
-DMENU=("$HOME/.local/bin/menu" show -l 15 -p "bookmarks")
+DMENU=("$HOME/.local/bin/menu" show -l 20 -p "bookmarks")
 
 SELECTED_BOOKMARK=$("${DMENU[@]}" <"$BOOKMARK_FILE")
 [[ -z "$SELECTED_BOOKMARK" ]] && exit 0
