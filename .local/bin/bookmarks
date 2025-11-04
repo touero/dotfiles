@@ -9,8 +9,10 @@ BOOKMARK_FILE="$HOME/.config/bookmarks"
   exit 1
 }
 
-source "$HOME/.local/bin/get_clipboard"
-CLIPBOARD=$(get_clipboard)
+argp=""
+if [[ "$1" == "cp" ]]; then
+  argp="cp"
+fi
 
 DEFAULT_BROWSER="google-chrome"
 
@@ -41,11 +43,13 @@ VALUE="${VALUE#"${VALUE%%[![:space:]]*}"}"
 VALUE="${VALUE%"${VALUE##*[![:space:]]}"}"
 
 if [[ "$VALUE" =~ ^https?:// ]]; then
-  if has_browser_in_current_ws; then
+  if [[ "$argp" == "cp" ]]; then
+    echo -n "$VALUE" | wl-copy
+  elif has_browser_in_current_ws; then
     $DEFAULT_BROWSER "$VALUE" &
   else
     $DEFAULT_BROWSER --new-window "$VALUE" &
   fi
 else
-  echo -n "$VALUE" | $CLIPBOARD
+  echo -n "$VALUE" | wl-copy
 fi

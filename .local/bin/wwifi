@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# @author touero
+# @since 2025
+
+nmcli device wifi rescan >/dev/null 2>&1
+DMENU=("$HOME/.local/bin/menu" show -l 10 -p "Wi-Fi")
+
+WIFI_LIST=$(nmcli -f ssid,signal,bars,bssid,mode,chan,security,in-use device wifi list | tail -n +2 | sort -k2 -nr)
+
+MENU_LIST=$(echo "$WIFI_LIST" | while read -r line; do
+  line=$(echo "$line" | sed 's/^[ \t]*//;s/[ \t]*$//')
+  echo "$line"
+done)
+
+SELECTED_WIFI=$("${DMENU[@]}" <<<"$MENU_LIST")
+wifi_name=$(echo "$SELECTED_WIFI" | awk '{print $1}')
+
+if [[ -z "$wifi_name" ]]; then
+  notify-send -u critical "󱞐 No wifi selected"
+  exit 1
+fi
+
+wifi_password=""
+if ! nmcli connection show | awk '{print $1}' | grep -Fxq "$wifi_name"; then
+  wifi_password=$(echo "" | "$HOME/.local/bin/menu" show -p "Input wifi password")
+fi
+
+if [[ -z "$wifi_password" ]]; then
+  if nmcli device wifi connect "$wifi_name"; then
+    notify-send "󰖩 $wifi_name" "WI-FI connection successful"
+  else
+    notify-send -u critical "󰖪 $wifi_name" "Wi-Fi connection failed"
+  fi
+else
+  if nmcli device wifi connect "$wifi_name" password "$wifi_password"; then
+    notify-send "󰖩 $wifi_name" "WI-FI connection successful"
+  else
+    notify-send -u critical "󰖪 $wifi_name" "Wi-Fi connection failed"
+  fi
+fi

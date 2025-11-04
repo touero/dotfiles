@@ -16,4 +16,13 @@ default-timeout=7000
 max-visible=5
 
 border-size=1
-border-color=#665c54
+border-color=#b8bb26
+
+[urgency=low]
+border-color=#a89984
+
+[urgency=normal]
+border-color=#b8bb26
+
+[urgency=high]
+border-color=#fb4934
