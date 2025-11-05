@@ -52,6 +52,7 @@
 #custom-poweroff,
 #custom-suspend,
 #custom-weather,
+#mpris,
 #mpd {
     background-color: @bg;
     color: @fg;

@@ -1,18 +1,17 @@
 {
   "layer": "top",
   "height": 25,
-  "spacing": 0,
   "modules-left": [
     "sway/workspaces",
-    "custom/weather",
     "sway/mode"
   ],
   "modules-center": [],
   "modules-right": [
     "tray",
+    "mpris",
+    "custom/weather",
     "bluetooth",
     "pulseaudio",
-    "custom/lock",
     "network",
     "temperature",
     "memory",
@@ -95,27 +94,28 @@
     ]
   },
   "network": {
-    "format-wifi": "[󰖩 {bandwidthDownBytes}↓, {bandwidthUpBytes}↑]",
-    "format-ethernet": "[󰛳 {bandwidthDownBytes}↓, {bandwidthUpBytes}↑]",
-    "tooltip-format": "[{ifname} {ipaddr}/{cidr} {essid}]",
+    "format-wifi": "[󰖩 {essid}]",
+    "format-ethernet": "[󰛳 {essid}]",
+    "tooltip-format": "[{ifname} {ipaddr}/{cidr} {essid} {bandwidthDownBytes}↓ {bandwidthUpBytes}↑]",
     "format-linked": "[󰲜 NoIP]",
     "format-disconnected": "[󰲛 Disconnected]",
-    "format-alt": "[{ifname} {ipaddr}/{cidr} {essid}]"
+    "on-click": "$HOME/.local/bin/wwifi"
   },
   "pulseaudio": {
     "format": "[{icon} {volume}% {format_source}]",
-    "format-bluetooth": "[{icon} {volume}% {format_source}]",
-    "format-bluetooth-muted": "[{icon} {format_source}]",
-    "format-muted": "[ {format_source}]",
+    "format-bluetooth": "[{icon} {volume}% {format_source}]",
+    "format-muted": "[ ]",
     "format-source": "{volume}%",
     "format-source-muted": "",
     "format-icons": {
-      "headphone": "",
-      "hands-free": "󰕾",
-      "headset": "",
+      "headphone": "󱡏",
+      "hands-free": "",
+      "headset": "",
       "phone": "",
       "portable": "",
-      "car": "",
+      "car": "󰄍",
+      "bluez": "",
+      "bluez_card": "",
       "default": [
         "",
         "",
@@ -126,20 +126,33 @@
   },
   "bluetooth": {
     "format": "[ {status}]",
-    "format-no-controller": "[ {status}]",
+    "format-no-controller": "[󰂲]",
     "format-connected": "[ {device_alias}]",
     "format-connected-battery": "[ {device_alias}{device_battery_percentage}%]",
     "tooltip-format": "[{status} {controller_alias} {controller_address} {num_connections} connected]",
     "tooltip-format-connected": "[{controller_alias} {controller_address} {num_connections} connected {device_enumerate}]",
     "tooltip-format-enumerate-connected": "[{device_alias} {device_address}}",
-    "tooltip-format-enumerate-connected-battery": "[{device_alias} {device_address} {device_battery_percentage}%]"
+    "tooltip-format-enumerate-connected-battery": "[{device_alias} {device_address} {device_battery_percentage}%]",
+    "on-click": "footclient -e bluetui"
   },
   "temperature": {
     "format": "[{temperatureC}°C]"
   },
+  "mpris": {
+    "format": "[ {title}-{artist}]",
+    "format-paused": "[ {title}-{artist}]",
+    "format-stopped": "",
+    "max-length": 30,
+    "tooltip-format": "{player_name}\n{album}\n{title}\n{artist}",
+    "player-icons": true,
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
   "custom/weather": {
     "format": "[{}]",
     "exec": "head -1 $HOME/.cache/wttr",
+    "tooltip-format": "cat $HOME/.cache/wttr",
     "interval": 300
   }
 }
