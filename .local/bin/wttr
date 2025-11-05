@@ -12,9 +12,9 @@ else
     # CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
     LOCATION=$(curl -s "http://myip.ipip.net")
     CITY=$(echo "$LOCATION" | awk '{print $5}')
-    WEATHER=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P")
+    WEATHER=$(curl -s "wttr.in/$CITY?format=%c+%t+%m+%w+%p+%P+%D+%S")
   else
-    WEATHER=$(curl -s "wttr.in/$1?format=%c+%t+%w+%p+%P")
+    WEATHER=$(curl -s "wttr.in/$1?format=%c+%t+%w+%p+%P+%D+%S")
   fi
 fi
 

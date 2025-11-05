@@ -15,7 +15,7 @@ if [ ! -s "$WTTR" ] || [ $(($(date +%s) - $(stat -c %Y "$WTTR"))) -ge 3600 ]; th
 
   WEATHER=""
   for i in {1..3}; do
-    RAW=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P")
+    RAW=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P+%D+%S")
     WEATHER=$(echo "$RAW" | sed 's/  */ /g')
 
     if [[ -n "$(echo "$WEATHER" | tr -d '[:space:]')" && "$WEATHER" == *°C* ]]; then

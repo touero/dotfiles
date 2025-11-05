@@ -3,12 +3,12 @@
   "height": 25,
   "modules-left": [
     "sway/workspaces",
+    "mpris",
     "sway/mode"
   ],
   "modules-center": [],
   "modules-right": [
     "tray",
-    "mpris",
     "custom/weather",
     "bluetooth",
     "pulseaudio",
@@ -59,8 +59,8 @@
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "[{:%Y-%m-%d %A %H:%M:%S}]",
-    "interval": 1
+    "format": "[{:%Y-%m-%d %a %H:%M}]",
+    "interval": 60
   },
   "cpu": {
     "format": "[ {usage}%]",
@@ -106,7 +106,7 @@
     "format-bluetooth": "[{icon} {volume}% {format_source}]",
     "format-muted": "[ ]",
     "format-source": "{volume}%",
-    "format-source-muted": "",
+    "format-source-muted": " ",
     "format-icons": {
       "headphone": "󱡏",
       "hands-free": "",
@@ -151,7 +151,7 @@
   },
   "custom/weather": {
     "format": "[{}]",
-    "exec": "head -1 $HOME/.cache/wttr",
+    "exec": "head -1 $HOME/.cache/wttr | awk '{print $1,$2}'",
     "tooltip-format": "cat $HOME/.cache/wttr",
     "interval": 300
   }
