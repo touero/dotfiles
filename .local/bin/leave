@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+# @author touero
+# @since 2025
+# power manager of wmenu
+
+mode=$1
+
+if [ -z "$mode" ]; then
+  mode=$(printf "Cancel\nSuspend\nPoweroff\nReboot\nLogout" | "$HOME/.local/bin/menu" show -p "leave mode: ")
+  if [ -z "$mode" ]; then
+    notify-send -u normal "Boot operation canceled"
+    exit 0
+  fi
+  case "$mode" in
+  Cancel) mode="cancel" ;;
+  Suspend) mode="suspend" ;;
+  Poweroff) mode="poweroff" ;;
+  Reboot) mode="reboot" ;;
+  *) exit 0 ;;
+  esac
+fi
+
+countdown_notify() {
+  local seconds=$1
+  local pid=$$
+
+  for ((i = seconds; i > 0; i--)); do
+    value=$(((seconds - i) * 100 / seconds))
+
+    echo "$pid" | wl-copy
+    notify-send -t 1100 -r 25 -u normal "$mode in $i seconds (PID: $pid to clipboard, press 'ctrl+c' to cancel)" -h int:value:$value
+
+    sleep 1 &
+    sleep_pid=$!
+    wait $sleep_pid
+  done
+}
+
+case "$mode" in
+cancel)
+  exit 0
+  ;;
+suspend)
+  countdown_notify 10
+  swaylock &
+  sleep 0.5
+  systemctl suspend
+  ;;
+poweroff)
+  countdown_notify 10
+  poweroff
+  ;;
+reboot)
+  countdown_notify 10
+  reboot
+  ;;
+*)
+  exit 0
+  ;;
+esac
