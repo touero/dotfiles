@@ -1,0 +1,22 @@
+# gmail config 
+IMAPAccount gmail
+Host imap.gmail.com
+User xxx@gmail.com
+Pass "xxxx xxxx xxxx xxxx"
+SSLType IMAPS
+AuthMechs LOGIN
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/Mail/Gmail/
+Inbox ~/Mail/Gmail/Inbox
+SubFolders Verbatim
+
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+Patterns *
+Create Near
+Sync Pull

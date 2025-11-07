@@ -1,0 +1,18 @@
+set realname = "xxx"
+set from = "xxx@gmail.com"
+set use_from = yes
+
+set folder = "~/Mail/Gmail"
+set spoolfile = "+Inbox"
+set record = "+Sent"
+set postponed = "+Drafts"
+set trash = "+Trash"
+
+set smtp_url = "smtps://xxx@gmail.com@smtp.gmail.com:465/"
+set smtp_pass = "xxxx xxxx xxxx xxxx"
+
+set editor = "vim"
+set charset = "utf-8"
+set mail_check = 60
+
+mailboxes +Inbox +Sent +Drafts +Trash

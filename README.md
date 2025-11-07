@@ -49,7 +49,7 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Fuzzy Finder:                   fzf
 - Text Editor:                    neovim
 - Picture Editor:                 gimp
-- Email:                          aerc
+- Email:                          neomutt + mbsync
 - Encryption Decryption:          gpg
 - File Manager:                   yazi | ranger
 - Web Browser:                    firefox | chrome | qutebrowser
