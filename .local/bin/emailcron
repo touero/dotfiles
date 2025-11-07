@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# wttrcron: update not read email count
+# @author touero
+# @since 2025
+
+CACHE_FILE="$HOME/.cache/email"
+[ -f "$CACHE_FILE" ] || touch "$CACHE_FILE"
+
+mbsync -Va
+
+shopt -s globstar
+count=$(find "$HOME/Mail"/**/{Inbox,INBOX}/new -type f | wc -l)
+{
+  echo "$count"
+  echo "check update: $(date '+%Y-%m-%d %H:%M:%S')"
+} >"$CACHE_FILE"
+
+notify-send "󰇮 Update email from remote" "There are $count unread emails"

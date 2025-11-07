@@ -10,6 +10,7 @@
   "modules-right": [
     "tray",
     "custom/weather",
+    "custom/email",
     "bluetooth",
     "pulseaudio",
     "network",
@@ -154,5 +155,11 @@
     "exec": "head -1 $HOME/.cache/wttr | awk '{print $1,$2}'",
     "tooltip-format": "cat $HOME/.cache/wttr",
     "interval": 300
+  },
+  "custom/email": {
+    "format": "[󰛏 {}]",
+    "exec": "head -1 $HOME/.cache/email",
+    "interval": 180,
+    "on-click": "footclient -e neomutt"
   }
 }

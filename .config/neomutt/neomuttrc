@@ -19,7 +19,7 @@ set sidebar_width=18
 set sidebar_visible
 set sidebar_short_path
 set sidebar_folder_indent
-set sidebar_format = "%B %* [%?N?%N / ?%S]"
+set sidebar_format = "%B %* [%?N?%N/?%S]"
 set mail_check_stats
 
 ## keybindings
