@@ -40,6 +40,7 @@
     ~/.config/git: .config/git
     # ~/.config/aerc: .config/aerc
     ~/.config/neomutt: .config/neomutt
+    ~/.config/newsboat: .config/newsboat
 
     ~/.local/bin/:
       glob: true
