@@ -3,6 +3,7 @@ https://archlinux.org/feeds/news/ "~Arch Linux" archlinux distro
 https://www.archlinuxcn.org/feed/ "~Arch Linux CN" archlinux distro
 
 # [news]
+https://lwn.net/headlines/rss "~lwn" lwn
 https://wechat2rss.bestblogs.dev/feed/d3a9e4d6f125cc98d1691dbc30cd97fec7ae2d03.xml "~ByteDance" bytedance news
 
 # [software]
