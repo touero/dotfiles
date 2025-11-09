@@ -9,7 +9,7 @@ CACHE_FILE="$HOME/.cache/email"
 mbsync -Va
 
 shopt -s globstar
-count=$(find "$HOME/Mail"/**/{Inbox,INBOX}/new -type f | wc -l)
+count=$(find "$HOME/Mail"/*/{Inbox,INBOX}/new -type f | wc -l)
 {
   echo "$count"
   echo "check update: $(date '+%Y-%m-%d %H:%M:%S')"

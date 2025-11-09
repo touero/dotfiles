@@ -159,7 +159,7 @@
   "custom/email": {
     "format": "[󰛏 {}]",
     "exec": "head -1 $HOME/.cache/email",
-    "interval": 180,
+    "interval": 5,
     "on-click": "footclient -e neomutt"
   }
 }
