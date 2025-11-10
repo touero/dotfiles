@@ -22,7 +22,7 @@
     "clock"
   ],
   "sway/workspaces": {
-    "format": "[{}]"
+    "format": "{}"
   },
   "sway/mode": {
     "format": "[<span style=\"italic\">{}</span>]"
@@ -152,12 +152,11 @@
   },
   "custom/weather": {
     "format": "[{}]",
-    "exec": "head -1 $HOME/.cache/wttr | awk '{print $1,$2}'",
-    "tooltip-format": "cat $HOME/.cache/wttr",
+    "exec": "head -1 $HOME/.cache/wttr | awk '{print $1$2}'",
     "interval": 300
   },
   "custom/email": {
-    "format": "[󰛏 {}]",
+    "format": "[󰇮 {}]",
     "exec": "head -1 $HOME/.cache/email",
     "interval": 5,
     "on-click": "footclient -e neomutt"

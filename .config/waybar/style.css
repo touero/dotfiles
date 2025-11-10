@@ -21,14 +21,24 @@
 }
 
 #workspaces button {
-    color: @fg_alt;
-    padding: 0em 0em;
+    background-color: @bg_alt;
+    color: @fg;
+    border-radius: 1px;
+}
+
+#workspaces button label {
+    background-color: @bg_alt;
 }
 
 #workspaces button.focused {
-    color: @yellow_alt;
+    color: @bg;
+    background-color: @yellow_alt;
+    border-radius: 1px;
 }
 
+#workspaces button.focused label {
+    background-color: @yellow_alt;
+}
 
 #mode {
     background-color: #64727D;
