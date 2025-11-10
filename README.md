@@ -36,7 +36,7 @@ sudo ./install [OPTIONS]
 > - [`install_packages`](https://github.com/touero/dotfiles/blob/master/install_packages): install dependency packages.
 > - [`install`](https://github.com/touero/dotfiles/blob/master/install): dotbot install script.
 
-## software I used
+## Software I used
 As a vimer, I prefer software similar to vim operations, which is free as in freedom is better.
 ```
 - /usr/bin/sh:                          dash
@@ -59,6 +59,15 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Clipboard Manager:                    wl-clipboard + cliphist
 - Dotfiles Manager:                     git & dotbot
 ```
+
+## GPG public Key
+Import my GPG public key from `openpgp`:
+```Shell
+gpg --keyserver hkps://keys.openpgp.org --recv-keys FDC87FAB9D3B9D7862F4669E7FDDD6633D9DC07C
+```
+
+or [download/copy](https://github.com/touero/dotfiles/blob/master/touero.asc) the content of file.
+
 
 ## License
 A few scripts or config files come from others, and a credit to the respective authors should be spotted.
