@@ -21,18 +21,17 @@
 }
 
 #workspaces button {
-    background-color: #3c3836;
+    background-color: @bg;
     color: @fg;
-    margin-right: 4px;
 }
 
 #workspaces button label {
-    background-color: #3c3836;
+    background-color: #504945;
 }
 
 #workspaces button.focused {
     color: @bg;
-    background-color: @yellow_alt;
+    background-color: @bg;
 }
 
 #workspaces button.focused label {
