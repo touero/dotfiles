@@ -11,6 +11,7 @@
     "tray",
     "custom/weather",
     "custom/email",
+    "custom/rss",
     "bluetooth",
     "pulseaudio",
     "network",
@@ -160,5 +161,11 @@
     "exec": "head -1 $HOME/.cache/email",
     "interval": 5,
     "on-click": "footclient -e neomutt"
+  },
+  "custom/rss": {
+    "format": "[󰑬 {}]",
+    "exec": "newsboat -x print-unread | awk '{print $1}'",
+    "interval": 300,
+    "on-click": "footclient -e newsboat"
   }
 }

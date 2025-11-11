@@ -21,19 +21,18 @@
 }
 
 #workspaces button {
-    background-color: @bg_alt;
+    background-color: #3c3836;
     color: @fg;
-    border-radius: 1px;
+    margin-right: 4px;
 }
 
 #workspaces button label {
-    background-color: @bg_alt;
+    background-color: #3c3836;
 }
 
 #workspaces button.focused {
     color: @bg;
     background-color: @yellow_alt;
-    border-radius: 1px;
 }
 
 #workspaces button.focused label {
@@ -63,6 +62,7 @@
 #custom-suspend,
 #custom-weather,
 #custom-email,
+#custom-rss,
 #mpris,
 #mpd {
     background-color: @bg;
