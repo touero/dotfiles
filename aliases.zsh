@@ -1,5 +1,4 @@
 alias vim='nvim'
-alias mutt='neomutt'
 alias rm='rm -IR'
 alias zshconfig="$EDITOR ~/.zshrc"
 alias lg='lazygit'

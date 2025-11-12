@@ -60,5 +60,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export GPG_TTY=$(tty)
 
 eval "$(starship init zsh)"

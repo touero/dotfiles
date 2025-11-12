@@ -154,18 +154,18 @@
   "custom/weather": {
     "format": "[{}]",
     "exec": "head -1 $HOME/.cache/wttr | awk '{print $1$2}'",
-    "interval": 300
+    "signal": 3
   },
   "custom/email": {
     "format": "[󰇮 {}]",
     "exec": "head -1 $HOME/.cache/email",
-    "interval": 5,
+    "signal": 1,
     "on-click": "footclient -e neomutt"
   },
   "custom/rss": {
     "format": "[󰑬 {}]",
-    "exec": "newsboat -x print-unread | awk '{print $1}'",
-    "interval": 300,
+    "exec": "head -1 $HOME/.cache/newsboat",
+    "signal": 2,
     "on-click": "footclient -e newsboat"
   }
 }

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# mutt: update waybar emails
+# @author touero
+# @since 2025
+
+CACHE_FILE="$HOME/.cache/email"
+[ -f "$CACHE_FILE" ] || touch "$CACHE_FILE"
+
+update() {
+  shopt -s globstar nullglob
+
+  count=$(find "$HOME/Mail"/*/Inbox/new -type f 2>/dev/null | wc -l)
+  {
+    echo "$count"
+    echo "check update: $(date '+%Y-%m-%d %H:%M:%S')"
+  } >"$CACHE_FILE"
+  pkill -RTMIN+1 waybar
+}
+
+trap update EXIT INT TERM
+
+command neomutt "$@"

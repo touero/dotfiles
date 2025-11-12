@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# rsscron: update not read rss count
+# @author touero
+# @since 2025
+
+CACHE_FILE="$HOME/.cache/newsboat"
+[ -f "$CACHE_FILE" ] || touch "$CACHE_FILE"
+
+update() {
+  newsboat -x reload
+
+  count=$(newsboat -x print-unread | awk '{print $1}')
+  {
+    echo "$count"
+    echo "check update: $(date '+%Y-%m-%d %H:%M:%S')"
+  } >"$CACHE_FILE"
+
+  pkill -RTMIN+2 waybar
+  if [ "$count" == "0" ]; then
+    exit 0
+  fi
+  notify-send "󰑬 Update rss from remote" "There are $count unread rss"
+}
+
+update

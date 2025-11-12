@@ -6,15 +6,15 @@
 WTTR="$HOME/.cache/wttr"
 [ -f "$WTTR" ] || touch "$WTTR"
 
-if [ ! -s "$WTTR" ] || [ $(($(date +%s) - $(stat -c %Y "$WTTR"))) -ge 3600 ]; then
-  # Uncomment not in mainland China:
-  # LOCATION=$(curl -s "https://api.myip.la/en?json" | jq -r '.location.city')
-  # CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
-  LOCATION=$(curl -s "http://myip.ipip.net")
-  CITY=$(echo "$LOCATION" | awk '{print $5}')
-
+update() {
   WEATHER=""
   for i in {1..3}; do
+    # Uncomment not in mainland China:
+    # LOCATION=$(curl -s "https://api.myip.la/en?json" | jq -r '.location.city')
+    # CITY=$(echo "$LOCATION" | sed 's/ /%20/g')
+    LOCATION=$(curl -s "http://myip.ipip.net")
+    CITY=$(echo "$LOCATION" | awk '{print $5}')
+
     RAW=$(curl -s "wttr.in/$CITY?format=%c+%t+%w+%p+%P+%D+%S")
     WEATHER=$(echo "$RAW" | sed 's/  */ /g')
 
@@ -23,9 +23,12 @@ if [ ! -s "$WTTR" ] || [ $(($(date +%s) - $(stat -c %Y "$WTTR"))) -ge 3600 ]; th
         echo "$WEATHER"
         echo "update time: $(date '+%Y-%m-%d %H:%M:%S') in $CITY"
       } >"$WTTR"
+      pkill -RTMIN+3 waybar
       notify-send "$(cat $WTTR)"
       break
     fi
     sleep 2
   done
-fi
+}
+
+update
