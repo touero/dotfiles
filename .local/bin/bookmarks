@@ -3,18 +3,29 @@
 # @since 2025
 # bookmarks: Unexplained dmenu app launcher?
 
-BOOKMARK_FILE="$HOME/.config/bookmarks"
-[[ -f "$BOOKMARK_FILE" ]] || {
-  echo "No bookmarks found"
-  exit 1
+general_menu() {
+  local file="$1"
+  local prompt="$2"
+
+  exist_file "$file"
+
+  local DMENU=("$HOME/.local/bin/menu" show -l 20 -p "$prompt")
+  local SELECTED=$("${DMENU[@]}" <"$file")
+  [[ -z "$SELECTED" ]] && exit 0
+
+  local VALUE="${SELECTED##*|}"
+  VALUE="${VALUE#"${VALUE%%[![:space:]]*}"}"
+  VALUE="${VALUE%"${VALUE##*[![:space:]]}"}"
+
+  echo -n "$VALUE"
 }
-
-argp=""
-if [[ "$1" == "cp" ]]; then
-  argp="cp"
-fi
-
-DEFAULT_BROWSER="google-chrome"
+exist_file() {
+  [[ -f "$1" ]] || {
+    echo "No $1 file found"
+    notify-send "bookmarks" "No $1 file found"
+    exit 1
+  }
+}
 
 has_browser_in_current_ws() {
   local current_ws
@@ -33,23 +44,41 @@ has_browser_in_current_ws() {
   [[ -n "$has_browser" ]]
 }
 
-DMENU=("$HOME/.local/bin/menu" show -l 20 -p "bookmarks")
+bookmarks() {
+  local VALUE
+  VALUE=$(general_menu "$1" "bookmarks") || exit 1
+  [[ -z "$VALUE" ]] && exit 0
+  DEFAULT_BROWSER="google-chrome"
 
-SELECTED_BOOKMARK=$("${DMENU[@]}" <"$BOOKMARK_FILE")
-[[ -z "$SELECTED_BOOKMARK" ]] && exit 0
-
-VALUE="${SELECTED_BOOKMARK##*|}"
-VALUE="${VALUE#"${VALUE%%[![:space:]]*}"}"
-VALUE="${VALUE%"${VALUE##*[![:space:]]}"}"
-
-if [[ "$VALUE" =~ ^https?:// ]]; then
-  if [[ "$argp" == "cp" ]]; then
-    echo -n "$VALUE" | wl-copy
-  elif has_browser_in_current_ws; then
-    $DEFAULT_BROWSER "$VALUE" &
+  if [[ "$VALUE" =~ ^https?:// ]]; then
+    if [[ "$2" == "cp" ]]; then
+      echo -n "$VALUE" | wl-copy
+    elif has_browser_in_current_ws; then
+      $DEFAULT_BROWSER "$VALUE" &
+    else
+      $DEFAULT_BROWSER --new-window "$VALUE" &
+    fi
   else
-    $DEFAULT_BROWSER --new-window "$VALUE" &
+    echo -n "$VALUE" | wl-copy
   fi
-else
+}
+
+contacts() {
+  VALUE=$(general_menu "$1" "contacts") || exit 1
+  [[ -z "$VALUE" ]] && exit 0
   echo -n "$VALUE" | wl-copy
-fi
+}
+
+BOOKMARKS="$HOME/.config/bookmarks"
+CONTACTS="$HOME/.config/contacts"
+case "$1" in
+cp)
+  bookmarks "$BOOKMARKS" "$1"
+  ;;
+contacts)
+  contacts "$CONTACTS"
+  ;;
+*)
+  bookmarks "$BOOKMARKS"
+  ;;
+esac
