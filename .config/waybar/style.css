@@ -27,6 +27,7 @@
 
 #workspaces button label {
     background-color: #504945;
+    padding: 0em 0.5em;
 }
 
 #workspaces button.focused {
@@ -36,6 +37,7 @@
 
 #workspaces button.focused label {
     background-color: @yellow_alt;
+    padding: 0em 0.5em;
 }
 
 #mode {
