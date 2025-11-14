@@ -50,6 +50,8 @@ bind index,pager J sidebar-next
 bind index,pager L sidebar-open
 bind index,pager \CB sidebar-toggle-visible
 
+source "~/.config/neomutt/colorsrc"
+
 source "~/.config/neomutt/accounts/account1.rc"
 
 folder-hook 'account1' 'source ~/.config/neomutt/account1'
