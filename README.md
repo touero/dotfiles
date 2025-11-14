@@ -45,11 +45,12 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Terminal Emulator:                    foot | wezterm
 - WM/Compositor:                        sway
 - Status Bar:                           waybar
+- Notifycation Daemon:                  mako
+- Fuzzy Finder:                         wmenu | fzf
 - Application Launcher:                 wmenu
-- Fuzzy Finder:                         fzf
 - Text Editor:                          neovim
 - Picture Editor:                       gimp
-- Email:                                neomutt + mbsync
+- Email:                                neomutt + isync
 - Encryption Decryption:                gpg
 - File Manager:                         yazi | ranger
 - Web Browser:                          firefox | chrome | qutebrowser
@@ -57,6 +58,12 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Downloader:                           curl | wget
 - Screenshot:                           grim + slurp + swappy
 - Clipboard Manager:                    wl-clipboard + cliphist
+- Input Method:                         fcitx5
+- Video Player:                         mpv
+- Image Viewer:                         swayimg
+- Network Manager:                      networkmanager
+- Bluetooth Manager:                    bluetui
+- Screen Recording:                     ffmpeg
 - Dotfiles Manager:                     git & dotbot
 ```
 
