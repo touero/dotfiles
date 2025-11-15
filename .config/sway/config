@@ -56,7 +56,15 @@ input "type:touchpad" {
     natural_scroll enabled
     middle_emulation enabled
     natural_scroll enabled
+    pointer_accel 0.4
 }
+
+### workspace
+workspace 1 output eDP-1
+workspace 2 output eDP-1
+workspace 3 output eDP-1
+workspace 10 output DP-1
+workspace 9 output DP-1
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
