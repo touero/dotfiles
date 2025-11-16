@@ -41,15 +41,17 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 ```
 - /usr/bin/sh:                          dash
 - Login Shell:                          zhs
+- Shell Prompt Custom:                  starship
 - Terminlal Multiplexer:                tmux
 - Terminal Emulator:                    foot | wezterm
 - WM/Compositor:                        sway
 - Status Bar:                           waybar
+- Notifycation Daemon:                  mako
+- Fuzzy Finder:                         wmenu | fzf
 - Application Launcher:                 wmenu
-- Fuzzy Finder:                         fzf
 - Text Editor:                          neovim
 - Picture Editor:                       gimp
-- Email:                                neomutt + mbsync
+- Email:                                neomutt + isync
 - Encryption Decryption:                gpg
 - File Manager:                         yazi | ranger
 - Web Browser:                          firefox | chrome | qutebrowser
@@ -57,6 +59,12 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Downloader:                           curl | wget
 - Screenshot:                           grim + slurp + swappy
 - Clipboard Manager:                    wl-clipboard + cliphist
+- Input Method:                         fcitx5
+- Video Player:                         mpv
+- Image Viewer:                         swayimg
+- Network Manager:                      networkmanager
+- Bluetooth Manager:                    bluetui
+- Screen Recording:                     ffmpeg
 - Dotfiles Manager:                     git & dotbot
 ```
 
@@ -70,9 +78,8 @@ or [download/copy](https://github.com/touero/dotfiles/blob/master/touero.asc) th
 
 
 ## License
-A few scripts or config files come from others, and a credit to the respective authors should be spotted.
+License them under [GNU GPL-3.0](./LICENSE). There is no warranty, to the extend permitted by applicable law.
 
-Referenced:
-- [gnuunixchat/dotfiles](https://github.com/gnuunixchad/dotfiles)
+I mark some configurations and scripts from others, and I mark them as modifications or enhancements I made.
 
-[GNU GPL-3.0](./LICENSE)
+Work from others should be clearly identified.
