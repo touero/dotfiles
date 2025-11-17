@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# workcron: a cron job, startup or kill some processes in get off/on work
+# @author touero
+# @since 2025
+
+off_work() {
+  for app in "$@"; do
+    pkill -9 -f "$app"
+  done
+}
+
+on_work() {
+  for app in "$@"; do
+    if pgrep -f -x "$app" >/dev/null; then
+      echo "$app already running"
+    else
+      "$app" &
+      sleep 0.5
+      if [[ "$app" == *feishu* ]]; then
+        swaymsg '[class="Bytedance-feishu"] move to workspace number 3'
+      fi
+    fi
+  done
+
+}
+
+case "$1" in
+on)
+  shift
+  on_work "$@"
+  ;;
+off)
+  shift
+  off_work "$@"
+  ;;
+*)
+  echo "not supprt args"
+  ;;
+esac
