@@ -44,7 +44,7 @@ for_window [class="Bytedance-feishu" title="图片"] floating enable
 ### Input configuration
 input "type:keyboard" {
     xkb_layout us
-    repeat_delay 200
+    repeat_delay 180
     repeat_rate 30
     xkb_options "caps:escape,altwin:swap_lalt_lwin"
 }
@@ -57,6 +57,12 @@ input "type:touchpad" {
     middle_emulation enabled
     natural_scroll enabled
     pointer_accel 0.4
+}
+
+### Mouse configuration
+input type:pointer {
+    scroll_factor 3
+    pointer_accel 0.3
 }
 
 ### workspace
