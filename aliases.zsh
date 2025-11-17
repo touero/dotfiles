@@ -21,3 +21,11 @@ for ((i=3; i<=15; i++)); do
     port=$((2222 + i))
     eval "alias docker$i='NUM=$i; eval ssh -p $port -o ServerAliveInterval=30 shoot@\$SGJ'"
 done
+alias .d="cd $HOME/Downloads"
+alias .m="cd $HOME/Mail"
+alias .p="cd $HOME/Pictures"
+alias .v="cd $HOME/Videos"
+alias .c="cd $HOME/.config"
+alias .lb="cd $HOME/.local/bin"
+alias .ls="cd $HOME/.local/share"
+alias .df="cd $HOME/data/repo/dotfiles"
