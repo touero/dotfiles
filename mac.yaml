@@ -15,7 +15,7 @@
     ~/.zshrc: .zshrc
     ~/.zimrc: .zimrc
     ~/.ideavimrc: ideavimrc
-    ~/.aliases.zsh: aliases.zsh
+    ~/.aliases: .aliases
 
     ~/.config/starship.toml: .config/starship.toml
     ~/.config/nvim: .config/nvim

@@ -1,3 +1,8 @@
+# vim: ft=zsh
+# @author touero
+# @since 2024,2025
+
+alias ls='ls -F --color=auto'
 alias vim='nvim'
 alias rm='rm -IR'
 alias zshconfig="$EDITOR ~/.zshrc"
@@ -6,7 +11,6 @@ alias frp_on='nohup /home/weiensong/Apps/frp_0.61.0_linux_amd64/frpc -c /home/we
 alias frp_off="ps aux | grep frp | grep -v grep | sort -k 9 | head -n 1 | awk '{print \$2}' | xargs kill -9"
 alias ra='ranger'
 alias sa='yazi'
-alias ls='lsd'
 alias tlst='f() { tail -f -n ${1:-300} "$(ls -t | head -n1)"; unset -f f; }; f'
 alias gau='git update-index --assume-unchanged'
 alias gnau='git update-index --no-assume-unchanged'
@@ -29,3 +33,4 @@ alias .c="cd $HOME/.config"
 alias .lb="cd $HOME/.local/bin"
 alias .ls="cd $HOME/.local/share"
 alias .df="cd $HOME/data/repo/dotfiles"
+alias .dl="cd $HOME/data/repo/locacc/"

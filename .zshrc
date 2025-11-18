@@ -26,9 +26,7 @@ fi
 
 source ${ZIM_HOME}/init.zsh
 
-if [ -f ~/.aliases.zsh ]; then
-  source ~/.aliases.zsh
-fi
+[ -f ~/.aliases ] && source ~/.aliases
 
 export ZSH_ENV_FILE="$HOME/.zshenv"
 if [ -f "$ZSH_ENV_FILE" ]; then
