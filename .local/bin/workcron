@@ -4,13 +4,14 @@
 # @since 2025
 
 off_work() {
-  for app in "$@"; do
-    pkill -9 -f "$app"
+  for app in $@; do
+    echo "$app"
+    pkill -9 -f "/$app"
   done
 }
 
 on_work() {
-  for app in "$@"; do
+  for app in $@; do
     if pgrep -f -x "$app" >/dev/null; then
       echo "$app already running"
     else
