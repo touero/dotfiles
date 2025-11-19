@@ -4,7 +4,6 @@ on-notify=exec mpv --no-terminal --quiet /usr/share/sounds/freedesktop/stereo/me
 
 width=500
 padding=10
-border-radius=8
 
 font=Monospace 12
 text-color=#ebdbb2
