@@ -29,6 +29,7 @@
     # ~/.config/aerc: .config/aerc
     ~/.config/git: .config/git
     ~/.config/neomutt: .config/neomutt
+    ~/.config/btop: .config/btop
 
     ~/.local/bin/mu: .local/bin/mu
     ~/.local/bin/dsa: .local/bin/dsa

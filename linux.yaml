@@ -41,6 +41,7 @@
     # ~/.config/aerc: .config/aerc
     ~/.config/neomutt: .config/neomutt
     ~/.config/newsboat: .config/newsboat
+    ~/.config/btop: .config/btop
 
     ~/.local/bin/:
       glob: true
