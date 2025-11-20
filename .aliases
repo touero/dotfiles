@@ -2,9 +2,10 @@
 # @author touero
 # @since 2024,2025
 
-alias ls='ls -F --color=auto'
+alias ls='ls -F --color=auto --group-directories-first'
 alias vim='nvim'
 alias rm='rm -IR'
+alias cp='cp -i'
 alias zshconfig="$EDITOR ~/.zshrc"
 alias lg='lazygit'
 alias frp_on='nohup /home/weiensong/Apps/frp_0.61.0_linux_amd64/frpc -c /home/weiensong/Apps/frp_0.61.0_linux_amd64/frpc.toml > /home/weiensong/Apps/frp_0.61.0_linux_amd64/frpc.log 2>&1 &'

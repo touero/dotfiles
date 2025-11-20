@@ -49,6 +49,24 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+bindkey -v
+
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ; then
+    print -n "\e[2 q"
+  else
+    print -n "\e[6 q"
+  fi
+}
+zle -N zle-keymap-select
+
+if [[ $KEYMAP == vicmd ]] ; then
+  print -n "\e[2 q"
+else
+  print -n "\e[6 q"
+fi
+
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
@@ -59,5 +77,6 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export GPG_TTY=$(tty)
+
 
 eval "$(starship init zsh)"
