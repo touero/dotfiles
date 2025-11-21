@@ -234,7 +234,7 @@ bar {
 
 # Title bar or Border
 default_border pixel 5
-default_floating_border none
+default_floating_border normal
 gaps outer 2
 
 client.focused          #00000000 #427b58 #427b58 #ffffff #427b58
