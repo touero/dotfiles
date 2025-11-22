@@ -1,4 +1,11 @@
+# $XDF_CONFIG_HOME/neomutt/neomuttrc
+# @author touero(fix from nate zhou)
+# @since 2025
+
+
 set editor = "nvim"
+set move = no
+unset mark_old
 
 # GPG encryption and signature
 set crypt_use_gpgme=yes
