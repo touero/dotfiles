@@ -197,8 +197,8 @@ workspace 9 output DP-1
 #
 # Volume:
 #
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
     bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
     bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
@@ -233,14 +233,14 @@ bar {
 }
 
 # Title bar or Border
-default_border pixel 5
+default_border pixel 10
 default_floating_border normal
-gaps outer 2
+gaps outer 1
 
-client.focused          #00000000 #427b58 #427b58 #ffffff #427b58
-client.unfocused        #00000000 #00000000 #00000000 #00000000 #00000000
-client.focused_inactive #00000000 #00000000 #00000000 #00000000 #00000000
-client.urgent           #00000000 #427b58 #427b58 #ffffff #427b58
+client.focused          #00000000 #504945 #ebdbb2 #d3869b #8f3f73
+client.unfocused        #00000000 #282828 #ebdbb2 #d3869b #00000000
+client.focused_inactive #00000000 #504945 #ebdbb2 #d3869b #00000000
+client.urgent           #00000000 #9d0006 #ebdbb2 #d3869b #00000000
 
 titlebar_padding 1
 titlebar_border_thickness 0
