@@ -40,6 +40,9 @@ exec_always {
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 for_window [class="Bytedance-feishu" title="图片"] floating enable
+for_window [class="jetbrains-pycharm" title="Repository Diff*"] floating enable
+
+workspace_auto_back_and_forth yes
 
 ### Input configuration
 input "type:keyboard" {
