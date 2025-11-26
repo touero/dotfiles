@@ -9,13 +9,13 @@ $character"""
 
 [hostname]
 ssh_only = false
-format = '[@$hostname](#282828 bg:#689d6a)$ssh_symbol '
+format = '[@$hostname](#3c3836 bg:#458588)$ssh_symbol '
 disabled = false
 ssh_symbol=' '
 
 [username]
-style_user = '#282828 bg:#689d6a'
-style_root = '#fb4934 bg:#689d6a'
+style_user = '#3c3836 bg:#458588'
+style_root = '#fb4934 bg:#bdae93'
 format = '[$user]($style)'
 disabled = false
 show_always = true
@@ -24,7 +24,7 @@ aliases = { "corpuser034g" = "matchai" }
 [directory]
 truncation_length = 1
 truncate_to_repo = true
-style = '#b57614'
+style = 'bold #b8bb26'
 
 [character]
 success_symbol = "[\\$](green)"
@@ -39,15 +39,16 @@ format = "[$branch]($style)"
 style = "bright-black"
 
 [git_status]
-format = "[[( $conflicted$untracked$modified$staged$renamed$deleted$stashed) ](218)]($style)"
-style = "#8f3f71"
-conflicted = " "
-untracked = " "
-modified = " "
-staged = " "
-renamed = " "
-deleted = "󰆳 "
-stashed = "󰝪 "
+# format = "[[[( $conflicted$untracked$modified$staged$renamed$deleted$stashed) ](218)]($style)]"
+format = '([\[$all_status\]]($style))'
+style = "bright-black"
+conflicted = "="
+untracked = "?"
+modified = "!"
+staged = "+"
+renamed = "→"
+deleted = "x"
+stashed = "#"
 
 [conda]
 format = "[$environment]($style) "
