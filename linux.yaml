@@ -16,6 +16,7 @@
 
     ~/.zshrc: .zshrc
     ~/.zimrc: .zimrc
+    ~/.profile: .profile
     ~/.ideavimrc: ideavimrc
     ~/.aliases: .aliases
     ~/.gnupg/gpg-agent.conf: .gnupg/gpg-agent.conf

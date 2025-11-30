@@ -1,3 +1,9 @@
+# ~/.zshrc
+# @author touero
+# @since 2023, 2024, 2025
+
+[[ $- != *i* ]] && return
+
 setopt HIST_IGNORE_ALL_DUPS
 
 bindkey -e
@@ -71,7 +77,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
-export EDITOR="nvim"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
