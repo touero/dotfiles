@@ -25,12 +25,15 @@
 
 
 # See http://www.mutt.org/doc/manual/#color
+# execute shell command check color :
+# for i in {0..255}; do printf "%03d  \e[48;5;${i}m      \e[0m\n" "$i"; done
+
 
 color attachment  color109 color234
 color bold        color229 color234
 color error       color167 color234
 color hdrdefault  color246 color234
-color indicator   color223 color237
+color indicator   color234 color003
 color markers     color243 color234
 color normal      color223 color234
 color quoted      color250 color234
