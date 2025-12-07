@@ -40,6 +40,7 @@ exec_always {
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 for_window [class="Bytedance-feishu" title="图片"] floating enable
+for_window [class="Bytedance-feishu" title=".*会话记录"] floating enable
 for_window [class="jetbrains-pycharm" title="Repository Diff*"] floating enable
 
 workspace_auto_back_and_forth yes
@@ -195,6 +196,7 @@ workspace 9 output DP-1
     bindsym --release Alt+l exec swaylock
     bindsym Ctrl+space exec fcitx5-remote -t && notify-send -u normal -r 3289 -t 1100 "$(fcitx5-remote -n)"
     bindsym $mod+m exec $HOME/.local/bin/bookmarks
+    bindsym $mod+p exec $HOME/.local/bin/qe
     bindsym $mod+Ctrl+o exec ~/.local/bin/screenshot region
 
 #
