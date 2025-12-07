@@ -1,2 +1,3 @@
 - link:
     /etc/vconsole.conf: etc/vconsole.conf
+    /usr/share/kbd/keymaps/i386/qwerty/us-custom.map.gz: usr/share/kbd/keymaps/i386/qwerty/us-custom.map.gz
