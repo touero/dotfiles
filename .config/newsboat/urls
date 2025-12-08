@@ -1,15 +1,16 @@
 # [distros]
-https://archlinux.org/feeds/news/ "~Arch Linux" archlinux distro
-https://www.archlinuxcn.org/feed/ "~Arch Linux CN" archlinux distro
+https://archlinux.org/feeds/news/ "~ArchLinux" archlinux distro
+https://www.archlinuxcn.org/feed/ "~ArchLinuxCN" archlinux distro
+https://forum.archlinuxcn.org/tag/rss.rss "~ArchLinuxCNForum" archlinux distro
 
 # [news]
 https://lwn.net/headlines/rss "~lwn" lwn
 https://wechat2rss.bestblogs.dev/feed/d3a9e4d6f125cc98d1691dbc30cd97fec7ae2d03.xml "~ByteDance" bytedance news
+https://www.phoronix.com/rss.php "~phoronix" phoronix
 
 # [software]
 https://codeberg.org/dnkl/foot/releases.rss "~foor" git foot
 https://codeberg.org/adnano/wmenu.rss "~wmenu" git wmenu
-
 https://github.com/artemsen/swayimg/releases.atom "~swayimg" git wayimg
 https://github.com/swaywm/sway/releases.atom "~sway" git sway
 https://github.com/swaywm/swaylock/releases.atom "~swaylock" git swaylock

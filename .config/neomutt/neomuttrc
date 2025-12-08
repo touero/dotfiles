@@ -72,3 +72,5 @@ macro index ,2 "<enter-command>unmailboxes *<enter><enter-command>source ~/.conf
 macro index ,3 "<enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/accounts/account3.rc<enter><sync-mailbox><change-folder>!<enter>"
 macro index ,4 "<enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/accounts/account4.rc<enter><sync-mailbox><change-folder>!<enter>"
 
+macro attach .j "|awk '{match(\$0,/json:{.*}/); if(RSTART>0){print substr(\$0,1,RSTART-1); print substr(\$0,RSTART+5,RLENGTH-5) | \"jq . | tee /tmp/json\"; print substr(\$0,RSTART+RLENGTH)} else {print}}'<Enter>" "Format JSON"
+
