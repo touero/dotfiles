@@ -3,6 +3,14 @@
 # @author touero
 # @since 2025
 
+LOCK_FILE="$HOME/.cache/email.lock"
+if [ -e "$LOCK_FILE" ]; then
+  exit 0
+fi
+
+trap "rm -f '$LOCK_FILE'" EXIT
+touch "$LOCK_FILE"
+
 CACHE_FILE="$HOME/.cache/email"
 [ -f "$CACHE_FILE" ] || touch "$CACHE_FILE"
 
