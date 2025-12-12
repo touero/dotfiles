@@ -21,10 +21,3 @@ else
   vim.env.http_proxy = proxy
   vim.env.https_proxy = proxy
 end
-
-vim.cmd([[
-    augroup RestoreCursorShapeOnExit
-        autocmd!
-        autocmd VimLeave * set guicursor=a:ver1
-    augroup END
-]])
