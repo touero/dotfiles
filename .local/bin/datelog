@@ -16,4 +16,5 @@ choice=$(echo -e "$options" | wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n 
 
 if [ -n "$choice" ]; then
   echo -n "$choice" | $CLIPBOARD
+  focus_point
 fi

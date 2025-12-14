@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# @author: touero
+# @since: 2025
+# focus_point: get fucos point, unable to execute in tmux
+
+focused_window=$(swaymsg -t get_tree | jq '.. | select(.focused? == true)')
+app_id=$(echo "$focused_window" | jq -r '.app_id')
+
+if [[ "$app_id" == "foot" || "$app_id" == "footclient" ]]; then
+  virkeys ctrlshiftv
+else
+  virkeys ctrlv
+fi

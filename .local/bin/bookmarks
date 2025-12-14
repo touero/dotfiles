@@ -53,6 +53,7 @@ bookmarks() {
   if [[ "$VALUE" =~ ^https?:// ]]; then
     if [[ "$2" == "cp" ]]; then
       echo -n "$VALUE" | wl-copy
+      focus_point
     elif has_browser_in_current_ws; then
       $DEFAULT_BROWSER "$VALUE" &
     else
@@ -60,6 +61,7 @@ bookmarks() {
     fi
   else
     echo -n "$VALUE" | wl-copy
+    focus_point
   fi
 }
 
@@ -67,6 +69,7 @@ contacts() {
   VALUE=$(general_menu "$1" "contacts") || exit 1
   [[ -z "$VALUE" ]] && exit 0
   echo -n "$VALUE" | wl-copy
+  focus_point
 }
 
 BOOKMARKS="$HOME/.config/bookmarks"
