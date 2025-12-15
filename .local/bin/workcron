@@ -3,26 +3,36 @@
 # @author touero
 # @since 2025
 
+wait_for_swaylock() {
+  while pgrep -x swaylock >/dev/null; do
+    sleep 1
+  done
+}
+
 off_work() {
-  for app in $@; do
+  for app in "$@"; do
     echo "$app"
     pkill -9 -f "/$app"
   done
 }
 
 on_work() {
-  for app in $@; do
-    if pgrep -f -x "$app" >/dev/null; then
+  for app in "$@"; do
+    if pgrep -f "^${app}(\$| )" >/dev/null; then
       echo "$app already running"
-    else
-      "$app" &
-      sleep 0.5
-      if [[ "$app" == *feishu* ]]; then
-        swaymsg '[class="Bytedance-feishu"] move to workspace number 3'
-      fi
+      continue
+    fi
+
+    wait_for_swaylock
+    "$app" &
+
+    if [[ "$app" == *feishu* ]]; then
+      for _ in {1..30}; do
+        swaymsg '[class="Bytedance-feishu"] move to workspace number 3' && break
+        sleep 0.2
+      done
     fi
   done
-
 }
 
 case "$1" in
