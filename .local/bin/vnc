@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+# @author touero
+# @since 2025
+# vnc: remove no need something for vncviewer
+
+if [ "$1" ]; then
+  url=$1
+  url="${url#http://}"
+  url="${url#https://}"
+  url="${url%/}"
+else
+  url=$(printf "127.0.0.1:5900\n127.0.0.1:5901\n127.0.0.1:5902" | "$HOME/.local/bin/menu" show -l 3 -p "connect vnc: ")
+fi
+
+notify-send "󰌘 vnc" "vncviewer $url"
+command vncviewer "$url"
