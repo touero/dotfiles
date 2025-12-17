@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# @author touero
+# @since 2025
+# screen_record: region / window / fullscreen, supports menu or argument
+
+if ! ([ -t 0 ] && [ -t 1 ] && [ -t 2 ]); then
+  notify-send "   screen recording" "please run it in termial"
+fi
+
+mode=$1
+swappy=$(which swappy)
+SAVE_DIR=/tmp/screen_record
+[ -d "$SAVE_DIR" ] || mkdir -p "$SAVE_DIR"
+SAVE_PATH="$SAVE_DIR/$(date +%Y%m%d_%H%M%S)_recording.mp4"
+
+convert_to_webm() {
+  MAX_TRIES=3
+  count=0
+
+  while [ $count -lt $MAX_TRIES ]; do
+    read -rp "Do you want to coonvert to webm? [y/n]: " answer
+    case "$answer" in
+    [Yy])
+      WEBM_SAVE_PATH="$SAVE_DIR/$(date +%Y%m%d_%H%M%S)_recording.webm"
+      ffmpeg -i "$SAVE_DIR" -c:v libvpx-vp9 -b:v 2M -pix_fmt yuv420p -c:a libopus "$WEBM_SAVE_PATH"
+      notify-send "  screen recording" "save to $WEBM_SAVE_PATH"
+      break
+      ;;
+    [Nn])
+      notify-send "  screen recording" "save to $SAVE_PATH"
+      break
+      ;;
+    *)
+      echo "Please enter y or n."
+      ((count++))
+      if [ $count -ge $MAX_TRIES ]; then
+        echo "Maximum attempts reached. Exiting."
+      fi
+      ;;
+    esac
+  done
+}
+
+case "$mode" in
+window)
+  wf-recorder --no-damage -r 30 -g "$(swaymsg -t get_tree |
+    jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' |
+    slurp)" -f "$SAVE_PATH"
+  convert_to_webm
+  ;;
+fullscreen)
+  wf-recorder --no-damage -r 30 -f "$SAVE_PATH"
+  convert_to_webm
+  ;;
+region)
+  wf-recorder --no-damage -r 30 -g "$(slurp)" -f "$SAVE_PATH"
+  convert_to_webm
+  ;;
+*)
+  notify-send "   screen recording" "no support args"
+  ;;
+esac
