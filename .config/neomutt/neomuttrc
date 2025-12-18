@@ -61,16 +61,18 @@ source "~/.config/neomutt/colorsrc"
 
 source "~/.config/neomutt/accounts/account1.rc"
 
-folder-hook 'account1' 'source ~/.config/neomutt/account1'
+folder-hook 'account1' 'source ~/.config/neomutt/account1.rc'
 folder-hook 'account2' 'source ~/.config/neomutt/account2.rc'
 folder-hook 'account3' 'source ~/.config/neomutt/account3.rc'
 folder-hook 'account4' 'source ~/.config/neomutt/account4.rc'
+folder-hook 'account5' 'source ~/.config/neomutt/account5.rc'
 
 ## switch accounts (,+1)
 macro index ,1 "<enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/accounts/account1.rc<enter><sync-mailbox><change-folder>!<enter>"
 macro index ,2 "<enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/accounts/account2.rc<enter><sync-mailbox><change-folder>!<enter>"
 macro index ,3 "<enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/accounts/account3.rc<enter><sync-mailbox><change-folder>!<enter>"
 macro index ,4 "<enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/accounts/account4.rc<enter><sync-mailbox><change-folder>!<enter>"
+macro index ,5 "<enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/accounts/account5.rc<enter><sync-mailbox><change-folder>!<enter>"
 
 macro attach .j "|awk '{match(\$0,/json:{.*}/); if(RSTART>0){print substr(\$0,1,RSTART-1); print substr(\$0,RSTART+5,RLENGTH-5) | \"jq . | tee /tmp/json\"; print substr(\$0,RSTART+RLENGTH)} else {print}}'<Enter>" "Format JSON"
 
