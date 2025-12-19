@@ -1,0 +1,185 @@
+# Swayimg configuration file.
+# vim: filetype=dosini
+
+################################################################################
+# General configuration
+################################################################################
+[general]
+mode = viewer
+size = image
+position = auto
+decoration = no
+sigusr1 = reload
+sigusr2 = next_file
+app_id = swayimg
+
+################################################################################
+# DRM mode settings
+################################################################################
+[drm]
+# Path to DRM device, e.g. /dev/dri/card1
+path = auto
+# Connector name, e.g. DP-1
+connector = auto
+# Display resolution and frequency, e.g. 1920x1080@60
+mode = auto
+
+################################################################################
+# Viewer mode configuration
+################################################################################
+[viewer]
+window = #282828
+scale = optimal
+position = center
+antialiasing = mks13
+loop = yes
+history = 1
+preload = 1
+
+################################################################################
+# Slideshow mode configuration
+################################################################################
+[slideshow]
+time = 3
+window = mirror
+transparency = #000000ff
+scale = fit
+position = center
+antialiasing = mks13
+
+################################################################################
+# Gallery mode configuration
+################################################################################
+[gallery]
+size = 200
+cache = 100
+preload = yes
+pstore = no
+fill = no
+antialiasing = mks13
+
+window = #282828
+background = #282828
+select = #282828
+border = #fabd2f
+shadow = #d79921
+
+################################################################################
+# Image list configuration
+################################################################################
+[list]
+order = alpha
+reverse = no
+recursive = no
+all = yes
+fsmon = yes
+
+################################################################################
+# Font configuration
+################################################################################
+[font]
+name = JetBrainsMono Nerd Font
+size = 14
+color = #ebdbb2
+shadow = #282828
+
+################################################################################
+# Image meta info scheme (format, size, EXIF, etc.)
+################################################################################
+[info]
+show = no
+info_timeout = 0
+status_timeout = 0
+
+[info.viewer]
+top_left = +name,+format,+filesize,+imagesize,+exif
+top_right = index
+bottom_left = scale,frame
+bottom_right = status
+
+[info.slideshow]
+top_left = none
+top_right = none
+bottom_left = none
+bottom_right = dir,status
+
+# Display scheme for gallery mode (position = content)
+[info.gallery]
+top_left = none
+top_right = index
+bottom_left = none
+bottom_right = name,status
+
+################################################################################
+# Viewer mode key binding configuration: key = action [parameters]
+################################################################################
+[keys.viewer]
+p = prev_file
+n = next_file
+Shift+p = next_dir
+Shift+n = next_dir
+Return = mode gallery
+s = mode slideshow
+q = exit
+m = info
+g = first_file
+Shift+g = last_file
+comma = prev_frame
+period = next_frame
+c = skip_file
+Shift+z = rand_file; exec notify-send -r 107 -u low "swayimg" "Shuffled"
+Shift+r = reload
+Shift+a = antialiasing
+Space = animation
+h = step_left 10
+j = step_down 10
+k = step_up 10
+l = step_right 10
+Shift+h = step_left 1
+Shift+j = step_down 1
+Shift+k = step_up 1
+Shift+l = step_right 1
+u = step_up 100
+d = step_down 100
+i = zoom +10
+o = zoom -10
+z = zoom real
+w = zoom width
+f = zoom fit
+Shift+f = zoom fill
+r = rotate_right
+Shift+r=rotate_left
+v = flip_vertical
+Shift+v = flip_horizontal
+
+################################################################################
+# Slideshow mode key binding configuration: key = action [parameters]
+################################################################################
+[keys.slideshow]
+p = prev_file
+n = next_file
+Shift+r = rand_file
+Shift+p = prev_dir
+Shift+n = next_dir
+Space = pause
+i = info
+f = fullscreen
+Return = mode
+Escape = exit
+q = exit
+
+################################################################################
+# Gallery mode key binding configuration: key = action [parameters]
+################################################################################
+[keys.gallery]
+h = step_left
+l = step_right
+k = step_up
+j = step_down
+s = mode slideshow
+f = fullscreen
+Return = mode viewer
+r = reload
+Escape = exit
+q = exit
+

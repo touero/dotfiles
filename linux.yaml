@@ -43,6 +43,7 @@
     ~/.config/neomutt: .config/neomutt
     ~/.config/newsboat: .config/newsboat
     ~/.config/btop: .config/btop
+    ~/.config/swayimg: .config/swayimg
 
     ~/.local/bin/:
       glob: true
