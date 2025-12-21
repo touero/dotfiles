@@ -23,3 +23,10 @@ if vim.g.vscode then
     { noremap = true, silent = true }
   )
 end
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>fp",
+  ":put =substitute(substitute(expand('%:p'), '^.*/dotfiles', '$HOME', ''), '^' .. expand('$HOME'), '$HOME', '')<CR>",
+  { noremap = true, silent = true }
+)
