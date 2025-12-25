@@ -1,7 +1,6 @@
 - create:
   - ~/Pictures/gif/
   - ~/.local/share/wallhavens/
-  - ~/.local/share/kbd/keymaps/i386/qwerty/
 
 - shell:
   -
