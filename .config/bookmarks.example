@@ -1,0 +1,6 @@
+local| http://127.0.0.1:80
+local| http://127.0.0.1:8000
+local| http://127.0.0.1:8080
+gh| https://github.com/touero
+cb| https://codeberg.org/touero
+gpt| https://chatgpt.com/

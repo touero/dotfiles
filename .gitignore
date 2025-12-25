@@ -6,4 +6,5 @@ tmux/plugins/*
 .config/aerc/accounts.conf
 .config/fcitx5/conf/cached_layouts
 .config/neomutt/accounts/*
+.config/newsboat/config.d/backend.conf
 !.config/neomutt/accounts/account.example
