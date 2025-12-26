@@ -76,6 +76,11 @@ gpg --keyserver hkps://keys.openpgp.org --recv-keys FDC87FAB9D3B9D7862F4669E7FDD
 ```
 
 or [download/copy](https://github.com/touero/dotfiles/blob/master/touero.asc) the content of file.
+  
+
+The emails I send should carry my signature.  
+If you want to send me GPG-encrypted mail, please make sure key is same in [key servers](https://keys.openpgp.org/search?q=touer0018%40gmail.com), [github](https://github.com/touero/dotfiles/blob/preview_menu/touero.asc) and [codeberg](https://codeberg.org/touero/dotfiles/src/branch/master/touero.asc).
+If you want an encrypted email response, you must send me your key. I don't promise to keep it permanently if we don't talk often, so if you talk with me again a year later you should send it again.
 
 
 ## License
