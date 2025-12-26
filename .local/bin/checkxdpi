@@ -1,0 +1,16 @@
+#!/bin/sh
+# @author touero
+# @since 2025
+
+OUTPUTS_JSON=$(swaymsg -t get_outputs)
+
+OUTPUT_COUNT=$(printf "%s" "$OUTPUTS_JSON" | grep '"active": true' | wc -l)
+
+if [ "$OUTPUT_COUNT" -eq 1 ]; then
+  WIDTH=$(printf "%s" "$OUTPUTS_JSON" | grep '"current_mode"' -A 3 | grep width | head -n 1 | sed 's/[^0-9]//g')
+  HEIGHT=$(printf "%s" "$OUTPUTS_JSON" | grep '"current_mode"' -A 3 | grep height | head -n 1 | sed 's/[^0-9]//g')
+
+  if [ "$WIDTH" -ge 3840 ] && [ "$HEIGHT" -ge 2160 ]; then
+    echo "Xft.dpi: 192" | xrdb -merge
+  fi
+fi
