@@ -6,7 +6,8 @@
 
 setopt HIST_IGNORE_ALL_DUPS
 
-bindkey -e
+bindkey -v
+bindkey -M viins '^R' history-incremental-search-backward
 
 WORDCHARS=${WORDCHARS//[\/]}
 
@@ -60,12 +61,20 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
-export EDITOR=nvim
+export MAILCHECK=0
+export EDITOR="nvim"
+export VISUAL="nvim"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export GPG_TTY=$(tty)
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+setopt sharehistory
+setopt histignoredups
 
 eval "$(starship init zsh)"
