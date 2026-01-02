@@ -220,11 +220,21 @@ mode "resize" {
     bindsym $down resize shrink height 20px
     bindsym $left resize grow width 20px
 
+    bindsym $right+Ctrl resize shrink width 100px
+    bindsym $up+Ctrl resize grow height 100px
+    bindsym $down+Ctrl resize shrink height 100px
+    bindsym $left+Ctrl resize grow width 100px
+
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 20px
+    bindsym Right resize shrink width 20px
     bindsym Down resize grow height 20px
     bindsym Up resize shrink height 20px
-    bindsym Right resize grow width 20px
+    bindsym left resize grow width 20px
+
+    bindsym Right+Ctrl resize shrink width 100px
+    bindsym Up+Ctrl resize grow height 100px
+    bindsym Down+Ctrl resize shrink height 100px
+    bindsym Left+Ctrl resize grow width 100px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -243,7 +253,7 @@ default_floating_border normal
 gaps outer 0
 
 client.focused          #00000000 #d79921 #282828 #00000000 #d79921
-client.unfocused        #00000000 #282828 #ebdbb2 #00000000 #282828
+client.unfocused        #00000000 #282828 #ebdbb2 #00000000 #00000000
 client.focused_inactive #00000000 #504945 #ebdbb2 #00000000 #00000000
 client.urgent           #00000000 #9d0006 #ebdbb2 #00000000 #00000000
 
