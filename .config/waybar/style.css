@@ -42,8 +42,8 @@
 }
 
 #mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #fbf1c7;
+    background-color: @bg;
+    color: @red;
 }
 
 #bluetooth,
@@ -58,7 +58,6 @@
 #pulseaudio,
 #custom-media,
 #tray,
-#mode,
 #idle_inhibitor,
 #custom-poweroff,
 #custom-suspend,
