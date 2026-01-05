@@ -5,6 +5,7 @@
 
 set editor = "nvim"
 set move = no
+set nohelp
 unset mark_old
 
 # GPG encryption and signature
@@ -22,12 +23,15 @@ set sort=reverse-date
 set sort_aux=last-date-received
 
 ## sidebar
-set sidebar_width=18
+set sidebar_width=25
 set sidebar_visible
 set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_format = "%B %* [%?N?%N/?%S]"
 set mail_check_stats
+
+## mail index
+set index_format="%Z  %{%Y-%m-%d}  %-20.20F  %s"
 
 ## keybindings
 # ^G is hardcoded as `abort` and cannot be remaped
@@ -77,4 +81,3 @@ macro index ,5 "<enter-command>unmailboxes *<enter><enter-command>source ~/.conf
 macro index ,6 "<enter-command>unmailboxes *<enter><enter-command>source ~/.config/neomutt/accounts/account6.rc<enter><sync-mailbox><change-folder>!<enter>"
 
 macro attach .j "|awk '{match(\$0,/json:{.*}/); if(RSTART>0){print substr(\$0,1,RSTART-1); print substr(\$0,RSTART+5,RLENGTH-5) | \"jq . | tee /tmp/json\"; print substr(\$0,RSTART+RLENGTH)} else {print}}'<Enter>" "Format JSON"
-
