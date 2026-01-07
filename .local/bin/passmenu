@@ -42,4 +42,6 @@ source "$HOME/.local/bin/get_clipboard"
 CLIPBOARD=$(get_clipboard)
 
 printf '%s' "$password" | "$CLIPBOARD"
-focus_point
+if command -v virkeys >/dev/null 2>&1; then
+  focus_point
+fi
