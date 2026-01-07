@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+shopt -s nullglob globstar
+
+if gpg-connect-agent "keyinfo --list" /bye | grep -q ' 1 '; then
+  echo "缓存有效"
+else
+  if [ -t 0 ] && [ -t 1 ] && [ -t 2 ]; then
+    echo test | gpg --clearsign >/dev/null
+  else
+    notify-send "passmenu" "需要输入 GPG 密码"
+    exit 1
+  fi
+fi
+
+prefix=${PASSWORD_STORE_DIR:-$HOME/.password-store}
+cd "$prefix" || {
+  notify-send "passmenu" "Error: password store not found: $prefix"
+  exit 1
+}
+
+mapfile -t password_files < <(
+  find . -type f -name '*.gpg' -printf '%P\n' |
+    sed 's/\.gpg$//' |
+    sort
+)
+
+((${#password_files[@]} == 0)) && {
+  notify-send "passmenu" "No passwords found in $prefix"
+  exit 1
+}
+
+select_password=$(
+  printf '%s\n' "${password_files[@]}" |
+    "$HOME/.local/bin/menu" show -l 10 -p "pass"
+)
+
+[[ -z $select_password ]] && exit 0
+
+password=$(pass show "$select_password" | head -n1)
+
+source "$HOME/.local/bin/get_clipboard"
+CLIPBOARD=$(get_clipboard)
+
+printf '%s' "$password" | "$CLIPBOARD"
+focus_point

@@ -196,7 +196,8 @@ workspace 9 output DP-1
 
     bindsym --release Alt+l exec swaylock
     bindsym Ctrl+space exec fcitx5-remote -t && notify-send -u normal -r 3289 -t 1100 "$(fcitx5-remote -n)"
-    bindsym $mod+m exec $HOME/.local/bin/bookmarks
+    bindsym $mod+i exec $HOME/.local/bin/passmenu
+    bindsym $mod+o exec $HOME/.local/bin/bookmarks
     bindsym $mod+p exec $HOME/.local/bin/qe
     bindsym $mod+Ctrl+o exec ~/.local/bin/screenshot region
 
