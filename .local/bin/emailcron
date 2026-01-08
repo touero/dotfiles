@@ -3,32 +3,47 @@
 # @author touero
 # @since 2025
 
-LOCK_FILE="$HOME/.cache/email.lock"
+LOCK_FILE="$HOME/.cache/emailcron.lock"
 if [ -e "$LOCK_FILE" ]; then
-  exit 0
+  FILE_MOD_TIME=$(stat -c %Y "$LOCK_FILE")
+  CURRENT_TIME=$(date +%s)
+  ELAPSED=$((CURRENT_TIME - FILE_MOD_TIME))
+
+  if [ "$ELAPSED" -gt 3600 ]; then
+    rm -f "$LOCK_FILE"
+  else
+    exit 0
+  fi
 fi
 
 trap "rm -f '$LOCK_FILE'" EXIT
 touch "$LOCK_FILE"
 
 CACHE_FILE="$HOME/.cache/email"
-[ -f "$CACHE_FILE" ] || touch "$CACHE_FILE"
+[ -f "$CACHE_FILE" ] || echo "0" >"$CACHE_FILE"
 
 update() {
   mbsync -a
   shopt -s globstar
 
   count=$(find "$HOME/Mail"/*/Inbox/new -type f | wc -l)
+
+  last_count=$(head -n1 "$CACHE_FILE")
+  [ -z "$last_count" ] && last_count=0
+
+  if [ "$count" -ne "$last_count" ]; then
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+
+    notify-send -u normal -i mail "󰇮 Update email from remote" "There are $count unread emails"
+  fi
+
   {
     echo "$count"
     echo "check update: $(date '+%Y-%m-%d %H:%M:%S')"
   } >"$CACHE_FILE"
 
   pkill -RTMIN+1 waybar
-  if [ "$count" == "0" ]; then
-    exit 0
-  fi
-  notify-send "󰇮 Update email from remote" "There are $count unread emails"
 }
 
 update

@@ -3,6 +3,22 @@
 # @author touero
 # @since 2025
 
+LOCK_FILE="$HOME/.cache/rsscron.lock"
+if [ -e "$LOCK_FILE" ]; then
+  FILE_MOD_TIME=$(stat -c %Y "$LOCK_FILE")
+  CURRENT_TIME=$(date +%s)
+  ELAPSED=$((CURRENT_TIME - FILE_MOD_TIME))
+
+  if [ "$ELAPSED" -gt 3600 ]; then
+    rm -f "$LOCK_FILE"
+  else
+    exit 0
+  fi
+fi
+
+trap "rm -f '$LOCK_FILE'" EXIT
+touch "$LOCK_FILE"
+
 CACHE_FILE="$HOME/.cache/newsboat"
 [ -f "$CACHE_FILE" ] || touch "$CACHE_FILE"
 
@@ -10,16 +26,23 @@ update() {
   newsboat -x reload
 
   count=$(newsboat -x print-unread | awk '{print $1}')
+
+  last_count=$(head -n1 "$CACHE_FILE")
+  [ -z "$last_count" ] && last_count=0
+
+  if [ "$count" -ne "$last_count" ]; then
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+
+    notify-send "󰑬 Update rss from remote" "There are $count unread rss"
+  fi
+
   {
     echo "$count"
     echo "check update: $(date '+%Y-%m-%d %H:%M:%S')"
   } >"$CACHE_FILE"
 
   pkill -RTMIN+2 waybar
-  if [ "$count" == "0" ]; then
-    exit 0
-  fi
-  notify-send "󰑬 Update rss from remote" "There are $count unread rss"
 }
 
 update
