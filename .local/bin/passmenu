@@ -6,6 +6,7 @@ if gpg-connect-agent "keyinfo --list" /bye | grep -q ' 1 '; then
 else
   if [ -t 0 ] && [ -t 1 ] && [ -t 2 ]; then
     echo test | gpg --clearsign >/dev/null
+    exit
   else
     notify-send "passmenu" "需要输入 GPG 密码"
     exit 1

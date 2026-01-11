@@ -12,7 +12,7 @@ for i in $(seq 0 179); do
   options="$options$d\n"
 done
 
-choice=$(echo -e "$options" | wmenu -i -f "Fira Code Nerd Font 30" -N 282828 -n ebdbb2 -m ebdbb2 -S fabd2f -s 282828 -l 10 -p "copy to clipboard")
+choice=$(echo -e "$options" | $HOME/.local/bin/menu show -l 30 -p "copy to clipboard")
 
 if [ -n "$choice" ]; then
   echo -n "$choice" | $CLIPBOARD

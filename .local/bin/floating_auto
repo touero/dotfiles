@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# 获取当前聚焦窗口的 con_id
+id=$(swaymsg -t get_tree | jq -r 'recurse(.nodes[]?, .floating_nodes[]?) | select(.focused==true) | .id')
+
+if [ -z "$id" ]; then
+  echo "无法获取当前窗口 ID"
+  exit 1
+fi
+
+# 获取当前窗口浮动状态
+is_floating=$(swaymsg -t get_tree | jq -r --arg id "$id" 'recurse(.nodes[]?, .floating_nodes[]?) | select(.id == ($id | tonumber)) | .floating')
+
+if [ "$is_floating" = "none" ]; then
+  # 获取当前输出尺寸
+  read -r screen_width screen_height <<<$(swaymsg -t get_outputs | jq -r '.[] | select(.focused==true) | "\(.rect.width) \(.rect.height)"')
+
+  # 计算 3/4 大小
+  new_width=$((screen_width * 3 / 4))
+  new_height=$((screen_height * 3 / 4))
+
+  # 设置浮动并调整大小，居中
+  swaymsg "[con_id=$id] floating enable, resize set ${new_width} ${new_height}, move position center"
+else
+  # 切回平铺
+  swaymsg "[con_id=$id] floating disable"
+fi
