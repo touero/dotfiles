@@ -8,6 +8,9 @@ setopt HIST_IGNORE_ALL_DUPS
 
 bindkey -v
 bindkey -M viins '^R' history-incremental-search-backward
+bindkey ' ' magic-space
+
+[[ -f ~/.hooks.zsh ]] && source ~/.hooks.zsh
 
 WORDCHARS=${WORDCHARS//[\/]}
 
@@ -40,7 +43,6 @@ if [ -f "$ZSH_ENV_FILE" ]; then
     export $(grep -E '^export ' "$ZSH_ENV_FILE" | sed 's/export //')
 fi
 
-
 zmodload -F zsh/terminfo +p:terminfo
 for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
 for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
@@ -55,7 +57,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
-
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"

@@ -15,9 +15,11 @@
 
     ~/.zshrc: .zshrc
     ~/.zimrc: .zimrc
-    ~/.profile: .profile
+    ~/.zprofile: .zprofile
     ~/.ideavimrc: ideavimrc
     ~/.aliases: .aliases
+    ~/.hooks.zsh: .hooks.zsh
+
     ~/.gnupg/gpg-agent.conf: .gnupg/gpg-agent.conf
 
     ~/.config/starship.toml: .config/starship.toml
