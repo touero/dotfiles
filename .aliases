@@ -9,10 +9,10 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias diff='diff --color=auto'
 alias vdiff='nvim -d'
-alias grep='grep --color=auto'
+alias -g grep='grep --color=auto'
 alias zshconfig="$EDITOR ~/.zshrc"
 alias lg='lazygit'
-alias frp_on='nohup /home/weiensong/Apps/frp_0.61.0_linux_amd64/frpc -c /home/weiensong/Apps/frp_0.61.0_linux_amd64/frpc.toml > /home/weiensong/Apps/frp_0.61.0_linux_amd64/frpc.log 2>&1 &'
+alias frp_on='nohup $HOME/data/app/frp/frpc -c $HOME/data/app/frp/frpc.toml > $HOME/data/app/frp/frpc.log 2>&1 &'
 alias frp_off="ps aux | grep frp | grep -v grep | sort -k 9 | head -n 1 | awk '{print \$2}' | xargs kill -9"
 alias ra='ranger'
 alias sa='yazi'
@@ -22,8 +22,6 @@ alias gnau='git update-index --no-assume-unchanged'
 alias gaus="git ls-files -v | grep '^[a-z]'"
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset%C(yellow)%d%Creset %s %Cblue%an %C(cyan)%ad%Creset" --abbrev-commit --date=iso'
 alias tmuxd='pgrep -x tmux || tmux attach || tmux'
-alias syshn="swaylock -f & sleep 1 && systemctl hibernate"
-alias syssp="swaylock -f & sleep 1 && systemctl suspend"
 alias .d="cd $HOME/Downloads"
 alias .m="cd $HOME/Mail"
 alias .p="cd $HOME/Pictures"
