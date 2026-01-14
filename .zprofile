@@ -1,3 +1,6 @@
+[[ -n "$__ZPROFILE_LOADED" ]] && return
+export __ZPROFILE_LOADED=1
+
 if [[ $(tty) == /dev/tty* ]]; then
   export LANG=en_US.UTF-8
   export LC_ALL=en_US.UTF-8
@@ -7,9 +10,17 @@ else
 fi
 
 export TERM=xterm-256color
+export MAILCHECK=0
 export EDITOR="nvim"
+export VISUAL="nvim"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export GPG_TTY=$(tty)
+export NVM_DIR="$HOME/.nvm"
 
-export XDG_DOWNLOAD_DIR="$HOME/Downloads/"
+export XDG_DOWNLOADS_DIR="$HOME/Downloads/"
 export XDG_DOCUMENTS_DIR="$HOME/Documents"
 export XDG_PICTURES_DIR="$HOME/Pictures/"
 export XDG_VIDEOS_DIR="$HOME/Videos/"

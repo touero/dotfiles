@@ -10,7 +10,11 @@ bindkey -v
 bindkey -M viins '^R' history-incremental-search-backward
 bindkey ' ' magic-space
 
+[[ -f ~/.zprofile ]] && source ~/.zprofile
 [[ -f ~/.hooks.zsh ]] && source ~/.hooks.zsh
+[[ -f ~/.aliases ]] && source ~/.aliases
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 WORDCHARS=${WORDCHARS//[\/]}
 
@@ -36,8 +40,6 @@ fi
 
 source ${ZIM_HOME}/init.zsh
 
-[ -f ~/.aliases ] && source ~/.aliases
-
 export ZSH_ENV_FILE="$HOME/.zshenv"
 if [ -f "$ZSH_ENV_FILE" ]; then
     export $(grep -E '^export ' "$ZSH_ENV_FILE" | sed 's/export //')
@@ -61,15 +63,6 @@ bindkey -v '^?' backward-delete-char
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
-
-export MAILCHECK=0
-export EDITOR="nvim"
-export VISUAL="nvim"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export GPG_TTY=$(tty)
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
