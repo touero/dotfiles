@@ -87,7 +87,7 @@ shadow = #282828
 # Image meta info scheme (format, size, EXIF, etc.)
 ################################################################################
 [info]
-show = no
+show = yes
 info_timeout = 0
 status_timeout = 0
 
@@ -151,6 +151,7 @@ r = rotate_right
 Shift+r=rotate_left
 v = flip_vertical
 Shift+v = flip_horizontal
+y = exec ~/.local/bin/swayimg_cp "%"
 
 ################################################################################
 # Slideshow mode key binding configuration: key = action [parameters]

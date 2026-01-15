@@ -1,0 +1,19 @@
+#!/bin/env sh
+# @author touero
+# @since 2025
+# copy the png image to clipboard
+# the clipboard in wayland does not allow copying of pictures in other formats
+# I may try transcoding in the future, but how to deal with gifs?
+
+file="$1"
+
+case "${file##*.}" in
+png | PNG)
+  /usr/bin/wl-copy --type image/png <"$file"
+  notify-send "swayimg" "png copied"
+  ;;
+*)
+  printf '%s' "$file" | /usr/bin/wl-copy
+  notify-send "swayimg" "path copied"
+  ;;
+esac
