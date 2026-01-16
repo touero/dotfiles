@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# @author touero
+# @since 2025
+# check all pictures in Pictures with swayimg
+
+set -euo pipefail
+
+if [ -n "${1:-}" ] && [ -d "$1" ]; then
+  selectd_dir="$1"
+else
+  PICTURES_DIRS=("$HOME/Pictures" "$HOME/.local/share/wallhavens"
+    "/tmp/screenshot")
+
+  if ((${#PICTURES_DIRS[@]} <= 10)); then
+    menu_lines=${#PICTURES_DIRS[@]}
+  else
+    menu_lines=10
+  fi
+
+  if [ -z "${MENU:-}" ]; then
+    MENU="$HOME/.local/bin/menu"
+  fi
+
+  selectd_dir=$(
+    printf '%s\n' "${PICTURES_DIRS[@]}" |
+      "$MENU" show -l "$menu_lines" -p "select pictures dir"
+  )
+fi
+
+[ -z "$selectd_dir" ] && exit 0
+
+if [ ! -d "$selectd_dir" ]; then
+  notify-send "checkpictures" "No such directory: $selectd_dir"
+  exit 0
+fi
+
+find "$selectd_dir" \( -type f -o \( -type l -xtype f \) \) -print0 |
+  xargs -0 -r swayimg --gallery
