@@ -71,4 +71,6 @@ setopt appendhistory
 setopt sharehistory
 setopt histignoredups
 
+export GPG_TTY=$(tty)
+
 eval "$(starship init zsh)"
