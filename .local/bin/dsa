@@ -6,7 +6,7 @@
 running_containers_id=$(sudo docker ps -q)
 
 if [ -n "$running_containers_id" ]; then
-  sudo docker stop $running_containers_id
+  docker stop $running_containers_id
 else
-  sudo docker ps -a
+  docker ps -a
 fi
