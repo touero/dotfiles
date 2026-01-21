@@ -10,6 +10,7 @@ bindkey -v
 bindkey -M viins '^R' history-incremental-search-backward
 bindkey ' ' magic-space
 
+
 [[ -f ~/.zprofile ]] && source ~/.zprofile
 [[ -f ~/.hooks.zsh ]] && source ~/.hooks.zsh
 [[ -f ~/.aliases ]] && source ~/.aliases
@@ -71,6 +72,27 @@ setopt appendhistory
 setopt sharehistory
 setopt histignoredups
 
+[ -s "/home/weiensong/.bun/_bun" ] && source "/home/weiensong/.bun/_bun"
+
 export GPG_TTY=$(tty)
 
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[2 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} == '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[6 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    echo -ne "\e[6 q"
+}
+
+zle -N zle-line-init
+
 eval "$(starship init zsh)"
+
