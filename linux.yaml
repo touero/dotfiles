@@ -30,10 +30,10 @@
     ~/.config/ttyper: .config/ttyper
     ~/.config/tmux: .config/tmux
     ~/.config/neofetch: .config/neofetch
-    ~/.config/albert: .config/albert
+    # ~/.config/albert: .config/albert
     ~/.config/sway: .config/sway
     ~/.config/waybar: .config/waybar
-    ~/.config/wofi: .config/wofi
+    # ~/.config/wofi: .config/wofi
     ~/.config/swaylock: .config/swaylock
     ~/.config/mako: .config/mako
     ~/.config/swappy: .config/swappy
@@ -45,6 +45,7 @@
     ~/.config/newsboat: .config/newsboat
     ~/.config/btop: .config/btop
     ~/.config/swayimg: .config/swayimg
+    ~/.config/mpv: .config/mpv
 
     ~/.local/bin/:
       glob: true
