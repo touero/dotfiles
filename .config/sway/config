@@ -46,6 +46,7 @@ for_window [class="wechat" title="预览"] floating enable
 for_window [class="jetbrains-pycharm" title="Repository Diff*"] floating enable, resize set 90 ppt 90 ppt
 
 for_window [app_id="swayimg"] floating enable, resize set 90 ppt 90 ppt
+for_window [app_id="mpv"] floating enable, resize set 70 ppt 70 ppt
 
 workspace_auto_back_and_forth yes
 
