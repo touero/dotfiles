@@ -1,0 +1,12 @@
+--languages=C
+
+--c-kinds=+defgmstuv
+
+--fields=+iaSz
+
+--exclude=.git
+--exclude=build
+--exclude=dist
+--exclude=out
+--exclude=target
+--exclude=.cache

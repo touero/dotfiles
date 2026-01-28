@@ -1,0 +1,12 @@
+--languages=Sh
+
+--sh-kinds=+fa
+
+--fields=+nSz
+
+--exclude=.git
+--exclude=node_modules
+--exclude=dist
+--exclude=build
+--exclude=.cache
+

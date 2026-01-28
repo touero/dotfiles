@@ -46,6 +46,7 @@
     ~/.config/btop: .config/btop
     ~/.config/swayimg: .config/swayimg
     ~/.config/mpv: .config/mpv
+    ~/.config/ctags: .config/ctags
 
     ~/.local/bin/:
       glob: true

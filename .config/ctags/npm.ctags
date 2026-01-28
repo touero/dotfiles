@@ -1,0 +1,16 @@
+--languages=JavaScript,TypeScript
+
+--javascript-kinds=+cfm
+--typescript-kinds=+cfm
+
+--fields=+iaSz
+--extras=+q
+
+--exclude=node_modules
+--exclude=dist
+--exclude=build
+--exclude=coverage
+--exclude=.next
+--exclude=.turbo
+--exclude=.cache
+--exclude=out
