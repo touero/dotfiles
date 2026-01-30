@@ -28,6 +28,9 @@ count_selected = { fg = "#282828", bg = "#fbf1c7" }
 border_symbol = "│"
 border_style = { fg = "#665c54" }
 
+[indicator]
+padding = { open = "█", close = "█" }
+
 # : }}}
 [ui]
 border_color = '#45475a'
