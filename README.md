@@ -65,7 +65,7 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Image Viewer:                         swayimg
 - Network Manager:                      networkmanager
 - Bluetooth Manager:                    bluetui
-- Screen Recording:                     ffmpeg
+- Screen Recording:                     wf-recorder | ffmpeg
 - Dotfiles Manager:                     git & dotbot
 ```
 
