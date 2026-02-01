@@ -1,5 +1,5 @@
 -- ~/.config/yazi/init.lua
-require("full-border"):setup()
+require("full-border"):setup({ type = ui.Border.PLAIN })
 require("relative-motions"):setup({ show_numbers = "relative_absolute", show_motion = true })
 
 Status:children_add(function(self)
