@@ -1,15 +1,14 @@
 [mgr]
-ratio = [1, 2, 5]
+ratio = [2, 3, 3]
 sort_by = "natural"
-sort_translit = true
+sort_translit = false
 linemode = "size"
-scrolloff = 200
-show_syslink=false
-show_hidden=false
-
+scrolloff = 2
+show_symlink = false
+show_hidden = true
 
 [preview]
-max_width = 720
+max_width = 72
 max_height = 1280
 
 [[fetchers]]
