@@ -31,7 +31,7 @@ update() {
   last_count=$(head -n1 "$CACHE_FILE")
   [ -z "$last_count" ] && last_count=0
 
-  if [ "$count" -ne "$last_count" ]; then
+  if [ "$count" -ne "$last_count" ] && [ "$count" -ne 0 ]; then
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
     export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 
