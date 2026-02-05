@@ -2,14 +2,21 @@
 shopt -s nullglob globstar
 
 if gpg-connect-agent "keyinfo --list" /bye | grep -q ' 1 '; then
-  echo "缓存有效"
+  echo "gpg agent cache"
 else
   if [ -t 0 ] && [ -t 1 ] && [ -t 2 ]; then
     echo test | gpg --clearsign >/dev/null
-    exit
   else
-    notify-send "passmenu" "需要输入 GPG 密码"
-    exit 1
+    footclient \
+      --app-id gpg-unlock \
+      --title "GPG Unlock" \
+      -e zsh -c 'export GPG_TTY=$(tty); gpg --sign </dev/null'
+  fi
+
+  if ! gpg-connect-agent "keyinfo --list" /bye | grep -q ' 1 '; then
+    echo "verify not yet"
+    notify-send "passmenu" "Error: verify not yet, exit passmenu"
+    exit
   fi
 fi
 
@@ -21,8 +28,7 @@ cd "$prefix" || {
 
 mapfile -t password_files < <(
   find . -type f -name '*.gpg' -printf '%P\n' |
-    sed 's/\.gpg$//' |
-    sort
+    sed 's/\.gpg$//'
 )
 
 ((${#password_files[@]} == 0)) && {
@@ -30,9 +36,11 @@ mapfile -t password_files < <(
   exit 1
 }
 
+lines=$((${#password_files[@]} < 10 ? ${#password_files[@]} : 10))
+
 select_password=$(
   printf '%s\n' "${password_files[@]}" |
-    "$HOME/.local/bin/menu" show -l 10 -p "pass"
+    "$HOME/.local/bin/menu" show -l $lines -p "pass"
 )
 
 [[ -z $select_password ]] && exit 0
