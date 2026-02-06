@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# @author touero
+# @since 2025
+# typepractice: typing practice in footclient
+
+set -euo pipefail
+
+exec footclient \
+  --app-id type-practice \
+  --title "Typing Practice" \
+  -e zsh -ic 'ttyper "$@"' -- "$@"
