@@ -1,4 +1,4 @@
-#region / window / fullscreen, supports menu or argument!/usr/bin/env bash
+#!/usr/bin/env bash
 # @author touero
 # @since 2025, 2026
 # passmenu: select a password from pass store, checking gpg agent cache
