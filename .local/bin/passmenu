@@ -1,10 +1,15 @@
-#!/usr/bin/env bash
+#region / window / fullscreen, supports menu or argument!/usr/bin/env bash
+# @author touero
+# @since 2025, 2026
+# passmenu: select a password from pass store, checking gpg agent cache
+# at the same time.
+
 shopt -s nullglob globstar
 
 if gpg-connect-agent "keyinfo --list" /bye | grep -q ' 1 '; then
   echo "gpg agent cache"
 else
-  if [ -t 0 ] && [ -t 1 ] && [ -t 2 ]; then
+  if [ "$1" = "-t" ]; then
     echo test | gpg --clearsign >/dev/null
   else
     footclient \

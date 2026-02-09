@@ -1,12 +1,17 @@
 #!/usr/bin/env sh
 # @author touero
-# @since 2025
-# hc: select item from clipboard
+# @since 2025, 2026
+# hc: select item from clipboard history.
 
-if [ -t 0 ] && [ -t 1 ] && [ -t 2 ]; then
-    cliphist list | fzf --no-sort | cliphist decode | wl-copy
+if [ "$1" = "-t" ]; then
+  cliphist list | fzf --no-sort | cliphist decode | wl-copy
 else
-    cliphist list | $HOME/.local/bin/menu show -l 30 -p "clipboard history" | cliphist decode | wl-copy
+  sel="$(
+    cliphist list |
+      iconv -f UTF-8 -t UTF-8 -c |
+      "$HOME/.local/bin/menu" show -l 30 -p "clipboard history"
+  )"
+  [ -n "$sel" ] && printf '%s\n' "$sel" | cliphist decode | wl-copy
 fi
 
 focus_point
