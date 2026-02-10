@@ -24,9 +24,21 @@ if vim.g.vscode then
   )
 end
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>fp",
-  ":put =substitute(substitute(expand('%:p'), '^.*/dotfiles', '$HOME', ''), '^' .. expand('$HOME'), '$HOME', '')<CR>",
-  { noremap = true, silent = true }
-)
+vim.api.nvim_set_keymap("n", "<leader>au", "", {
+  noremap = true,
+  silent = true,
+  callback = function()
+    local path = vim.fn.expand("%:p")
+    path = path:gsub(".*/dotfiles", "$HOME")
+    path = path:gsub("^" .. vim.env.HOME, "$HOME")
+
+    local lines = {
+      "# " .. path,
+      "# @author: weiensong(touero) <touer0018@gmail.com>",
+      "# @since: " .. os.date("%Y"),
+      "",
+    }
+
+    vim.api.nvim_put(lines, "l", false, true)
+  end,
+})
