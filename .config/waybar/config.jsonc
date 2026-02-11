@@ -1,3 +1,6 @@
+// $HOME/.config/waybar/config.jsonc
+// @author: weiensong(touero) <touer0018@gmail.com>
+// @since: 2025
 {
   "layer": "top",
   "height": 25,
@@ -60,9 +63,32 @@
     "show-passive-items": true
   },
   "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "locale": "zh_CN.utf8",
+    "timezone": "Asia/Shanghai",
+    "tooltip-format": "<span font_desc='JetBrainsMono Nerd Font 15'><tt><small>{calendar}</small></tt></span>",
     "format": "[{:%Y-%m-%d %a %H:%M}]",
-    "interval": 60
+    "interval": 60,
+    "calendar": {
+      "mode": "month",
+      "iso8601": true,
+      "on-scroll": 1,
+      "mode-mon-col": 3,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#fb4934'><b>{}</b></span>",
+        "days": "<span color='#ebdbb2'><b>{}</b></span>",
+        "weeks": "<span color='#b8bb26'><b>W{}</b></span>",
+        "weekdays": "<span color='#ecc6d9'><b>{}</b></span>",
+        "today": "<span color='#fabd2f'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   },
   "cpu": {
     "format": "[ {usage}%]",
@@ -154,7 +180,8 @@
   "custom/weather": {
     "format": "[{}]",
     "exec": "head -1 $HOME/.cache/wttr | awk '{print $1$2}'",
-    "signal": 3
+    "signal": 3,
+    "on-click": "sh -c 'notify-send \"$(cat $HOME/.cache/wttr)\"'"
   },
   "custom/email": {
     "format": "[󰇮 {}]",
