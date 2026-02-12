@@ -8,8 +8,9 @@ show_symlink = false
 show_hidden = true
 
 [preview]
-max_width = 72
+max_width = 720
 max_height = 1280
+image_filter= "nearest"
 
 [[fetchers]]
 id = "mime"
