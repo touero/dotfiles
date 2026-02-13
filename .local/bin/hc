@@ -3,15 +3,15 @@
 # @since 2025, 2026
 # hc: select item from clipboard history.
 
-if [ "$1" = "-t" ]; then
-  cliphist list | fzf --no-sort | cliphist decode | wl-copy
-else
+if [ -t 1 ] && { [ "$TERM" = linux ] || [ "$TERM" = foot ] || [ "$TERM" = foot-direct ]; }; then
   sel="$(
     cliphist list |
       iconv -f UTF-8 -t UTF-8 -c |
       "$HOME/.local/bin/menu" show -l 30 -p "clipboard history"
   )"
   [ -n "$sel" ] && printf '%s\n' "$sel" | cliphist decode | wl-copy
+else
+  cliphist list | "$HOME/.local/bin/menu" show -l 30 -p "clipboard history" | cliphist decode | wl-copy
 fi
 
 focus_point
