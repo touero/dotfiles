@@ -8,17 +8,29 @@ if ! ([ -t 0 ] && [ -t 1 ] && [ -t 2 ]); then
 fi
 
 mode=$1
+if [ -z "$mode" ]; then
+  mode=$(printf "Region\nWindow\nFullscreen" | "$HOME/.local/bin/menu" show -p "screenshot mode: ")
+  case "$mode" in
+  Region) mode="region" ;;
+  Window) mode="window" ;;
+  Fullscreen) mode="fullscreen" ;;
+  *) exit 0 ;;
+  esac
+fi
+
 swappy=$(which swappy)
 SAVE_DIR=/tmp/screen_record
 [ -d "$SAVE_DIR" ] || mkdir -p "$SAVE_DIR"
 SAVE_PATH="$SAVE_DIR/$(date +%Y%m%d_%H%M%S)_recording.mp4"
+RECORD_CACHE=$HOME/.cache/screen_record
+[ -f "$RECORD_CACHE" ] || touch "$RECORD_CACHE"
 
 convert_to_webm() {
   MAX_TRIES=3
   count=0
 
   while [ $count -lt $MAX_TRIES ]; do
-    read -rp "Do you want to coonvert to webm? [y/n]: " answer
+    read -rp "Do you want to convert to webm? [y/n]: " answer
     case "$answer" in
     [Yy])
       WEBM_SAVE_PATH="$SAVE_DIR/$(date +%Y%m%d_%H%M%S)_recording.webm"
@@ -43,16 +55,22 @@ convert_to_webm() {
 
 case "$mode" in
 window)
+  echo " " >"$RECORD_CACHE"
+  pkill -RTMIN+4 waybar
   wf-recorder --no-damage -r 30 -g "$(swaymsg -t get_tree |
     jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' |
     slurp)" -f "$SAVE_PATH"
   convert_to_webm
   ;;
 fullscreen)
+  echo " " >"$RECORD_CACHE"
+  pkill -RTMIN+4 waybar
   wf-recorder --no-damage -r 30 -f "$SAVE_PATH"
   convert_to_webm
   ;;
 region)
+  echo " " >"$RECORD_CACHE"
+  pkill -RTMIN+4 waybar
   wf-recorder --no-damage -r 30 -g "$(slurp)" -f "$SAVE_PATH"
   convert_to_webm
   ;;
@@ -60,3 +78,6 @@ region)
   notify-send "   screen recording" "no support args"
   ;;
 esac
+
+echo "" >"$RECORD_CACHE"
+pkill -RTMIN+4 waybar
