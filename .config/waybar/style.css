@@ -70,6 +70,11 @@
     color: @fg;
 }
 
+#custom-screen_record {
+    background-color: @bg;
+    color: @red;
+}
+
 .modules-left > widget:first-child {
     margin-left: 4px;
 }

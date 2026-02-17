@@ -12,6 +12,7 @@
   "modules-center": [],
   "modules-right": [
     "tray",
+    "custom/screen_record",
     "custom/weather",
     "custom/email",
     "custom/rss",
@@ -194,5 +195,10 @@
     "exec": "head -1 $HOME/.cache/newsboat",
     "signal": 2,
     "on-click": "footclient -e newsboat"
+  },
+  "custom/screen_record": {
+    "format": "{}",
+    "exec": "head -1 $HOME/.cache/screen_record",
+    "signal": 4
   }
 }
