@@ -9,7 +9,7 @@ shopt -s nullglob globstar
 if gpg-connect-agent "keyinfo --list" /bye | grep -q ' 1 '; then
   echo "gpg agent cache"
 else
-  if [ "$1" = "-t" ]; then
+  if [ -t 1 ] && { [ "$TERM" = linux ] || [ "$TERM" = foot ] || [ "$TERM" = foot-direct ]; }; then
     echo test | gpg --clearsign >/dev/null
   else
     footclient \
