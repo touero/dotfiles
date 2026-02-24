@@ -1,9 +1,33 @@
---tag-relative=yes
---fields=+niazS
---extras=+q
---sort=yes
+# $HOME/.config/ctags/default.ctags
+# @author: weiensong(touero) <touer0018@gmail.com>
+# @since: 2026
+
+--languages=all
+--fields=+Kzln
+
+--recurse=yes
 
 --exclude=.git
+--exclude=.hg
+--exclude=.svn
 --exclude=node_modules
 --exclude=dist
 --exclude=build
+--exclude=target
+--exclude=.venv
+--exclude=venv
+--exclude=__pycache__
+--exclude=.idea
+--exclude=.vscode
+--exclude=.coverage
+--exclude=.egg-info
+--exclude=.DS_Store
+
+--sh-kinds=+fvh
+
+--c-kinds=+p
+--c++-kinds=+p
+
+--make-kinds=+r
+
+--links=no
