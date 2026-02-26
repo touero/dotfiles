@@ -1,19 +1,23 @@
+" $HOME/ideavimrc
+" "@author: weiensong(touero) <touer0018@gmail.com>
+" "@since: 2026
+
 let mapleader = " "
 inoremap jk <esc>
+
 
 nnoremap ; :
 nnoremap <expr> ; v:count ? ';' : ':'
 
 nnoremap <silent> <M-j> :<C-u>execute 'move ' . (line('.')+1)<CR>
 nnoremap <silent> <M-k> :<C-u>execute 'move ' . (line('.')-2)<CR>
-nnoremap <silent> <leader>u :s/\<False\>/True/g<CR>$
-nnoremap <silent> <leader>i :s/\<True\>/False/g<CR>$
+nnoremap <silent> <leader>u :s/\<True\>/__TMP__/ge<Bar>s/\<False\>/True/ge<Bar>s/__TMP__/False/ge<CR>
 
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
 
-# nnoremap <CR> :normal o<CR>
-# nnoremap <S-Enter> :normal O<CR>
+" nnoremap <CR> :normal o<CR>
+" nnoremap <S-Enter> :normal O<CR>
 
 nnoremap <Leader>f :action FileStructurePopup<CR>
 nnoremap <Leader>d :action ToggleLineBreakpoint<CR>
@@ -34,12 +38,15 @@ nnoremap <C-j> :action ClickLink<CR>
 nnoremap <C-j> :action GotoDeclaration<CR>
 nnoremap <S-l> :action NextTab<CR>
 nnoremap <S-h> :action PreviousTab<CR>
-# nnoremap <C-A-K> :action Forward<CR>
+" nnoremap <C-A-K> :action Forward<CR>
 nnoremap <C-K> :action Back<CR>
 
 nmap s <Action>(flash.search)
 xmap s <Action>(flash.search)
 
+set dial
+nnoremap <C-a> :DialIncrement<cr>
+nnoremap <C-x> :DialDecrement<cr>
 
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
@@ -99,4 +106,3 @@ nmap 'z <Action>(GotoBookmarkZ)
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
-Plug 'easymotion/vim-easymotion'
