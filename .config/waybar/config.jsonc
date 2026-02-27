@@ -168,15 +168,21 @@
     "format": "[{temperatureC}°C]"
   },
   "mpris": {
-    "format": "[ {title}-{artist}]",
-    "format-paused": "[ {title}-{artist}]",
-    "format-stopped": "",
+    "format": "[{status_icon} {title}-{artist}]",
+    "format-paused": "[{status_icon} {title}-{artist}]",
+    "format-stopped": "[{status_icon} {title}-{artist}]",
     "max-length": 30,
-    "tooltip-format": "{player_name}\n{album}\n{title}\n{artist}",
-    "player-icons": true,
+    "tooltip-format": "{dynamic}",
     "on-click": "playerctl play-pause",
     "on-scroll-up": "playerctl next",
-    "on-scroll-down": "playerctl previous"
+    "on-scroll-down": "playerctl previous",
+    "status-icons": {
+      "paused": "",
+      "playing": "",
+      "stopped": ""
+    },
+    "dynamic-separator": "-",
+    "dynamic-len": 30
   },
   "custom/weather": {
     "format": "[{}]",
