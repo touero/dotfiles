@@ -32,8 +32,16 @@
     helper = store
 [url "git@github.com:touero/"]
   insteadOf = "githubtouero:"
-[url "https://github.com/"]
+  pushInsteadOf = "githubtouero:"
+[url "git@github.com:"]
   insteadOf = "github:"
+  pushInsteadOf = "github:"
+[url "ssh://git@codeberg.org/touero/"]
+    insteadOf = codebergtouero:
+  pushInsteadOf = "codebergtouero:"
+[url "ssh://git@codeberg.org/"]
+    insteadOf = codeberg:
+    pushInsteadOf = "codeberg:"
 [gpg]
     program = gpg
 [user]
