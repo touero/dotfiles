@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# @author: weiensong(touero) <touer0018@gmail.com>
+# @since: 2026
+# footclient dropdown term
+set -euo pipefail
+
+APP_ID="dropdown-term"
+
+need() {
+  command -v "$1" >/dev/null 2>&1 || {
+    echo "missing dependency: $1" >&2
+    exit 1
+  }
+}
+
+need swaymsg
+need jq
+need footclient
+
+window_exists() {
+  swaymsg -t get_tree | jq -e --arg id "$APP_ID" '
+        recurse(.nodes[]?, .floating_nodes[]?)
+        | select(.app_id? == $id)
+    ' >/dev/null
+}
+
+is_visible() {
+  swaymsg -t get_tree | jq -e --arg id "$APP_ID" '
+        recurse(.nodes[]?, .floating_nodes[]?)
+        | select(.app_id? == $id)
+        | select(.scratchpad_state? == "none")
+    ' >/dev/null
+}
+
+place_top_40() {
+  swaymsg "[app_id=\"$APP_ID\"] resize set 100ppt 40ppt" >/dev/null
+  swaymsg "[app_id=\"$APP_ID\"] move position 0 0" >/dev/null
+  swaymsg "[app_id=\"$APP_ID\"] focus" >/dev/null
+}
+
+toggle_dropdown() {
+  if is_visible; then
+    swaymsg "[app_id=\"$APP_ID\"] move scratchpad" >/dev/null
+  else
+    swaymsg "[app_id=\"$APP_ID\"] scratchpad show" >/dev/null
+    place_top_40
+  fi
+}
+
+if window_exists; then
+  toggle_dropdown
+else
+  footclient --app-id "$APP_ID" &
+  for _ in $(seq 1 40); do
+    if window_exists; then
+      swaymsg "[app_id=\"$APP_ID\"] scratchpad show" >/dev/null
+      place_top_40
+      exit 0
+    fi
+    sleep 0.05
+  done
+  exit 1
+fi

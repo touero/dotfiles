@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+# @Author: weiensong(touero) <touer0018@gmail.com>
+# @Since: 2026
+# workspace manager
+
+set -euo pipefail
+
+need() {
+  command -v "$1" >/dev/null 2>&1 || exit 1
+}
+
+for cmd in swaymsg jq; do
+  need "$cmd"
+done
+
+MAX_WS="${MAX_WS:-10}"
+
+get_existing_workspaces() {
+  swaymsg -t get_workspaces | jq -r '.[].num' | sort -n
+}
+
+get_focused_workspace() {
+  swaymsg -t get_workspaces | jq -r '.[] | select(.focused == true) | .num'
+}
+
+workspace_is_empty() {
+  local ws="$1"
+  local count
+  count="$(swaymsg -t get_tree | jq --argjson ws "$ws" '
+        [
+          recurse(.nodes[]?, .floating_nodes[]?)
+          | select(.type? == "con")
+          | select(.window != null or (.app_id? != null))
+          | select(.workspace? == null)
+        ] | length
+    ' 2>/dev/null || echo 0)"
+
+  swaymsg -t get_workspaces | jq --argjson ws "$ws" '
+        .[] | select(.num == $ws) | .representation
+    ' >/dev/null 2>&1 || true
+
+  if swaymsg -t get_workspaces | jq -e --argjson ws "$ws" '.[] | select(.num == $ws and .representation == null)' >/dev/null; then
+    return 0
+  fi
+
+  if swaymsg -t get_workspaces | jq -e --argjson ws "$ws" '.[] | select(.num == $ws and (.representation == "" or .representation == null))' >/dev/null; then
+    return 0
+  fi
+
+  return 1
+}
+
+find_first_empty_workspace() {
+  local i
+  for ((i = 1; i <= MAX_WS; i++)); do
+    if ! swaymsg -t get_workspaces | jq -e --argjson n "$i" '.[] | select(.num == $n)' >/dev/null; then
+      echo "$i"
+      return
+    fi
+
+    if swaymsg -t get_workspaces | jq -e --argjson n "$i" \
+      '.[] | select(.num == $n and (.representation == null or .representation == ""))' >/dev/null; then
+      echo "$i"
+      return
+    fi
+  done
+
+  echo "$MAX_WS"
+}
+
+usage() {
+  cat <<EOF
+Usage:
+  $0 goto-empty          go to first empty workspace
+  $0 move-to-empty       mv container to first empty workspace
+  $0 send-all-to <n>     move current to workspace n
+EOF
+}
+
+cmd="${1:-goto-empty}"
+
+case "$cmd" in
+goto-empty)
+  target="$(find_first_empty_workspace)"
+  swaymsg workspace number "$target" >/dev/null
+  ;;
+move-to-empty)
+  target="$(find_first_empty_workspace)"
+  swaymsg move container to workspace number "$target" >/dev/null
+  swaymsg workspace number "$target" >/dev/null
+  ;;
+send-all-to)
+  target="${2:-}"
+  [[ -n "$target" ]] || {
+    usage
+    exit 1
+  }
+  current="$(get_focused_workspace)"
+  swaymsg "[workspace=$current]" focus >/dev/null || true
+  swaymsg "[workspace=$current]" move container to workspace number "$target" >/dev/null || true
+  swaymsg workspace number "$target" >/dev/null
+  ;;
+*)
+  usage
+  exit 1
+  ;;
+esac
