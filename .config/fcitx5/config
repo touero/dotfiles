@@ -43,7 +43,7 @@ ModifierOnlyKeyTimeout=250
 # 默认状态为激活
 ActiveByDefault=False
 # 重新聚焦时重置状态
-resetStateWhenFocusIn=No
+resetStateWhenFocusIn=All
 # 共享输入状态
 ShareInputState=No
 # 在程序中显示预编辑文本
@@ -55,9 +55,9 @@ showInputMethodInformationWhenFocusIn=True
 # 显示紧凑的输入法信息
 CompactInputMethodInformation=True
 # 显示第一个输入法的信息
-ShowFirstInputMethodInformation=True
+ShowFirstInputMethodInformation=False
 # 默认页大小
-DefaultPageSize=5
+DefaultPageSize=1
 # 覆盖 XKB 选项
 OverrideXkbOption=True
 # 自定义 XKB 选项
@@ -73,5 +73,5 @@ AllowInputMethodForPassword=False
 # 输入密码时显示预编辑文本
 ShowPreeditForPassword=False
 # 保存用户数据的时间间隔（以分钟为单位）
-AutoSavePeriod=30
+AutoSavePeriod=45
 
