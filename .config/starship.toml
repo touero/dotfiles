@@ -7,6 +7,8 @@ $conda\
 $python\
 $character"""
 
+add_newline = false
+
 [hostname]
 ssh_only = false
 format = '[@$hostname](#b16286 bg:#3c3836)$ssh_symbol '
