@@ -1,11 +1,13 @@
 # $HOME/.config/ctags/default.ctags
-# @author: weiensong(touero) <touer0018@gmail.com>
-# @since: 2026
+# Universal Ctags 6.2 Compatible
+# Author: weiensong (touero) <touer0018@gmail.com>
+# Since: 2026
 
 --languages=all
---fields=+Kzln
-
 --recurse=yes
+--links=no
+--fields=+Kzln
+--extras=+q
 
 --exclude=.git
 --exclude=.hg
@@ -22,12 +24,11 @@
 --exclude=.coverage
 --exclude=.egg-info
 --exclude=.DS_Store
+--exclude=*.toml
+--exclude=*.min.js
+--exclude=*.map
+--exclude=*.lock
 
---sh-kinds=+fvh
-
+--sh-kinds=+fh
 --c-kinds=+p
 --c++-kinds=+p
-
---make-kinds=+r
-
---links=no
