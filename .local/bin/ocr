@@ -3,13 +3,22 @@
 # @since 2025
 # ocr: ocr in gnome or sway wm
 
-FILE=$(mktemp --suffix=.png)
-if [ -n "$WAYLAND_DISPLAY" ] && [ -n "$SWAYSOCK" ]; then
+set -euo pipefail
+
+FILE="$(mktemp --suffix=.png)"
+PROC_FILE="$(mktemp --suffix=.png)"
+
+cleanup() {
+  rm -f "$FILE" "$PROC_FILE"
+}
+trap cleanup EXIT
+
+if [ -n "${WAYLAND_DISPLAY:-}" ] && [ -n "${SWAYSOCK:-}" ]; then
   ENVIRONMENT="sway"
-elif [ -n "$XDG_SESSION_DESKTOP" ] && [[ "$XDG_SESSION_DESKTOP" == "gnome" ]]; then
+elif [ "${XDG_SESSION_DESKTOP:-}" = "gnome" ]; then
   ENVIRONMENT="gnome"
 else
-  echo "Unknown environment"
+  notify-send "OCR" "Unknown environment"
   exit 1
 fi
 
@@ -19,12 +28,40 @@ elif [ "$ENVIRONMENT" = "sway" ]; then
   grim -g "$(slurp)" "$FILE"
 fi
 
-TEXT=$(tesseract "$FILE" - -l chi_sim)
+[ -s "$FILE" ] || exit 0
+
+cp "$FILE" "$PROC_FILE"
+
+if command -v magick >/dev/null 2>&1; then
+  magick "$FILE" \
+    -colorspace Gray \
+    -resize 200% \
+    "$PROC_FILE"
+elif command -v convert >/dev/null 2>&1; then
+  convert "$FILE" \
+    -colorspace Gray \
+    -resize 200% \
+    "$PROC_FILE"
+fi
+
+TEXT="$(tesseract "$PROC_FILE" stdout -l chi_sim+eng --oem 1 --psm 6 2>/dev/null |
+  sed '/^[[:space:]]*$/d')"
+
+if [ -z "${TEXT//[[:space:]]/}" ]; then
+  TEXT="$(tesseract "$FILE" stdout -l chi_sim+eng --oem 1 --psm 6 2>/dev/null |
+    sed '/^[[:space:]]*$/d')"
+fi
+
+if [ -z "${TEXT//[[:space:]]/}" ]; then
+  notify-send "OCR" "No text recognized"
+  exit 1
+fi
 
 if [ "$ENVIRONMENT" = "gnome" ]; then
-  echo "$TEXT" | xclip -selection clipboard
+  printf '%s' "$TEXT" | xclip -selection clipboard
 elif [ "$ENVIRONMENT" = "sway" ]; then
-  echo "$TEXT" | wl-copy
+  printf '%s' "$TEXT" | wl-copy
 fi
-notify-send "OCR copy to clipboard" "$TEXT"
-rm -f "$FILE"
+
+PREVIEW="$(printf '%s' "$TEXT" | tr '\n' ' ' | head -c 80)"
+notify-send "OCR copied to clipboard" "$PREVIEW"
