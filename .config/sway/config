@@ -10,6 +10,7 @@ set $menu env PATH=$HOME/.local/bin:$PATH $HOME/.local/bin/menu run
 set $fcitx fcitx5 -d
 set $wallpapers_path $HOME/.local/share/wallhavens/
 set $dropdown_term dropdown-term
+seat seat0 xcursor_theme default 48
 
 include /etc/sway/config-vars.d/*
 
