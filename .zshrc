@@ -4,12 +4,15 @@
 
 [[ $- != *i* ]] && return
 
-setopt HIST_IGNORE_ALL_DUPS
+setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt INC_APPEND_HISTORY
 
 bindkey -v
 bindkey -M viins '^R' history-incremental-search-backward
 bindkey ' ' magic-space
-
 
 [[ -f ~/.zprofile ]] && source ~/.zprofile
 [[ -f ~/.hooks.zsh ]] && source ~/.hooks.zsh
@@ -37,6 +40,8 @@ fi
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
   source ${ZIM_HOME}/zimfw.zsh init
 fi
+
+fpath=(~/.zsh/completions $fpath)
 
 source ${ZIM_HOME}/init.zsh
 
@@ -96,4 +101,3 @@ zle-line-init() {
 zle -N zle-line-init
 
 eval "$(starship init zsh)"
-

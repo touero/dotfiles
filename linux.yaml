@@ -53,12 +53,19 @@
       path: .local/bin/*
 
     ~/.local/share/wallhavens:
+      create: true
       glob: true
       path: .local/share/wallhavens/*
 
     ~/.local/share/fcitx5/themes:
       glob: true
       path: .local/share/fcitx5/themes/*
+
+    ~/.zsh/completions/:
+      create: true
+      glob: true
+      path: .zsh/completions/*
+
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules ]

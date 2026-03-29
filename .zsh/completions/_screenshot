@@ -1,0 +1,13 @@
+#compdef screenshot
+
+_screenshot() {
+  local -a options
+
+  options=(
+    'Region:Select an area to take a screenshot'
+    'Window:Capture current window'
+    'Fullscreen:Capture entire screen'
+  )
+
+  _describe 'screenshot model' options
+}

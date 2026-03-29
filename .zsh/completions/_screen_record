@@ -1,0 +1,13 @@
+#compdef screen_record
+
+_screen_record() {
+  local -a options
+
+  options=(
+    'region:Select an area to take a record'
+    'window:Select current window'
+    'fullscreen:Select entire screen'
+  )
+
+  _describe 'screen record model' options
+}
