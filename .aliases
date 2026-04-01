@@ -2,8 +2,8 @@
 # @author touero
 # @since 2024, 2025
 
-alias ls='ls -F --color=auto --group-directories-first'
-alias ll="ls -lh --time-style=long-iso"
+alias ls='ls -F --color=auto'
+alias ll="ls -lh"
 alias lb="lsblk"
 alias vim='nvim'
 alias rm='rm -iR'
