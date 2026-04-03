@@ -78,7 +78,7 @@ fsmon = yes
 # Font configuration
 ################################################################################
 [font]
-name = JetBrainsMono Nerd Font
+name = Iosevka Nerd Font
 size = 14
 color = #ebdbb2
 shadow = #282828
@@ -152,6 +152,7 @@ Shift+r=rotate_left
 v = flip_vertical
 Shift+v = flip_horizontal
 y = exec ~/.local/bin/swayimg_cp "%"
+Ctrl+s = exec ~/.local/bin/swayimg_bg "%"
 
 ################################################################################
 # Slideshow mode key binding configuration: key = action [parameters]
