@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+c_reset='\033[0m'
+c_label='\033[1;34m'
+c_value='\033[1;37m'
+
+# 其他字段图标
+icon_host="󰇄"
+icon_kernel=""
+icon_shell=""
+icon_de="󰧨"
+icon_disk="󰋊"
+
+get_os() {
+  case "$(uname -s)" in
+  Darwin)
+    echo "$(sw_vers -productName) $(sw_vers -productVersion)"
+    ;;
+  Linux)
+    if [[ -r /etc/os-release ]]; then
+      . /etc/os-release
+      echo "${PRETTY_NAME:-Linux}"
+    else
+      echo "Linux"
+    fi
+    ;;
+  *)
+    uname -s
+    ;;
+  esac
+}
+
+get_os_icon() {
+  case "$(uname -s)" in
+  Darwin)
+    echo ""
+    ;;
+  Linux)
+    if [[ -r /etc/os-release ]]; then
+      . /etc/os-release
+      case "${ID:-linux}" in
+      ubuntu)
+        echo ""
+        ;;
+      arch)
+        echo "󰣇"
+        ;;
+      *)
+        echo "󰣇"
+        ;;
+      esac
+    else
+      echo "󰣇"
+    fi
+    ;;
+  *)
+    echo "󰈹"
+    ;;
+  esac
+}
+
+get_kernel() { uname -r; }
+
+get_shell() {
+  basename "${SHELL:-unknown}"
+}
+
+get_host() {
+  hostname 2>/dev/null || uname -n
+}
+
+get_de() {
+  if [[ "$(uname -s)" == "Darwin" ]]; then
+    echo "Aqua"
+  else
+    echo "${XDG_CURRENT_DESKTOP:-${DESKTOP_SESSION:-N/A}}"
+  fi
+}
+
+get_disk() {
+  df -h / 2>/dev/null | awk 'NR==2 {print $3 " / " $2 " (" $5 ")"}'
+}
+
+printf "${c_label}%-2s %-9s${c_reset} ${c_value}%s${c_reset}\n" "$icon_host" "Hostname" "$(get_host)"
+printf "${c_label}%-2s %-9s${c_reset} ${c_value}%s${c_reset}\n" "$(get_os_icon)" "OS" "$(get_os)"
+printf "${c_label}%-2s %-9s${c_reset} ${c_value}%s${c_reset}\n" "$icon_kernel" "Kernel" "$(get_kernel)"
+printf "${c_label}%-2s %-9s${c_reset} ${c_value}%s${c_reset}\n" "$icon_shell" "Shell" "$(get_shell)"
+printf "${c_label}%-2s %-9s${c_reset} ${c_value}%s${c_reset}\n" "$icon_de" "DE" "$(get_de)"
+printf "${c_label}%-2s %-9s${c_reset} ${c_value}%s${c_reset}\n" "$icon_disk" "Disk" "$(get_disk)"
+
+echo
+printf '\033[40m  \033[41m  \033[42m  \033[43m  \033[44m  \033[45m  \033[46m  \033[47m  \033[0m\n'
+printf '\033[100m  \033[101m  \033[102m  \033[103m  \033[104m  \033[105m  \033[106m  \033[107m  \033[0m\n'

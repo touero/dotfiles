@@ -45,6 +45,7 @@
     ~/.local/bin/cpm: .local/bin/cpm
     ~/.local/bin/fcm: .local/bin/fcm
     ~/.local/bin/edc: .local/bin/edc
+    ~/.local/bin/fetch: .local/bin/fetch
 
     ~/.local/share/wallhaven.jpg: .local/share/wallhaven.jpg
 
