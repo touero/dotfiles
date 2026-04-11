@@ -1,4 +1,5 @@
 [[ -n "$__ZPROFILE_LOADED" ]] && return
+export XCURSOR_SIZE=48
 export __ZPROFILE_LOADED=1
 
 export LANG=zh_CN.UTF-8
@@ -15,6 +16,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export NVM_DIR="$HOME/.nvm"
 export MENU="$HOME/.local/bin/menu"
+export TERMINAL=footclient
 
 export XDG_DOWNLOADS_DIR="$HOME/Downloads/"
 export XDG_DOCUMENTS_DIR="$HOME/Documents"
