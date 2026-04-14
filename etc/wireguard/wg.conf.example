@@ -1,0 +1,12 @@
+# generate key: wg genkey | tee privatekey | wg pubkey > publickey
+
+[Interface]
+PrivateKey = your_publicKey
+Address = 10.0.0.3/24
+DNS = 192.168.xxx.xxx
+
+[Peer]
+PublicKey = your_publicKey
+Endpoint = your_wireguard_point
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 25
