@@ -24,7 +24,7 @@ return {
 
     dashboard.section.buttons.val = {
       dashboard.button("f", "󰮗  Find file", ":lua require('fzf-lua').files()<CR>"),
-      dashboard.button("e", "  File explorer", ":Neotree reveal<CR>"),
+      dashboard.button("e", "  File explorer", ":Oil<CR>"),
       dashboard.button("w", "  Find word", ":lua require('fzf-lua').live_grep()<CR>"),
       dashboard.button("r", "󰑓  Recent", ":lua require('fzf-lua').oldfiles()<CR>"),
       dashboard.button("y", "󰇥  Yazi", ":Yazi<CR>"),
