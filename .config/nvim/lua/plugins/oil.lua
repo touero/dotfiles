@@ -6,16 +6,22 @@ return {
     config = function()
       require("oil").setup({
         default_file_explorer = true,
+        watch_for_changes = true,
+        case_insensitive = true,
+        skip_confirm_for_simple_edits = true,
         columns = {
-          "icon",
           "permissions",
-          "size",
           "mtime",
+          "size",
+          "icon",
         },
         float = {
           padding = 2,
           max_width = 80,
           max_height = 30,
+        },
+        view_options = {
+          show_hidden = true,
         },
         keymaps = {
           ["g?"] = "actions.show_help",

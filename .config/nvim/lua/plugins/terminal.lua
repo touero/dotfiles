@@ -4,7 +4,12 @@ return {
     version = "*",
     opts = {
       direction = "horizontal",
-      size = 15,
+      size = 20,
+      shading_factor = 0,
+      shade_terminals = false,
+      start_in_insert = true,
+      persist_size = true,
+      persist_mode = true,
     },
     keys = {
       {
@@ -13,7 +18,6 @@ return {
         mode = "n",
         desc = "Toggle Terminal (open/close)",
       },
-
       {
         "<C-w>",
         function()
@@ -21,7 +25,7 @@ return {
           vim.cmd("wincmd p")
         end,
         mode = "t",
-        desc = "Leave terminal focus (don't close)",
+        desc = "Leave terminal focus",
       },
       {
         "<C-\\>",
@@ -33,5 +37,43 @@ return {
         desc = "Toggle Terminal",
       },
     },
+    config = function(_, opts)
+      require("toggleterm").setup(opts)
+
+      local function set_toggleterm_highlight()
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+        local bg = normal.bg
+
+        vim.api.nvim_set_hl(0, "ToggleTerm", {
+          bg = bg,
+        })
+
+        vim.api.nvim_set_hl(0, "ToggleTermNormal", {
+          bg = bg,
+        })
+
+        vim.api.nvim_set_hl(0, "ToggleTermBorder", {
+          bg = bg,
+        })
+
+        vim.api.nvim_set_hl(0, "TermCursor", {})
+
+        vim.api.nvim_set_hl(0, "NormalFloat", {
+          bg = bg,
+        })
+
+        vim.api.nvim_set_hl(0, "FloatBorder", {
+          bg = bg,
+        })
+      end
+
+      set_toggleterm_highlight()
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = function()
+          set_toggleterm_highlight()
+        end,
+      })
+    end,
   },
 }
