@@ -3,8 +3,10 @@ export XCURSOR_SIZE=48
 export __ZPROFILE_LOADED=1
 
 export LANG=zh_CN.UTF-8
-export LC_ALL=zh_CN.UTF-8
-export LC_MESSAGES=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_NUMERIC=en_US.UTF-8
+export LC_MESSAGES=zh_CN.UTF-8
+unset LC_ALL
 
 export TERM=xterm-256color
 export MAILCHECK=0
