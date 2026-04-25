@@ -12,6 +12,7 @@
   "modules-center": [],
   "modules-right": [
     "tray",
+    "custom/cwg",
     "custom/screen_record",
     "custom/weather",
     "custom/email",
@@ -206,5 +207,10 @@
     "format": "{}",
     "exec": "head -1 $HOME/.cache/screen_record",
     "signal": 4
+  },
+  "custom/cwg": {
+    "format": "{}",
+    "exec": "head -1 $HOME/.cache/cwg_cache",
+    "signal": 5
   }
 }

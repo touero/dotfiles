@@ -1,0 +1,67 @@
+#!/bin/bash
+# $HOME/.local/bin/cwg
+# @author: weiensong(touero) <touer0018@gmail.com>
+# @since: 2026
+
+IFACE="${2:-wg0}"
+CWG_CACHE="$HOME/.cache/cwg_cache"
+
+is_up() {
+  ip link show "$IFACE" >/dev/null 2>&1
+}
+
+update_status_on() {
+  mkdir -p "$(dirname "$CWG_CACHE")"
+  echo "󰵬 " >"$CWG_CACHE"
+  pkill -RTMIN+5 waybar 2>/dev/null
+}
+
+update_status_off() {
+  mkdir -p "$(dirname "$CWG_CACHE")"
+  echo "" >"$CWG_CACHE"
+  pkill -RTMIN+5 waybar 2>/dev/null
+}
+
+case "$1" in
+up)
+  if is_up; then
+    echo "[=] $IFACE already up"
+  else
+    echo "[+] Starting $IFACE..."
+    sudo wg-quick up "$IFACE" || exit 1
+    notify-send "WireGuard" "Connected ($IFACE)"
+    update_status_on
+  fi
+  ;;
+down)
+  if is_up; then
+    echo "[+] Stopping $IFACE..."
+    sudo wg-quick down "$IFACE" || exit 1
+    notify-send "WireGuard" "Disconnected ($IFACE)"
+    update_status_off
+  else
+    echo "[=] $IFACE already down"
+  fi
+  ;;
+status)
+  wg show "$IFACE"
+  ;;
+"")
+  # toggle
+  if is_up; then
+    echo "[+] Toggling: stopping $IFACE..."
+    sudo wg-quick down "$IFACE" || exit 1
+    notify-send "WireGuard" "Disconnected ($IFACE)"
+    update_status_off
+  else
+    echo "[+] Toggling: starting $IFACE..."
+    sudo wg-quick up "$IFACE" || exit 1
+    notify-send "WireGuard" "Connected ($IFACE)"
+    update_status_on
+  fi
+  ;;
+*)
+  echo "Usage: cwg [up|down|status] [iface]"
+  exit 1
+  ;;
+esac
