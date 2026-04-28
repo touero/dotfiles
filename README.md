@@ -41,7 +41,7 @@ sudo ./install [OPTIONS]
 As a vimer, I prefer software similar to vim operations, which is free as in freedom is better.
 ```
 - /usr/bin/sh:                          dash
-- Login Shell:                          zhs
+- Login Shell:                          zsh
 - Shell Prompt Custom:                  starship
 - Terminlal Multiplexer:                tmux
 - Terminal Emulator:                    foot | wezterm
