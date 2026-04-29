@@ -9,11 +9,23 @@ else
   DOTFILES_DIR=$HOME/data/repo/dotfiles
 fi
 
-search_path=("$DOTFILES_DIR")
+search_path=(
+  "$DOTFILES_DIR"
+  "$HOME/data/repo/locacc/")
 
-selected_file=$(find "${search_path[@]}" -type f |
-  grep -vE '/(\.git|dotbot|tmux/plugins|__pycache__|site-packages)/' |
-  $HOME/.local/bin/menu show -l 15 -p "editor")
+extra_files=(
+  "$HOME/.ssh/config"
+  "$HOME/.config/bookmarks"
+)
+
+selected_file=$(
+  {
+    find "${search_path[@]}" -type f
+    printf "%s\n" "${extra_files[@]}"
+  } |
+    grep -vE '/(\.git|dotbot|tmux/plugins|__pycache__|site-packages)/' |
+    $HOME/.local/bin/menu show -l 15 -p "editor"
+)
 
 if [ -n "$selected_file" ]; then
   # wezterm start --always-new-process nvim "$selected_file"
