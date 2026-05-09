@@ -40,13 +40,14 @@
 
 ---@alias lc.picker { provider?: "fzf-lua" | "telescope" }
 
-local posision = "left"
+local position = "left"
 if vim.fn.has("macunix") == 1 then
-  posision = "top"
+  position = "top"
 end
 
 return {
   "kawre/leetcode.nvim",
+  cmd = { "Leet" },
   build = ":TSUpdate html",
   dependencies = {
     "nvim-telescope/telescope.nvim",
@@ -64,7 +65,7 @@ return {
       translate_problems = true, ---@type boolean
     },
     description = {
-      position = posision, ---@type lc.position
+      position = position, ---@type lc.position
       width = "45%", ---@type lc.size
       show_stats = true, ---@type boolean
     },

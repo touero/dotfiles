@@ -3,7 +3,6 @@
 -- Add any additional keymaps here
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "jkf", "<Esc>:wq<CR>", { silent = true })
-vim.api.nvim_set_keymap("i", "<Tab>", 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
 
 vim.api.nvim_set_keymap("n", ";", ":", {})
 vim.api.nvim_set_keymap("x", ";", ":", { expr = true })
