@@ -11,13 +11,13 @@ add_newline = false
 
 [hostname]
 ssh_only = false
-format = '[@$hostname](#b16286 bg:#3c3836)$ssh_symbol '
+format = '[@$hostname](#689d6a)$ssh_symbol '
 disabled = false
 ssh_symbol=' '
 
 [username]
-style_user = '#b16286 bg:#3c3836'
-style_root = '#fb4934 bg:#bdae93'
+style_user = '#689d6a'
+style_root = '#fb4934'
 format = '[$user]($style)'
 disabled = false
 show_always = true
@@ -26,7 +26,7 @@ aliases = { "corpuser034g" = "matchai" }
 [directory]
 truncation_length = 1
 truncate_to_repo = true
-style = '#689d6a'
+style = '#b16286'
 
 [character]
 success_symbol = "[\\$](green)"
