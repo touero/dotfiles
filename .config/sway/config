@@ -266,16 +266,17 @@ bar {
 }
 
 # Title bar or Border
-default_border pixel 4
-default_floating_border normal
+default_border pixel 2
+default_floating_border pixel 2
 gaps outer 0
+gaps inner 0
 
-client.focused          #00000000 #d79921 #282828 #d79921 #d79921
-client.unfocused        #00000000 #282828 #ebdbb2 #00000000 #00000000
-client.focused_inactive #00000000 #504945 #ebdbb2 #00000000 #00000000
-client.urgent           #00000000 #9d0006 #ebdbb2 #00000000 #00000000
+client.focused          #b8bb26 #3c3836 #ebdbb2 #b8bb26 #b8bb26
+client.unfocused        #504945 #282828 #a89984 #504945 #504945
+client.focused_inactive #665c54 #3c3836 #bdae93 #665c54 #665c54
+client.urgent           #fb4934 #9d0006 #fbf1c7 #fb4934 #fb4934
 
-titlebar_padding 6
+titlebar_padding 1
 titlebar_border_thickness 0
 
 font pango:JetBrainsMono Nerd Font, FiraCode Nerd Font, JetBrains Mono, MesloLGS NF, Monaco, "Noto Sans SC", "Noto Sans Mono CJK SC" 12
