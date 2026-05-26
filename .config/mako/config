@@ -1,4 +1,4 @@
-anchor=top-right
+anchor=top-center
 layer=overlay
 on-notify=exec mpv --no-terminal --quiet /usr/share/sounds/freedesktop/stereo/message.oga
 
