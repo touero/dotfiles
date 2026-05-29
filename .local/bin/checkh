@@ -1,55 +1,85 @@
 #!/usr/bin/env bash
+# $HOME/.local/bin/checkh
+# @author: weiensong(touero) <touer0018@gmail.com>
+# @since: 2026
+# checkh: checkh md5 or sha256 of file
 
 set -e
 
 usage() {
-    echo "Usage:"
-    echo "  ck <file>"
-    echo "  ck <file> <md5|sha256>"
-    exit 1
+  echo "Usage:"
+  echo "  ck <file> [file...]"
+  echo "  ck <file> <md5|sha256>"
+  exit 1
 }
 
-[[ $# -lt 1 || $# -gt 2 ]] && usage
+[[ $# -lt 1 ]] && usage
 
-file="$1"
+is_hash() {
+  [[ "$1" =~ ^[0-9a-fA-F]{32}$ ]] || [[ "$1" =~ ^[0-9a-fA-F]{64}$ ]]
+}
 
-[[ ! -f "$file" ]] && {
+show_hash() {
+  local file="$1"
+
+  if [[ ! -f "$file" ]]; then
+    echo "Error: file not found: $file"
+    return
+  fi
+
+  local md5 sha256
+
+  md5=$(md5sum "$file" | awk '{print $1}')
+  sha256=$(sha256sum "$file" | awk '{print $1}')
+
+  echo "==> $file"
+  echo "MD5    : $md5"
+  echo "SHA256 : $sha256"
+  echo
+}
+
+verify_hash() {
+  local file="$1"
+  local expected
+  expected=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+
+  [[ ! -f "$file" ]] && {
     echo "Error: file not found: $file"
     exit 1
-}
+  }
 
-md5=$(md5sum "$file" | awk '{print $1}')
-sha256=$(sha256sum "$file" | awk '{print $1}')
+  local actual algo
 
-if [[ $# -eq 1 ]]; then
-    echo "File   : $file"
-    echo "MD5    : $md5"
-    echo "SHA256 : $sha256"
-    exit 0
-fi
+  case ${#expected} in
+  32)
+    actual=$(md5sum "$file" | awk '{print $1}')
+    algo="MD5"
+    ;;
+  64)
+    actual=$(sha256sum "$file" | awk '{print $1}')
+    algo="SHA256"
+    ;;
+  *)
+    echo "Error: unsupported hash length (${#expected})"
+    exit 1
+    ;;
+  esac
 
-expected=$(echo "$2" | tr '[:upper:]' '[:lower:]')
-
-case ${#expected} in
-    32)
-        actual="$md5"
-        algo="MD5"
-        ;;
-    64)
-        actual="$sha256"
-        algo="SHA256"
-        ;;
-    *)
-        echo "Error: unsupported hash length (${#expected})"
-        exit 1
-        ;;
-esac
-
-if [[ "$actual" == "$expected" ]]; then
+  if [[ "$actual" == "$expected" ]]; then
     echo "[OK] $algo matched"
-else
+  else
     echo "[FAIL] $algo mismatch"
     echo "Expected: $expected"
     echo "Actual  : $actual"
     exit 1
+  fi
+}
+
+if [[ $# -eq 2 ]] && is_hash "$2"; then
+  verify_hash "$1" "$2"
+  exit 0
 fi
+
+for file in "$@"; do
+  show_hash "$file"
+done
