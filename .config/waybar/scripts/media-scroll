@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-width=20
-delay=0.25
+WIDTH=20
+DELAY=0.25
 
-animation_frames=(
+FRAMES=(
   "▁▆▄█"
   "▆▄█▁"
   "▄█▁▆"
@@ -21,38 +21,27 @@ while true; do
   status=$(playerctl metadata --format '{{status}}' 2>/dev/null)
   title=$(playerctl metadata --format '{{title}} - {{artist}}' 2>/dev/null)
 
-  if [ -z "$title" ]; then
-    printf "%-*s\n" "$((width + 5))" ""
-    sleep "$delay"
+  if [ -z "$title" ] || [ "$status" != "Playing" ]; then
+    echo ""
+    sleep "$DELAY"
     continue
   fi
 
-  case "$status" in
-  Playing)
-    frame="${animation_frames[$frame_index]}"
-    frame_index=$(((frame_index + 1) % ${#animation_frames[@]}))
-    ;;
-  Paused)
-    frame=""
-    ;;
-  *)
-    frame=""
-    ;;
-  esac
+  frame="${FRAMES[$frame_index]}"
+  frame_index=$(((frame_index + 1) % ${#FRAMES[@]}))
 
   text="$title   "
   len=${#text}
 
-  if [ "$len" -le "$width" ]; then
-    shown=$(printf "%-*s" "$width" "$text")
+  if [ "$len" -le "$WIDTH" ]; then
+    shown="$text"
   else
     doubled="$text$text"
-    shown="${doubled:$pos:$width}"
+    shown="${doubled:$pos:$WIDTH}"
     pos=$(((pos + 1) % len))
   fi
 
-  printf "%s %-*s\n" "$frame" "$width" "$shown"
+  printf "%s %-20.20s\n" "$frame" "$shown"
 
-
-  sleep "$delay"
+  sleep "$DELAY"
 done
