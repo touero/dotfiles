@@ -6,7 +6,7 @@
   "height": 25,
   "modules-left": [
     "sway/workspaces",
-    "mpris",
+    "custom/media",
     "sway/mode"
   ],
   "modules-center": [],
@@ -18,7 +18,7 @@
     "custom/email",
     "custom/rss",
     "bluetooth",
-    "pulseaudio",
+    "group/volume",
     "network",
     "temperature",
     "memory",
@@ -31,7 +31,7 @@
     "format": "{}"
   },
   "sway/mode": {
-    "format": "[ Mode : {}]"
+    "format": " Mode : {}"
   },
   "mpd": {
     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -68,7 +68,7 @@
     "locale": "zh_CN.utf8",
     "timezone": "Asia/Shanghai",
     "tooltip-format": "<span font_desc='JetBrainsMono Nerd Font 15'><tt><small>{calendar}</small></tt></span>",
-    "format": "[{:%Y-%m-%d %a %H:%M}]",
+    "format": "{:%Y-%m-%d %a %H:%M}",
     "interval": 60,
     "calendar": {
       "mode": "month",
@@ -93,13 +93,13 @@
     }
   },
   "cpu": {
-    "format": "[ {usage}%]",
-    "format-alt": "[CPU usage {usage}%]",
+    "format": " {usage}%",
+    "format-alt": "CPU usage {usage}%",
     "tooltip-format": "CPU usage {usage}%",
     "interval": 5
   },
   "memory": {
-    "format": "[ {}%]",
+    "format": " {}%",
     "format-alt": "[Memory usage {}%]",
     "interval": 5,
     "tooltip-format": "Memory usage {}%"
@@ -109,12 +109,12 @@
       "warning": 15,
       "critical": 5
     },
-    "format-warning": "[ 󰁺{capacity}%]",
-    "format-charging": "[󰂄{capacity}%]",
-    "format-critical": "[ 󰂎{capacity}%]",
-    "format-plugged": "[󰚥{capacity}%]",
-    "format-alt": "[{time} {icon}]",
-    "format": "[{icon}{capacity}%]",
+    "format-warning": " 󰁺{capacity}%",
+    "format-charging": "󰂄{capacity}%",
+    "format-critical": " 󰂎{capacity}%",
+    "format-plugged": "󰚥{capacity}%",
+    "format-alt": "{time} {icon}",
+    "format": "{icon}{capacity}%",
     "format-icons": [
       "󰁻",
       "󰁼",
@@ -124,17 +124,17 @@
     ]
   },
   "network": {
-    "format-wifi": "[󰖩 {essid}]",
-    "format-ethernet": "[󰛳 {essid}]",
-    "tooltip-format": "[{ifname} {ipaddr}/{cidr} {essid} {bandwidthDownBytes}↓ {bandwidthUpBytes}↑]",
-    "format-linked": "[󰲜 NoIP]",
-    "format-disconnected": "[󰲛 Disconnected]",
+    "format-wifi": "󰖩 {essid}",
+    "format-ethernet": "󰛳 {essid}",
+    "tooltip-format": "{ifname} {ipaddr}/{cidr} {essid} {bandwidthDownBytes}↓ {bandwidthUpBytes}↑",
+    "format-linked": "󰲜 NoIP",
+    "format-disconnected": "󰲛 Disconnected",
     "on-click": "$HOME/.local/bin/wwifi"
   },
   "pulseaudio": {
-    "format": "[{icon} {volume}% {format_source}]",
-    "format-bluetooth": "[{icon} {volume}% {format_source}]",
-    "format-muted": "[ ]",
+    "format": "{format_source} {icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}% {format_source}",
+    "format-muted": "",
     "format-source": "{volume}%",
     "format-source-muted": " ",
     "format-icons": {
@@ -154,51 +154,56 @@
     },
     "on-click": "pavucontrol"
   },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+  "group/volume": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "pulseaudio/slider"
+    ]
+  },
   "bluetooth": {
-    "format": "[ {status}]",
-    "format-no-controller": "[󰂲]",
-    "format-connected": "[ {device_alias}]",
-    "format-connected-battery": "[ {device_alias}{device_battery_percentage}%]",
-    "tooltip-format": "[{status} {controller_alias} {controller_address} {num_connections} connected]",
-    "tooltip-format-connected": "[{controller_alias} {controller_address} {num_connections} connected {device_enumerate}]",
+    "format": " {status}",
+    "format-no-controller": "󰂲",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias}{device_battery_percentage}%",
+    "tooltip-format": "{status} {controller_alias} {controller_address} {num_connections} connected",
+    "tooltip-format-connected": "{controller_alias} {controller_address} {num_connections} connected {device_enumerate}",
     "tooltip-format-enumerate-connected": "[{device_alias} {device_address}}",
-    "tooltip-format-enumerate-connected-battery": "[{device_alias} {device_address} {device_battery_percentage}%]",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} {device_address} {device_battery_percentage}%",
     "on-click": "footclient -e bluetui"
   },
   "temperature": {
-    "format": "[{temperatureC}°C]"
+    "format": "{temperatureC}°C"
   },
-  "mpris": {
-    "format": "[{status_icon} {title}-{artist}]",
-    "format-paused": "[{status_icon} {title}-{artist}]",
-    "format-stopped": "[{status_icon} {title}-{artist}]",
-    "max-length": 30,
-    "tooltip-format": "{dynamic}",
+  "custom/media": {
+    "format": "{}",
+    "exec": "$HOME/data/repo/dotfiles/.config/waybar/scripts/media-scroll",
+    "return-type": "text",
+    "restart-interval": 1,
     "on-click": "playerctl play-pause",
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous",
-    "status-icons": {
-      "paused": "",
-      "playing": "",
-      "stopped": ""
-    },
-    "dynamic-separator": "-",
-    "dynamic-len": 30
+    "max-length": 20
   },
   "custom/weather": {
-    "format": "[{}]",
+    "format": "{}",
     "exec": "head -1 $HOME/.cache/wttr | awk '{print $1$2}'",
     "signal": 3,
     "on-click": "sh -c 'notify-send \"$(cat $HOME/.cache/wttr)\"'"
   },
   "custom/email": {
-    "format": "[󰇮 {}]",
+    "format": "󰇮 {}",
     "exec": "head -1 $HOME/.cache/email",
     "signal": 1,
     "on-click": "footclient -e neomutt"
   },
   "custom/rss": {
-    "format": "[󰑬 {}]",
+    "format": "󰑬 {}",
     "exec": "head -1 $HOME/.cache/newsboat",
     "signal": 2,
     "on-click": "footclient -e newsboat"

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+inotifywait -m -r -e close_write ~/.config/waybar |
+  while read -r; do
+    pkill waybar
+
+    sleep 0.2
+
+    waybar >/dev/null 2>&1 &
+  done

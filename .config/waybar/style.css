@@ -1,5 +1,6 @@
 @define-color bg #282828;
-@define-color bg_alt #665c54;
+@define-color bg_alt #3c3836;
+@define-color bg_hover #504945;
 @define-color fg #ebdbb2;
 @define-color fg_alt #a89984;
 
@@ -13,39 +14,84 @@
 @define-color aqua #8ec07c;
 @define-color orange #fe8019;
 
-
 * {
-    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font Mono", monospace;;
-    font-size: 1.2rem;
+    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font Mono", monospace;
+    font-size: 1.05rem;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+    min-height: 0;
+}
+
+window#waybar {
     background-color: @bg;
-    padding: 0em 0.2em;
+    color: @green;
+}
+
+/* Workspaces */
+#workspaces {
+    background-color: @bg_alt;
+    border-radius: 8px;
+    padding: 4px;
+    margin: 5px 8px 5px 8px;
 }
 
 #workspaces button {
-    background-color: @bg;
-    color: @fg;
+    background-color: transparent;
+    color: @green;
+    padding: 0;
+    margin: 0 2px;
+    border-radius: 6px;
 }
 
 #workspaces button label {
-    background-color: #504945;
-    padding: 0em 0.5em;
+    min-width: 26px;
+    min-height: 26px;
+    padding: 0;
+    background-color: transparent;
+    color: inherit;
+    border-radius: 6px;
 }
 
 #workspaces button.focused {
+    background-color: @yellow_alt;
     color: @bg;
-    background-color: @bg;
 }
 
 #workspaces button.focused label {
+    background-color: transparent;
+    color: inherit;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+    color: @bg;
+}
+
+#workspaces button.urgent label {
+    color: inherit;
+}
+
+#workspaces button:hover {
+    background-color: @bg_hover;
+    color: @green;
+}
+
+#workspaces button.focused:hover {
     background-color: @yellow_alt;
-    padding: 0em 0.5em;
+    color: @bg;
 }
 
+/* Sway mode */
 #mode {
-    background-color: @bg;
-    color: @red;
+    background-color: @red;
+    color: @bg;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin: 5px 8px 5px 0;
 }
 
+/* Common modules */
 #bluetooth,
 #clock,
 #battery,
@@ -55,7 +101,6 @@
 #temperature,
 #backlight,
 #network,
-#pulseaudio,
 #custom-media,
 #tray,
 #idle_inhibitor,
@@ -64,22 +109,120 @@
 #custom-weather,
 #custom-email,
 #custom-rss,
+#custom-screen_record,
 #mpris,
-#mpd {
-    background-color: @bg;
-    color: @fg;
+#mpd,
+#volume {
+    background-color: @bg_hover;
+    color: @green;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin: 5px 8px 5px 0;
 }
 
-#custom-screen_record {
-    background-color: @bg;
+/* Volume group */
+#volume {
+    padding: 0;
+}
+
+#volume #pulseaudio,
+#volume #pulseaudio-slider {
+    background-color: transparent;
+    color: @green;
+    margin: 0;
+    border-radius: 0;
+}
+
+#volume #pulseaudio {
+    padding: 5px 6px 5px 10px;
+}
+
+#volume #pulseaudio-slider {
+    padding: 5px 10px 5px 4px;
+}
+
+#volume #pulseaudio-slider slider {
+    min-width: 0;
+    min-height: 0;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+#volume #pulseaudio-slider trough {
+    min-height: 7px;
+    min-width: 90px;
+    background-color: @bg_alt;
+    border-radius: 999px;
+}
+
+#volume #pulseaudio-slider highlight {
+    background-color: @green;
+    border-radius: 999px;
+}
+
+/* Special states */
+#battery.warning {
+    color: @orange;
+}
+
+#battery.critical {
     color: @red;
 }
 
-.modules-left > widget:first-child {
-    margin-left: 4px;
+#custom-poweroff,
+#custom-screen_record {
+    color: @red;
 }
 
-.modules-right > widget:last-child {
-    margin-right: 4px;
+#custom-suspend {
+    color: @yellow;
+}
+
+/* Tray */
+#tray {
+    padding: 5px 8px;
+}
+
+#tray,
+#tray * {
+    background-color: transparent;
+}
+
+#tray menu {
+    background-color: @bg_alt;
+    color: @green;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+#tray menuitem {
+    background-color: transparent;
+    color: @green;
+    padding: 6px 10px;
+}
+
+#tray menuitem:hover {
+    background-color: @bg_hover;
+}
+
+#custom-media {
+    background-color: @bg_hover;
+    color: @green;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin: 5px 8px 5px 0;
+}
+/* Tooltip */
+tooltip {
+    background-color: @bg_alt;
+    border: 1px solid @bg_hover;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @green;
+    padding: 6px;
 }
 

@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+width=20
+delay=0.25
+
+animation_frames=(
+  "▁▆▄█"
+  "▆▄█▁"
+  "▄█▁▆"
+  "█▁▆▄"
+  "▂█▅▇"
+  "█▅▇▂"
+  "▅▇▂█"
+  "▇▂█▅"
+)
+
+pos=0
+frame_index=0
+
+while true; do
+  status=$(playerctl metadata --format '{{status}}' 2>/dev/null)
+  title=$(playerctl metadata --format '{{title}} - {{artist}}' 2>/dev/null)
+
+  if [ -z "$title" ]; then
+    printf "%-*s\n" "$((width + 5))" ""
+    sleep "$delay"
+    continue
+  fi
+
+  case "$status" in
+  Playing)
+    frame="${animation_frames[$frame_index]}"
+    frame_index=$(((frame_index + 1) % ${#animation_frames[@]}))
+    ;;
+  Paused)
+    frame=""
+    ;;
+  *)
+    frame=""
+    ;;
+  esac
+
+  text="$title   "
+  len=${#text}
+
+  if [ "$len" -le "$width" ]; then
+    shown=$(printf "%-*s" "$width" "$text")
+  else
+    doubled="$text$text"
+    shown="${doubled:$pos:$width}"
+    pos=$(((pos + 1) % len))
+  fi
+
+  printf "%s %-*s\n" "$frame" "$width" "$shown"
+
+
+  sleep "$delay"
+done
