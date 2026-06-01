@@ -31,10 +31,6 @@ border_style = { fg = "#665c54" }
 [indicator]
 padding = { open = "█", close = "█" }
 
-# : }}}
-[ui]
-border_color = '#45475a'
-padding = 8
 
 [mode]
 normal_main = { fg = "#282828", bg = "#a89984", bold = true }
@@ -143,8 +139,10 @@ rules = [
   # Documents
   { mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#689d6a" },
 
+  # Directories
+  { mime = "inode/directory", fg = "#83a598" },
+
   # Fallback
-  { name = "*", fg = "#ebdbb2" },
-  { name = "*/", fg = "#83a598" },
+  { mime = "*", fg = "#ebdbb2" },
 ]
 
