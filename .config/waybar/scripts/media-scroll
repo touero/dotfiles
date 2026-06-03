@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-WIDTH=20
-DELAY=0.25
+WIDTH="${WIDTH:-20}"
+DELAY="${DELAY:-0.25}"
+PLAYERCTL_BIN="${PLAYERCTL_BIN:-playerctl}"
+MEDIA_SCROLL_ONCE="${MEDIA_SCROLL_ONCE:-0}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PERL_HELPER="${PERL_HELPER:-$SCRIPT_DIR/media-scroll-helper.pl}"
 
 FRAMES=(
   "▁▆▄█"
@@ -16,32 +20,68 @@ FRAMES=(
 
 pos=0
 frame_index=0
+last_title=""
+
+get_status() {
+  "$PLAYERCTL_BIN" status 2>/dev/null || true
+}
+
+get_title() {
+  "$PLAYERCTL_BIN" metadata --format '{{title}} - {{artist}}' 2>/dev/null | sed 's/ - $//'
+}
+
+char_display_width() {
+  "$PERL_HELPER" width "$1"
+}
+
+scroll_text() {
+  "$PERL_HELPER" scroll "$1" "$2" "$pos"
+}
 
 while true; do
-  status=$(playerctl metadata --format '{{status}}' 2>/dev/null)
-  title=$(playerctl metadata --format '{{title}} - {{artist}}' 2>/dev/null)
+  status="$(get_status)"
+  title="$(get_title)"
 
-  if [ -z "$title" ] || [ "$status" != "Playing" ]; then
+  if [[ -z "$title" || -z "$status" || "$status" == "Stopped" ]]; then
     echo ""
+    [[ "$MEDIA_SCROLL_ONCE" == "1" ]] && exit 0
     sleep "$DELAY"
     continue
   fi
 
-  frame="${FRAMES[$frame_index]}"
-  frame_index=$(((frame_index + 1) % ${#FRAMES[@]}))
-
-  text="$title   "
-  len=${#text}
-
-  if [ "$len" -le "$WIDTH" ]; then
-    shown="$text"
-  else
-    doubled="$text$text"
-    shown="${doubled:$pos:$WIDTH}"
-    pos=$(((pos + 1) % len))
+  if [[ "$title" != "$last_title" ]]; then
+    pos=0
+    last_title="$title"
   fi
 
-  printf "%s %-20.20s\n" "$frame" "$shown"
+  case "$status" in
+    Playing)
+      prefix="${FRAMES[$frame_index]}"
+      frame_index=$(((frame_index + 1) % ${#FRAMES[@]}))
+      ;;
+    Paused)
+      prefix=""
+      ;;
+    *)
+      echo ""
+      [[ "$MEDIA_SCROLL_ONCE" == "1" ]] && exit 0
+      sleep "$DELAY"
+      continue
+      ;;
+  esac
 
+  prefix_width="$(char_display_width "$prefix")"
+  text_width=$(( WIDTH - prefix_width - 1 ))
+  if (( text_width < 1 )); then
+    text_width=1
+  fi
+
+  mapfile -t scroll_result < <(scroll_text "$title" "$text_width")
+  pos="${scroll_result[0]}"
+  shown="${scroll_result[1]}"
+
+  printf '%s %s\n' "$prefix" "$shown"
+
+  [[ "$MEDIA_SCROLL_ONCE" == "1" ]] && exit 0
   sleep "$DELAY"
 done
