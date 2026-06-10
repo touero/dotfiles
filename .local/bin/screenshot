@@ -4,7 +4,15 @@
 # screenshot: region / window / fullscreen, supports menu or argument
 
 mode=$1
-swappy=$(which swappy)
+
+annotator=$(which satty 2>/dev/null)
+if [ -n "$annotator" ]; then
+  annotate() { "$annotator" --filename - --output-filename "$SAVE_DIR/%Y%m%d_%H%M%S.png"; }
+else
+  annotator=$(which swappy)
+  annotate() { "$annotator" -f -; }
+fi
+
 SAVE_DIR=/tmp/screenshot
 [ -d "$SAVE_DIR" ] || mkdir -p "$SAVE_DIR"
 
@@ -24,18 +32,17 @@ case "$mode" in
 window)
   grim -g "$(swaymsg -t get_tree |
     jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' |
-    slurp)" - | "$swappy" -f -
+    slurp)" - | annotate
   ;;
 fullscreen)
-  grim - | "$swappy" -f -
+  grim - | annotate
   ;;
 region | *)
-  grim -g "$(slurp)" - | "$swappy" -f -
+  grim -g "$(slurp)" - | annotate
   ;;
 esac
 
 latest_file_after=$(ls -t "$SAVE_DIR"/* 2>/dev/null | head -n 1 || true)
-
 if [ "$latest_file_before" != "$latest_file_after" ]; then
   notify-send " screenshot save to" "$latest_file_after"
 elif wl-paste --type image >/dev/null 2>&1; then

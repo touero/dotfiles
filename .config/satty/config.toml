@@ -1,0 +1,30 @@
+[general]
+early-exit = true
+copy-command = "wl-copy"
+output-filename = "/tmp/screenshot/%Y%m%d-%H%M%S.png"
+save-after-copy = false
+auto-copy = false
+annotation-size-factor = 1
+initial-tool = "rectangle"
+default-fill-shapes = false
+no-window-decoration = true
+default-hide-toolbars = false
+disable-notifications = true
+
+actions-on-enter = ["save-to-file", "save-to-clipboard"]
+actions-on-escape = ["exit"]
+actions-on-right-click = ["save-to-clipboard"]
+
+[font]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[color-palette]
+palette = [
+  "#fabd2f",
+  "#b8bb26",
+  "#83a598",
+  "#fb4934",
+  "#d3869b",
+  "#ebdbb2",
+]

@@ -47,6 +47,7 @@
     ~/.config/swayimg: .config/swayimg
     ~/.config/mpv: .config/mpv
     ~/.config/ctags: .config/ctags
+    ~/.config/satty: .config/satty
 
     ~/.local/bin/:
       glob: true

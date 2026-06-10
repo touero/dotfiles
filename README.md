@@ -58,14 +58,16 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Web Browser:                          firefox | chrome | qutebrowser
 - Rss Reader:                           newsboat
 - Downloader:                           curl | wget
-- Screenshot:                           grim + slurp + swappy
+- Screenshot:                           grim
+- SelectRegioner:                       slurp
+- PictureAnnotation:                    satty | swappy
 - Clipboard Manager:                    wl-clipboard + cliphist
 - Input Method:                         fcitx5
 - Video Player:                         mpv
 - Image Viewer:                         swayimg
 - Network Manager:                      networkmanager
 - Bluetooth Manager:                    bluetui
-- Screen Recording:                     wf-recorder | ffmpeg
+- Screen Recording:                     wf-recorder + ffmpeg
 - Screen Locker:                        swaylock
 - Dotfiles Manager:                     git & dotbot
 ```

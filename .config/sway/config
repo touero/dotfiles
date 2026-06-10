@@ -216,6 +216,7 @@ workspace 9 output DP-1
     bindsym $mod+Ctrl+Shift+o exec ~/.local/bin/screenshot fullscreen
     bindsym $mod+equal exec ~/.local/bin/auto_workspace
     bindsym $mod+Ctrl+Return exec ~/.local/bin/dropdown_term
+    bindsym $mod+n exec firefox
 
 #
 # Volume:
