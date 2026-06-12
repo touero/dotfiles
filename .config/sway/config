@@ -186,7 +186,8 @@ workspace 9 output DP-1
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    # bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+space exec ~/.local/bin/sway-float-toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
@@ -219,9 +220,7 @@ workspace 9 output DP-1
     bindsym $mod+Ctrl+Return exec ~/.local/bin/dropdown_term
     bindsym $mod+n exec firefox
 
-#
 # Volume:
-#
     bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
     bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -229,38 +228,58 @@ workspace 9 output DP-1
 
 
 # Resizing containers:
-#
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $right resize shrink width 20px
-    bindsym $up resize grow height 20px
-    bindsym $down resize shrink height 20px
-    bindsym $left resize grow width 20px
+    bindsym $left  resize shrink width 20px
+    bindsym $right resize grow width 20px
+    bindsym $up    resize shrink height 20px
+    bindsym $down  resize grow height 20px
 
-    bindsym $right+Ctrl resize shrink width 100px
-    bindsym $up+Ctrl resize grow height 100px
-    bindsym $down+Ctrl resize shrink height 100px
-    bindsym $left+Ctrl resize grow width 100px
+    bindsym $left+Ctrl  resize shrink width 100px
+    bindsym $right+Ctrl resize grow width 100px
+    bindsym $up+Ctrl    resize shrink height 100px
+    bindsym $down+Ctrl  resize grow height 100px
 
-    # Ditto, with arrow keys
-    bindsym Right resize shrink width 20px
-    bindsym Down resize grow height 20px
-    bindsym Up resize shrink height 20px
-    bindsym left resize grow width 20px
+    bindsym Left  resize shrink width 20px
+    bindsym Right resize grow width 20px
+    bindsym Up    resize shrink height 20px
+    bindsym Down  resize grow height 20px
 
-    bindsym Right+Ctrl resize shrink width 100px
-    bindsym Up+Ctrl resize grow height 100px
-    bindsym Down+Ctrl resize shrink height 100px
-    bindsym Left+Ctrl resize grow width 100px
+    bindsym Left+Ctrl  resize shrink width 100px
+    bindsym Right+Ctrl resize grow width 100px
+    bindsym Up+Ctrl    resize shrink height 100px
+    bindsym Down+Ctrl  resize grow height 100px
 
-    # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# Moving floating containers
+mode "move" {
+    bindsym $left  move left 20px
+    bindsym $down  move down 20px
+    bindsym $up    move up 20px
+    bindsym $right move right 20px
+
+    bindsym $left+Ctrl  move left 100px
+    bindsym $down+Ctrl  move down 100px
+    bindsym $up+Ctrl    move up 100px
+    bindsym $right+Ctrl move right 100px
+
+    bindsym Left  move left 20px
+    bindsym Down  move down 20px
+    bindsym Up    move up 20px
+    bindsym Right move right 20px
+
+    bindsym Left+Ctrl  move left 100px
+    bindsym Down+Ctrl  move down 100px
+    bindsym Up+Ctrl    move up 100px
+    bindsym Right+Ctrl move right 100px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+m mode "move"
 
 # Status Bar:
 bar {
