@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+focused=$(swaymsg -t get_tree | jq '.. | select(.focused? == true)')
+
+floating=$(echo "$focused" | jq -r '.type')
+
+if [[ "$floating" == "floating_con" ]]; then
+    swaymsg 'floating disable'
+else
+    swaymsg 'floating enable, resize set 80 ppt 80 ppt, move position center'
+fi
