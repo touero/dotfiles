@@ -12,6 +12,7 @@
   "modules-center": [],
   "modules-right": [
     "tray",
+    "custom/pomo",
     "custom/cwg",
     "custom/screen_record",
     "custom/weather",
@@ -217,5 +218,14 @@
     "format": "{}",
     "exec": "head -1 $HOME/.cache/cwg_cache",
     "signal": 5
+  },
+  "custom/pomo": {
+    "exec": "$HOME/.local/bin/pomo status",
+    "return-type": "json",
+    "interval": 1,
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "footclient -e ~/.local/bin/pomo 25 5 4",
+    "on-click-right": "~/.local/bin/pomo stop"
   }
 }

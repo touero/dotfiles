@@ -1,0 +1,294 @@
+#!/usr/bin/env bash
+# pomo: simple pomodoro timer with Waybar support
+#
+# Usage:
+#   pomo                 # 25 min work, then end
+#   pomo 50              # 50 min work, then end
+#   pomo 25 5            # 25 min work + 5 min break
+#   pomo 25 5 4          # 4 cycles: 25 min work + 5 min break
+#   pomo status          # output Waybar JSON
+#   pomo stop            # stop current timer
+
+set -euo pipefail
+
+APP_NAME="Pomodoro"
+
+CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+STATE_DIR="$CACHE_HOME/pomo"
+STATE_FILE="$STATE_DIR/state"
+PID_FILE="$STATE_DIR/pid"
+
+mkdir -p "$STATE_DIR"
+
+notify() {
+  local title="$1"
+  local body="$2"
+
+  if command -v notify-send >/dev/null 2>&1; then
+    notify-send -a "$APP_NAME" "$title" "$body"
+  else
+    echo "$title: $body"
+  fi
+}
+
+beep_sound() {
+  if command -v paplay >/dev/null 2>&1; then
+    paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null || true
+  elif command -v canberra-gtk-play >/dev/null 2>&1; then
+    canberra-gtk-play -i complete 2>/dev/null || true
+  else
+    printf '\a'
+  fi
+}
+
+format_time() {
+  local total="$1"
+  local min=$((total / 60))
+  local sec=$((total % 60))
+
+  printf '%02d:%02d' "$min" "$sec"
+}
+
+json_escape() {
+  local s="$1"
+
+  s="${s//\\/\\\\}"
+  s="${s//\"/\\\"}"
+  s="${s//$'\n'/ }"
+
+  printf '%s' "$s"
+}
+
+pid_alive() {
+  [[ -f "$PID_FILE" ]] || return 1
+
+  local pid
+  pid="$(cat "$PID_FILE" 2>/dev/null || true)"
+
+  [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+  kill -0 "$pid" 2>/dev/null
+}
+
+write_state() {
+  local label="$1"
+  local remaining="$2"
+  local total="$3"
+  local cycle="$4"
+  local cycles="$5"
+
+  local tmp="$STATE_FILE.tmp"
+
+  cat >"$tmp" <<EOF
+label=$label
+remaining=$remaining
+total=$total
+cycle=$cycle
+cycles=$cycles
+pid=$$
+EOF
+
+  mv "$tmp" "$STATE_FILE"
+}
+
+clear_state() {
+  rm -f "$STATE_FILE" "$PID_FILE"
+}
+
+waybar_status() {
+  if ! pid_alive || [[ ! -f "$STATE_FILE" ]]; then
+    clear_state
+    printf '{"text":"","tooltip":"Pomodoro idle","class":"idle","percentage":0}\n'
+    exit 0
+  fi
+
+  # shellcheck disable=SC1090
+  source "$STATE_FILE"
+
+  local time_text
+  time_text="$(format_time "$remaining")"
+
+  local percent=0
+  if ((total > 0)); then
+    percent=$(((total - remaining) * 100 / total))
+  fi
+
+  local text
+  local tooltip
+  local class
+
+  case "$label" in
+  Work)
+    text="🍅 $time_text"
+    class="work"
+    ;;
+  Break)
+    text="☕ $time_text"
+    class="break"
+    ;;
+  *)
+    text="$time_text"
+    class="running"
+    ;;
+  esac
+
+  tooltip="$label $time_text | Cycle $cycle/$cycles"
+
+  printf '{"text":"%s","tooltip":"%s","class":"%s","percentage":%s}\n' \
+    "$(json_escape "$text")" \
+    "$(json_escape "$tooltip")" \
+    "$(json_escape "$class")" \
+    "$percent"
+}
+
+stop_timer() {
+  if pid_alive; then
+    local pid
+    pid="$(cat "$PID_FILE")"
+
+    kill "$pid" 2>/dev/null || true
+    clear_state
+    notify "Pomodoro stopped" "Timer was stopped."
+  else
+    clear_state
+  fi
+}
+
+countdown() {
+  local label="$1"
+  local minutes="$2"
+  local cycle="$3"
+  local cycles="$4"
+
+  local total=$((minutes * 60))
+  local remaining="$total"
+
+  notify "$label started" "${minutes} minutes"
+
+  while ((remaining > 0)); do
+    write_state "$label" "$remaining" "$total" "$cycle" "$cycles"
+
+    printf '\r%s %s  cycle %s/%s ' \
+      "$label" \
+      "$(format_time "$remaining")" \
+      "$cycle" \
+      "$cycles"
+
+    sleep 1
+    remaining=$((remaining - 1))
+  done
+
+  write_state "$label" 0 "$total" "$cycle" "$cycles"
+
+  printf '\r%s 00:00  cycle %s/%s\n' \
+    "$label" \
+    "$cycle" \
+    "$cycles"
+}
+
+cleanup() {
+  clear_state
+  echo
+  notify "Pomodoro stopped" "Timer was interrupted."
+  exit 130
+}
+
+usage() {
+  cat <<EOF
+Usage:
+  pomo
+  pomo WORK_MIN
+  pomo WORK_MIN BREAK_MIN
+  pomo WORK_MIN BREAK_MIN CYCLES
+  pomo status
+  pomo stop
+EOF
+}
+
+validate_number() {
+  local name="$1"
+  local value="$2"
+
+  if ! [[ "$value" =~ ^[0-9]+$ ]]; then
+    echo "Error: $name must be a number: $value" >&2
+    exit 1
+  fi
+}
+
+main() {
+  case "${1:-}" in
+  status | --status)
+    waybar_status
+    exit 0
+    ;;
+  stop | --stop)
+    stop_timer
+    exit 0
+    ;;
+  help | -h | --help)
+    usage
+    exit 0
+    ;;
+  esac
+
+  if (($# > 3)); then
+    usage
+    exit 1
+  fi
+
+  local work_min="${1:-25}"
+  local break_min="${2:-0}"
+  local cycles="${3:-1}"
+
+  validate_number "WORK_MIN" "$work_min"
+  validate_number "BREAK_MIN" "$break_min"
+  validate_number "CYCLES" "$cycles"
+
+  if ((work_min <= 0)); then
+    echo "Error: WORK_MIN must be greater than 0" >&2
+    exit 1
+  fi
+
+  if ((break_min < 0)); then
+    echo "Error: BREAK_MIN must not be negative" >&2
+    exit 1
+  fi
+
+  if ((cycles <= 0)); then
+    echo "Error: CYCLES must be greater than 0" >&2
+    exit 1
+  fi
+
+  if pid_alive; then
+    echo "Pomodoro is already running."
+    echo "Use: pomo stop"
+    exit 1
+  fi
+
+  echo "$$" >"$PID_FILE"
+
+  trap cleanup INT TERM
+
+  for ((i = 1; i <= cycles; i++)); do
+    countdown "Work" "$work_min" "$i" "$cycles"
+
+    notify "Time is up" "Work session finished."
+    beep_sound
+
+    if ((break_min <= 0)); then
+      break
+    fi
+
+    countdown "Break" "$break_min" "$i" "$cycles"
+
+    notify "Break finished" "Back to work."
+    beep_sound
+  done
+
+  clear_state
+
+  notify "Pomodoro done" "Timer completed."
+  echo "Done."
+}
+
+main "$@"
