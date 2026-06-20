@@ -44,7 +44,7 @@ exec_always {
 for_window [class="Bytedance-feishu" title="图片"] floating enable
 for_window [class="Bytedance-feishu" title=".*\.xlsx"] floating enable, resize set 90 ppt 90 ppt
 for_window [class="Bytedance-feishu" title=".*会话记录"] floating enable
-for_window [class="wechat" title="预览"] floating enable
+for_window [class="wechat"] floating enable
 for_window [class="jetbrains-pycharm" title="Repository Diff*"] floating enable, resize set 90 ppt 90 ppt
 for_window [app_id="swayimg"] floating enable, resize set 90 ppt 90 ppt, move position center
 for_window [app_id="mpv"] floating enable, resize set 70 ppt 70 ppt, move position center
