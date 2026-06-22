@@ -2,29 +2,47 @@
 # $HOME/.local/bin/checkh
 # @author: weiensong(touero) <touer0018@gmail.com>
 # @since: 2026
-# checkh: checkh md5 or sha256 of file
+# checkh: check md5 or sha256 of file
 
 set -e
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
 usage() {
-  echo "Usage:"
-  echo "  ck <file> [file...]"
-  echo "  ck <file> <md5|sha256>"
+  cat <<EOF
+Usage:
+  checkh <file> [file...]
+  checkh <file> <hash>
+  checkh <file> md5:<hash>
+  checkh <file> sha256:<hash>
+
+Examples:
+  checkh app.apk
+  checkh app.apk a7c4d9...
+  checkh app.apk md5:d41d8cd98f00b204e9800998ecf8427e
+  checkh app.apk sha256:93a719347dc2318b6b6356c588646a7ee82fd7ab0355e7a865fe6954de1234f0
+EOF
   exit 1
 }
 
 [[ $# -lt 1 ]] && usage
 
 is_hash() {
-  [[ "$1" =~ ^[0-9a-fA-F]{32}$ ]] || [[ "$1" =~ ^[0-9a-fA-F]{64}$ ]]
+  [[ "$1" =~ ^[0-9a-fA-F]{32}$ ]] ||
+    [[ "$1" =~ ^[0-9a-fA-F]{64}$ ]] ||
+    [[ "$1" =~ ^md5:[0-9a-fA-F]{32}$ ]] ||
+    [[ "$1" =~ ^sha256:[0-9a-fA-F]{64}$ ]]
 }
 
 show_hash() {
   local file="$1"
 
   if [[ ! -f "$file" ]]; then
-    echo "Error: file not found: $file"
-    return
+    echo -e "${RED}Error:${NC} file not found: $file"
+    return 1
   fi
 
   local md5 sha256
@@ -32,7 +50,7 @@ show_hash() {
   md5=$(md5sum "$file" | awk '{print $1}')
   sha256=$(sha256sum "$file" | awk '{print $1}')
 
-  echo "==> $file"
+  echo -e "${YELLOW}==> $file${NC}"
   echo "MD5    : $md5"
   echo "SHA256 : $sha256"
   echo
@@ -40,35 +58,49 @@ show_hash() {
 
 verify_hash() {
   local file="$1"
-  local expected
-  expected=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+  local input="$2"
+  local expected actual algo
 
   [[ ! -f "$file" ]] && {
-    echo "Error: file not found: $file"
+    echo -e "${RED}Error:${NC} file not found: $file"
     exit 1
   }
 
-  local actual algo
+  input=$(echo "$input" | tr '[:upper:]' '[:lower:]')
 
-  case ${#expected} in
-  32)
-    actual=$(md5sum "$file" | awk '{print $1}')
+  if [[ "$input" == md5:* ]]; then
     algo="MD5"
-    ;;
-  64)
-    actual=$(sha256sum "$file" | awk '{print $1}')
+    expected="${input#md5:}"
+    actual=$(md5sum "$file" | awk '{print $1}')
+
+  elif [[ "$input" == sha256:* ]]; then
     algo="SHA256"
-    ;;
-  *)
-    echo "Error: unsupported hash length (${#expected})"
-    exit 1
-    ;;
-  esac
+    expected="${input#sha256:}"
+    actual=$(sha256sum "$file" | awk '{print $1}')
+
+  else
+    expected="$input"
+
+    case ${#expected} in
+    32)
+      algo="MD5"
+      actual=$(md5sum "$file" | awk '{print $1}')
+      ;;
+    64)
+      algo="SHA256"
+      actual=$(sha256sum "$file" | awk '{print $1}')
+      ;;
+    *)
+      echo -e "${RED}Error:${NC} unsupported hash length (${#expected})"
+      exit 1
+      ;;
+    esac
+  fi
 
   if [[ "$actual" == "$expected" ]]; then
-    echo "[OK] $algo matched"
+    echo -e "${GREEN}✓${NC} $algo matched"
   else
-    echo "[FAIL] $algo mismatch"
+    echo -e "${RED}✗${NC} $algo mismatch"
     echo "Expected: $expected"
     echo "Actual  : $actual"
     exit 1
