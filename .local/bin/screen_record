@@ -1,83 +1,259 @@
 #!/usr/bin/env bash
 # @author touero
-# @since 2025
+# @since 2025, 2026
 # screen_record: region / window / fullscreen, supports menu or argument
 
-if ! ([ -t 0 ] && [ -t 1 ] && [ -t 2 ]); then
-  notify-send "   screen recording" "please run it in termial"
-fi
+MENU="$HOME/.local/bin/menu"
 
-mode=$1
-if [ -z "$mode" ]; then
-  mode=$(printf "Region\nWindow\nFullscreen" | "$HOME/.local/bin/menu" show -p "screenshot mode: ")
+SAVE_DIR="/tmp/screen_record"
+RECORD_CACHE="$HOME/.cache/screen_record"
+
+mkdir -p "$SAVE_DIR"
+mkdir -p "$(dirname "$RECORD_CACHE")"
+touch "$RECORD_CACHE"
+
+update_waybar() {
+  pkill -RTMIN+4 waybar 2>/dev/null || true
+}
+
+cleanup() {
+  printf '\n' >"$RECORD_CACHE"
+  update_waybar
+}
+
+trap cleanup EXIT
+
+notify_error() {
+  notify-send "   screen recording" "$1"
+}
+
+check_command() {
+  if ! command -v "$1" >/dev/null 2>&1; then
+    notify_error "command not found: $1"
+    echo "Error: command not found: $1" >&2
+    exit 1
+  fi
+}
+
+check_command wf-recorder
+check_command slurp
+check_command swaymsg
+check_command jq
+check_command ffmpeg
+check_command notify-send
+
+mode="${1:-}"
+
+if [[ -z "$mode" ]]; then
+  if [[ ! -x "$MENU" ]]; then
+    notify_error "menu not found: $MENU"
+    exit 1
+  fi
+
+  mode=$(
+    printf '%s\n' \
+      "Region" \
+      "Window" \
+      "Fullscreen" |
+      "$MENU" show -p "screen record mode: "
+  )
+
   case "$mode" in
-  Region) mode="region" ;;
-  Window) mode="window" ;;
-  Fullscreen) mode="fullscreen" ;;
-  *) exit 0 ;;
+  Region)
+    mode="region"
+    ;;
+  Window)
+    mode="window"
+    ;;
+  Fullscreen)
+    mode="fullscreen"
+    ;;
+  *)
+    exit 0
+    ;;
   esac
+else
+  mode="${mode,,}"
 fi
 
-swappy=$(which swappy)
-SAVE_DIR=/tmp/screen_record
-[ -d "$SAVE_DIR" ] || mkdir -p "$SAVE_DIR"
-SAVE_PATH="$SAVE_DIR/$(date +%Y%m%d_%H%M%S)_recording.mp4"
-RECORD_CACHE=$HOME/.cache/screen_record
-[ -f "$RECORD_CACHE" ] || touch "$RECORD_CACHE"
+timestamp=$(date +%Y%m%d_%H%M%S)
+SAVE_PATH="$SAVE_DIR/${timestamp}_recording.mp4"
+
+set_recording_status() {
+  printf ' REC\n' >"$RECORD_CACHE"
+  update_waybar
+}
 
 convert_to_webm() {
-  MAX_TRIES=3
-  count=0
+  local max_tries=3
+  local count=0
+  local answer
+  local webm_save_path="${SAVE_PATH%.mp4}.webm"
 
-  while [ $count -lt $MAX_TRIES ]; do
-    read -rp "Do you want to convert to webm? [y/n]: " answer
+  if [[ ! -s "$SAVE_PATH" ]]; then
+    notify_error "recording file is empty or does not exist"
+    return 1
+  fi
+
+  if ! [[ -t 0 && -t 1 ]]; then
+    notify-send \
+      "  screen recording" \
+      "MP4 saved to $SAVE_PATH"
+    return 0
+  fi
+
+  while ((count < max_tries)); do
+    read -rp "Do you want to convert to WebM? [y/n]: " answer
+
     case "$answer" in
     [Yy])
-      WEBM_SAVE_PATH="$SAVE_DIR/$(date +%Y%m%d_%H%M%S)_recording.webm"
-      ffmpeg -i "$SAVE_DIR" -c:v libvpx-vp9 -b:v 2M -pix_fmt yuv420p -c:a libopus "$WEBM_SAVE_PATH"
-      notify-send "  screen recording" "save to $WEBM_SAVE_PATH"
-      break
+      echo "Converting to WebM..."
+
+      if ffmpeg \
+        -hide_banner \
+        -y \
+        -i "$SAVE_PATH" \
+        -map 0:v:0 \
+        -map 0:a? \
+        -c:v libvpx-vp9 \
+        -crf 32 \
+        -b:v 0 \
+        -row-mt 1 \
+        -cpu-used 4 \
+        -pix_fmt yuv420p \
+        -c:a libopus \
+        -b:a 128k \
+        "$webm_save_path"; then
+
+        notify-send \
+          "  screen recording" \
+          "WebM saved to $webm_save_path"
+
+        echo "WebM saved to:"
+        echo "$webm_save_path"
+        return 0
+      else
+        notify_error "failed to convert recording to WebM"
+        echo "WebM conversion failed." >&2
+        echo "Original MP4 is still available at:"
+        echo "$SAVE_PATH"
+        return 1
+      fi
       ;;
+
     [Nn])
-      notify-send "  screen recording" "save to $SAVE_PATH"
-      break
+      notify-send \
+        "  screen recording" \
+        "MP4 saved to $SAVE_PATH"
+
+      echo "MP4 saved to:"
+      echo "$SAVE_PATH"
+      return 0
       ;;
+
     *)
-      echo "Please enter y or n."
       ((count++))
-      if [ $count -ge $MAX_TRIES ]; then
-        echo "Maximum attempts reached. Exiting."
+      echo "Please enter y or n."
+
+      if ((count >= max_tries)); then
+        notify-send \
+          "  screen recording" \
+          "MP4 saved to $SAVE_PATH"
+
+        echo "Maximum attempts reached."
+        echo "MP4 saved to:"
+        echo "$SAVE_PATH"
+        return 0
       fi
       ;;
     esac
   done
 }
 
+record_window() {
+  local geometry
+
+  geometry=$(
+    swaymsg -t get_tree |
+      jq -r '
+        ..
+        | select(
+            type == "object"
+            and .pid?
+            and .visible? == true
+            and .rect?
+          )
+        | .rect
+        | "\(.x),\(.y) \(.width)x\(.height)"
+      ' |
+      slurp
+  )
+
+  if [[ -z "$geometry" ]]; then
+    notify_error "window selection cancelled"
+    return 1
+  fi
+
+  set_recording_status
+
+  wf-recorder \
+    --no-damage \
+    -r 30 \
+    -g "$geometry" \
+    -f "$SAVE_PATH"
+}
+
+record_region() {
+  local geometry
+
+  geometry=$(slurp)
+
+  if [[ -z "$geometry" ]]; then
+    notify_error "region selection cancelled"
+    return 1
+  fi
+
+  set_recording_status
+
+  wf-recorder \
+    --no-damage \
+    -r 30 \
+    -g "$geometry" \
+    -f "$SAVE_PATH"
+}
+
+record_fullscreen() {
+  set_recording_status
+
+  wf-recorder \
+    --no-damage \
+    -r 30 \
+    -f "$SAVE_PATH"
+}
+
 case "$mode" in
 window)
-  echo " " >"$RECORD_CACHE"
-  pkill -RTMIN+4 waybar
-  wf-recorder --no-damage -r 30 -g "$(swaymsg -t get_tree |
-    jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' |
-    slurp)" -f "$SAVE_PATH"
-  convert_to_webm
+  record_window
   ;;
 fullscreen)
-  echo " " >"$RECORD_CACHE"
-  pkill -RTMIN+4 waybar
-  wf-recorder --no-damage -r 30 -f "$SAVE_PATH"
-  convert_to_webm
+  record_fullscreen
   ;;
 region)
-  echo " " >"$RECORD_CACHE"
-  pkill -RTMIN+4 waybar
-  wf-recorder --no-damage -r 30 -g "$(slurp)" -f "$SAVE_PATH"
-  convert_to_webm
+  record_region
   ;;
 *)
-  notify-send "   screen recording" "no support args"
+  notify_error "unsupported argument: $mode"
+  echo "Usage: $0 [region|window|fullscreen]" >&2
+  exit 1
   ;;
 esac
 
-echo "" >"$RECORD_CACHE"
-pkill -RTMIN+4 waybar
+cleanup
+
+if [[ ! -s "$SAVE_PATH" ]]; then
+  notify_error "recording failed or generated an empty file"
+  rm -f "$SAVE_PATH"
+  exit 1
+fi
+
+convert_to_webm
