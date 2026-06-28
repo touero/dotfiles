@@ -20,7 +20,7 @@
     ~/.aliases: .aliases
     ~/.hooks.zsh: .hooks.zsh
 
-    ~/.gnupg/gpg-agent.conf: .gnupg/gpg-agent.conf
+    ~/.gnupg/gpg-agent-mac.conf: .gnupg/gpg-agent.conf
 
     ~/.config/starship.toml: .config/starship.toml
     ~/.config/nvim: .config/nvim
