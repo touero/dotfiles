@@ -1,4 +1,5 @@
 return {
+  { "folke/tokyonight.nvim", enabled = false },
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false,
