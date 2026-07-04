@@ -33,8 +33,9 @@ vim.api.nvim_set_keymap("n", "<leader>au", "", {
 
     local lines = {
       "# " .. path,
-      "# @author: weiensong(touero) <touer0018@gmail.com>",
-      "# @since: " .. os.date("%Y"),
+      "# @Author: weiensong(touero) <ensongwei@gmail.com>",
+      "# @Since: " .. os.date("%Y"),
+      "# @Description: ",
       "",
     }
 
