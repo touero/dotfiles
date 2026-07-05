@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# $HOME/.local/bin/tmux-fzf-window
+# @Author: weiensong(touero) <ensongwei@gmail.com>
+# @Since: 2026
+# @Description: fzf-based tmux window switcher with pane preview and active-window highlighting.
+
+set -euo pipefail
+
+selected=$(
+  tmux list-windows -a \
+    -F '#{window_id}	#{session_name}:#{window_index}	#{window_name}	#{pane_current_path}	#{window_active}' |
+    while IFS=$'\t' read -r window_id session_window window_name path window_active; do
+      if [[ "$window_active" == "1" ]]; then
+        printf '%s\t\033[32m%s\t%s\033[0m\n\t\033[32m-- %s\033[0m\0' \
+          "$window_id" \
+          "$session_window" \
+          "$window_name" \
+          "$path"
+      else
+        printf '%s\t%s\t%s\n\t-- %s\0' \
+          "$window_id" \
+          "$session_window" \
+          "$window_name" \
+          "$path"
+      fi
+    done |
+    fzf \
+      --read0 \
+      --ansi \
+      --delimiter=$'\t' \
+      --with-nth=2.. \
+      --reverse \
+      --border \
+      --prompt='Window > ' \
+      --header='Enter: Switch  Esc: Cancel  Ctrl-n/p: Scroll preview' \
+      --preview='
+        window_id=$(printf "%s" {} | cut -f1)
+        tmux capture-pane -ep -t "$window_id" -S -200 2>/dev/null
+      ' \
+      --preview-window='right,60%,wrap,border-left,follow' \
+      --bind='ctrl-u:preview-half-page-up' \
+      --bind='ctrl-d:preview-half-page-down'
+) || exit 0
+
+window_id=$(
+  printf '%s' "$selected" |
+    head -n 1 |
+    cut -f1
+)
+
+[[ -n "$window_id" ]] &&
+  tmux switch-client -t "$window_id"
