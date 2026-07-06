@@ -36,6 +36,7 @@
     ~/.config/neomutt: .config/neomutt
     ~/.config/btop: .config/btop
     ~/.config/ctags: .config/ctags
+    ~/.config/ghostty: .config/ghostty
 
     ~/.local/bin/mu: .local/bin/mu
     ~/.local/bin/dsa: .local/bin/dsa
