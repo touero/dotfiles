@@ -48,6 +48,7 @@
     ~/.config/mpv: .config/mpv
     ~/.config/ctags: .config/ctags
     ~/.config/satty: .config/satty
+    ~/.config/ghostty: .config/ghostty
 
     ~/.local/bin/:
       glob: true
