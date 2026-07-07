@@ -12,7 +12,7 @@ is_up() {
 
 update_status_on() {
   mkdir -p "$(dirname "$CWG_CACHE")"
-  echo "󰵬 " >"$CWG_CACHE"
+  echo "󰵬 wg" >"$CWG_CACHE"
   pkill -RTMIN+5 waybar 2>/dev/null
 }
 
