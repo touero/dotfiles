@@ -19,6 +19,7 @@
     ~/.ideavimrc: ideavimrc
     ~/.aliases: .aliases
     ~/.hooks.zsh: .hooks.zsh
+    ~/.zsh_completions: .zsh_completions
 
     ~/.gnupg/gpg-agent.conf: .gnupg/gpg-agent.conf
 
