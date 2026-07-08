@@ -8,6 +8,9 @@ export LC_NUMERIC=en_US.UTF-8
 export LC_MESSAGES=zh_CN.UTF-8
 unset LC_ALL
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
 export TERM=xterm-256color
 export MAILCHECK=0
 export EDITOR="nvim"

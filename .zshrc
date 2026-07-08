@@ -65,9 +65,9 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+if command -v pyenv &> /dev/null; then
+  eval "$(pyenv init - zsh)"
+fi
 
 [[ -f ~/.aliases ]] && source ~/.aliases
 
