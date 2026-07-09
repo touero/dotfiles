@@ -1,0 +1,104 @@
+#compdef codex
+
+
+_codex_sandbox() {
+  local -a modes
+
+  modes=(
+    'read-only:Read only sandbox'
+    'workspace-write:Allow workspace writes'
+    'full-access:Full filesystem access'
+  )
+
+  _describe 'sandbox mode' modes
+}
+
+
+_codex_approval() {
+  local -a modes
+
+  modes=(
+    'on-request:Ask when needed'
+    'always:Always ask before commands'
+    'never:Never ask'
+  )
+
+  _describe 'approval policy' modes
+}
+
+
+_codex_output_format() {
+  local -a formats
+
+  formats=(
+    'text:Text output'
+    'json:JSON output'
+    'stream-json:Streaming JSON'
+  )
+
+  _describe 'output format' formats
+}
+
+
+_codex_commands() {
+  local -a commands
+
+  commands=(
+    'exec:Execute task non-interactively'
+    'resume:Resume previous session'
+    'review:Review code changes'
+    'apply:Apply generated patch'
+    'completion:Generate shell completion'
+    'sandbox:Run command in sandbox'
+    'login:Login'
+    'logout:Logout'
+    'upgrade:Upgrade Codex'
+  )
+
+  _describe 'command' commands
+}
+
+
+_codex() {
+
+  _arguments -C \
+    '1:command:_codex_commands' \
+    '*::arg:->args'
+
+
+  case $state in
+
+    args)
+
+      _arguments \
+        '-m[Model]:model:' \
+        '--model[Model]:model:' \
+        '-p[Profile]:profile:' \
+        '--profile[Profile]:profile:' \
+        '-c[Override config]:key=value:' \
+        '--config[Override config]:key=value:' \
+        '-C[Working directory]:directory:_directories' \
+        '--cd[Working directory]:directory:_directories' \
+        '--add-dir[Additional writable directory]:directory:_directories' \
+        '--sandbox[Sandbox mode]:mode:_codex_sandbox' \
+        '-s[Sandbox mode]:mode:_codex_sandbox' \
+        '--ask-for-approval[Approval policy]:policy:_codex_approval' \
+        '-a[Approval policy]:policy:_codex_approval' \
+        '--full-auto[Enable full auto mode]' \
+        '--json[JSON output]' \
+        '--output-last-message[Save last message]:file:_files' \
+        '--output-format[Output format]:format:_codex_output_format' \
+        '--search[Enable web search]' \
+        '--oss[Use local model provider]' \
+        '--enable[Enable feature]:feature:' \
+        '--disable[Disable feature]:feature:' \
+        '--version[Show version]' \
+        '--help[Show help]'
+
+      ;;
+
+  esac
+}
+
+
+_codex "$@"

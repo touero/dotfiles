@@ -1,0 +1,99 @@
+#compdef claude
+
+
+_claude_permission_mode() {
+  local -a modes
+
+  modes=(
+    'default:Ask for permission'
+    'acceptEdits:Auto accept edits'
+    'plan:Plan mode'
+    'auto:Auto mode'
+    'dontAsk:Do not ask'
+    'bypassPermissions:Skip permissions'
+  )
+
+  _describe 'permission mode' modes
+}
+
+
+_claude_output_format() {
+  local -a formats
+
+  formats=(
+    'text:Text output'
+    'json:JSON output'
+    'stream-json:Streaming JSON'
+  )
+
+  _describe 'output format' formats
+}
+
+
+_claude_input_format() {
+  local -a formats
+
+  formats=(
+    'text:Text input'
+    'stream-json:Streaming JSON input'
+  )
+
+  _describe 'input format' formats
+}
+
+
+_claude_commands() {
+
+  local -a commands
+
+  commands=(
+    'update:Update Claude Code'
+    'mcp:Configure MCP servers'
+    'auth:Authentication'
+    'gateway:Start gateway'
+    'install:Install Claude Code'
+  )
+
+  _describe 'command' commands
+}
+
+
+_claude() {
+
+  _arguments -C \
+    '1:command:_claude_commands' \
+    '--add-dir[Additional directory]:directory:_directories' \
+    '--allowedTools[Allow tools]' \
+    '--disallowedTools[Disable tools]' \
+    '--tools[Select tools]' \
+    '-p[Print mode]' \
+    '--print[Print mode]' \
+    '--output-format[Output format]:format:_claude_output_format' \
+    '--input-format[Input format]:format:_claude_input_format' \
+    '--verbose[Verbose]' \
+    '--max-turns[Maximum turns]:number:' \
+    '--model[Model]' \
+    '--agent[Agent]' \
+    '--agents[Agents JSON]' \
+    '--permission-mode[Permission mode]:mode:_claude_permission_mode' \
+    '--permission-prompt-tool[MCP permission tool]' \
+    '-c[Continue]' \
+    '--continue[Continue]' \
+    '-r[Resume session]:session:' \
+    '--resume[Resume session]:session:' \
+    '--dangerously-skip-permissions[Skip permission checks]' \
+    '--allow-dangerously-skip-permissions[Allow bypass mode]' \
+    '--append-system-prompt[Append prompt]' \
+    '--append-system-prompt-file[Prompt file]:file:_files' \
+    '--system-prompt[Replace prompt]' \
+    '--system-prompt-file[Prompt file]:file:_files' \
+    '--debug[Debug]' \
+    '--debug-file[Debug file]:file:_files' \
+    '-v[Version]' \
+    '--version[Version]' \
+    '-h[Help]' \
+    '--help[Help]'
+}
+
+
+_claude "$@"
