@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# ~/.local/bin/fh
+# @Author: weiensong(touero) <ensongwei@gmail.com>
+# @Since: 2026
+# @Description: fuzzy history search with fzf, works on arch/ubuntu/mac
+
+set -euo pipefail
+
+# Detect history file
+if [[ -f "${HISTFILE:-$HOME/.zsh_history}" ]]; then
+  histfile="${HISTFILE:-$HOME/.zsh_history}"
+elif [[ -f "$HOME/.bash_history" ]]; then
+  histfile="$HOME/.bash_history"
+else
+  echo "fh: no history file found" >&2
+  exit 1
+fi
+
+is_extended_history() {
+  read -r first_line < "$histfile"
+  [[ "$first_line" == :[[:space:]]* ]]
+}
+
+tac_cmd() {
+  if command -v tac &>/dev/null; then
+    tac "$@"
+  elif command -v tail &>/dev/null && tail -r 2>/dev/null <<<"" ; then
+    tail -r "$@"
+  else
+    # pure awk fallback
+    awk '{a[NR]=$0} END{for(i=NR;i>=1;i--) print a[i]}' "$@"
+  fi
+}
+
+selected=$(
+  if is_extended_history; then
+    # zsh extended history: ": timestamp:duration;command"
+    # strip metadata, skip empty, dedup while keeping last occurrence
+    tac_cmd "$histfile" 2>/dev/null \
+      | sed -E 's/^: [0-9]+:[0-9]+;//' \
+      | sed '/^$/d'
+  else
+    tac_cmd "$histfile" 2>/dev/null \
+      | sed '/^$/d'
+  fi \
+    | awk '!seen[$0]++' \
+    | fzf \
+        --ansi \
+        --reverse \
+        --border \
+        --prompt='History > ' \
+        --header='Enter: copy to stdout  Esc: cancel' \
+        --query="${*:-}" \
+        --no-sort \
+        --exact
+) || exit 0
+
+printf '%s' "$selected"

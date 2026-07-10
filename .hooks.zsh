@@ -23,3 +23,10 @@ function auto_venv() {
 }
 
 add-zsh-hook chpwd auto_venv
+
+# fh: fuzzy history search via fzf, pushes selected command to input buffer
+fh() {
+  local cmd
+  cmd="$("$HOME/data/repo/dotfiles/.local/bin/fh" "$@")"
+  [[ -n "$cmd" ]] && print -z "$cmd"
+}
