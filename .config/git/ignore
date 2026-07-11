@@ -30,3 +30,6 @@ venv.bak/
 .mypy_cache/
 
 tags
+
+**/.claude/settings.local.json
+**/omx/**
