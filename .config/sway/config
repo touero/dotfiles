@@ -50,6 +50,7 @@ for_window [app_id="swayimg"] floating enable, resize set 90 ppt 90 ppt, move po
 for_window [app_id="mpv"] floating enable, resize set 70 ppt 70 ppt, move position center
 for_window [app_id="gpg-unlock"] floating enable, resize set 27 ppt 20 ppt, move position center
 for_window [app_id="type-practice"] floating enable, resize set 30 ppt 40 ppt, move position center
+for_window [app_id=".*thunar"] floating enable, resize set 70 ppt 70 ppt, move position center
 for_window [app_id=".*calculator"] floating enable
 for_window [app_id=".*Calculator"] floating enable
 for_window [app_id="$dropdown_term"] floating enable
@@ -219,6 +220,7 @@ workspace 9 output DP-1
     bindsym $mod+equal exec ~/.local/bin/auto_workspace
     bindsym $mod+Ctrl+Return exec ~/.local/bin/dropdown_term
     bindsym $mod+n exec firefox
+    bindsym $mod+u exec xdg-open ~/Downloads
 
 # Volume:
     bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%

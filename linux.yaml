@@ -49,6 +49,7 @@
     ~/.config/ctags: .config/ctags
     ~/.config/satty: .config/satty
     ~/.config/ghostty: .config/ghostty
+    ~/.config/gtk-3.0: .config/gtk-3.0
 
     ~/.local/bin/:
       glob: true
