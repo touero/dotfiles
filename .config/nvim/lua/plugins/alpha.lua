@@ -28,7 +28,7 @@ return {
       dashboard.button("w", "  Find word", ":lua require('fzf-lua').live_grep()<CR>"),
       dashboard.button("r", "󰑓  Recent", ":lua require('fzf-lua').oldfiles()<CR>"),
       dashboard.button("y", "󰇥  Yazi", ":Yazi<CR>"),
-      dashboard.button("c", "  Config", ":e $MYVIMRC<CR>"),
+      dashboard.button("c", "  CodeDiff", ":CodeDiff<CR>"),
       dashboard.button("l", "󰒲  Lazy", ":Lazy<CR>"),
       dashboard.button("m", "  Mason", ":Mason<CR>"),
       dashboard.button("q", "󰿅  Quit", ":qa<CR>"),
