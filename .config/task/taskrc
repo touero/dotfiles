@@ -1,0 +1,65 @@
+# -*- conf -*-
+# ~/.config/task/taskrc
+# Basic Taskwarrior 2.x config
+
+# 数据目录
+data.location=~/.local/share/task
+
+# 默认命令
+default.command=list
+
+# 编辑器
+editor=nvim
+
+# 颜色
+color=on
+
+# 日期格式：2026-07-06
+dateformat=Y-M-D
+
+# 每周从周一开始
+weekstart=monday
+
+# 需要确认危险操作
+confirmation=yes
+
+# 启用周期任务
+recurrence=on
+
+# 启用自动垃圾回收
+gc=on
+
+# 任务上下文，可先关掉
+context=none
+
+# 默认 list 报告
+report.list.columns=id,start.age,entry.age,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description
+report.list.labels=ID,Active,Age,P,Project,Tags,Recur,S,Due,Until,Description
+report.list.sort=start-,due+,project+,priority-,entry+
+
+# 默认 next 报告
+report.next.columns=id,start.age,entry.age,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.next.labels=ID,Active,Age,P,Project,Tags,Recur,S,Due,Until,Description,Urg
+report.next.sort=urgency-
+
+# completed 报告
+report.completed.columns=end.age,project,description
+report.completed.labels=Completed,Project,Description
+report.completed.sort=end-
+
+# 常用颜色
+color.active=bold green
+color.completed=gray
+color.deleted=gray
+color.due=bold yellow
+color.due.today=bold red
+color.overdue=bold red
+color.scheduled=bold cyan
+
+color.priority.H=bold red
+color.priority.M=yellow
+color.priority.L=blue
+
+# 标签颜色示例
+color.tagged=cyan
+color.project=green
