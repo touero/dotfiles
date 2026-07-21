@@ -24,6 +24,12 @@ sudo ./install [OPTIONS]
 
 # Execute with current user privileges:
 ./install [OPTIONS]
+
+# Install only one directory under .config (for example, tmux):
+./install tmux
+
+# Dotbot options can follow the component name:
+./install tmux --dry-run
 ```
 
 

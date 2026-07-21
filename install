@@ -15,7 +15,33 @@ DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
+
+# A positional component name installs only the matching ~/.config directory.
+# For example, `./install tmux` links .config/tmux without running the full
+# platform configuration. Dotbot options may follow the component name.
+COMPONENT=""
+if [ "$#" -gt 0 ] && [[ "$1" != -* ]]; then
+  COMPONENT="$1"
+  shift
+
+  if [[ ! "${COMPONENT}" =~ ^[A-Za-z0-9._-]+$ ]] || [ ! -d ".config/${COMPONENT}" ]; then
+    echo "Unknown component: ${COMPONENT}" >&2
+    echo "Expected a directory named .config/${COMPONENT}" >&2
+    exit 2
+  fi
+
+  CONFIG="$(mktemp "${TMPDIR:-/tmp}/dotfiles-component.XXXXXX")"
+  trap 'rm -f "${CONFIG}"' EXIT
+  printf '%s\n' \
+    '- link:' \
+    "    ~/.config/${COMPONENT}: .config/${COMPONENT}" > "${CONFIG}"
+
+fi
+
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
+  -d "${BASEDIR}" \
+  -c "${CONFIG}" \
+  "${@}"
