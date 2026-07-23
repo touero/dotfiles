@@ -1,6 +1,7 @@
 anchor=top-center
 layer=overlay
-on-notify=exec mpv --no-terminal --quiet /usr/share/sounds/freedesktop/stereo/message.oga
+# on-notify=exec timeout 5s mpv --no-video --no-terminal --quiet --keep-open=no /usr/share/sounds/freedesktop/stereo/message.oga
+on-notify=exec timeout 5s pw-play /usr/share/sounds/freedesktop/stereo/message.oga
 
 width=500
 padding=10
