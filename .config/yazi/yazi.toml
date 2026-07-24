@@ -1,5 +1,5 @@
 [mgr]
-ratio = [2, 3, 3]
+ratio = [2, 2, 4]
 sort_by = "natural"
 sort_translit = false
 linemode = "size"
@@ -10,92 +10,15 @@ show_hidden = true
 [preview]
 max_width = 720
 max_height = 1280
-image_filter= "nearest"
+image_filter = "nearest"
 
-[[fetchers]]
-id = "mime"
-name = "*"
-run = "mime"
-if = "!mime"
-prio = "high"
+[plugin]
 
-[[preloaders]]
-mime = "image/(avif|hei.|jxl|svg\\+xml)"
-run = "magick"
+prepend_preloaders = [
+    { url = "*.svg", run = "noop" },
+]
 
-[[preloaders]]
-mime = "image/.*"
-run = "image"
+prepend_previewers = [
+    { url = "*.svg", run = "code" },
+]
 
-[[preloaders]]
-mime = "video/.*"
-run = "video"
-
-[[preloaders]]
-mime = "application/pdf"
-run = "pdf"
-
-[[preloaders]]
-mime = "font/.*"
-run = "font"
-
-[[preloaders]]
-mime = "application/vnd.ms-opentype"
-run = "font"
-
-[[previewers]]
-name = ".*/"
-run = "folder"
-sync = true
-
-[[previewers]]
-mime = "text/.*"
-run = "code"
-
-[[previewers]]
-mime = ".*/(xml|javascript|x-wine-extension-ini)"
-run = "code"
-
-[[previewers]]
-mime = "application/(json|x-ndjson)"
-run = "json"
-
-[[previewers]]
-mime = "image/(avif|hei.|jxl|svg\\+xml)"
-run = "magick"
-
-[[previewers]]
-mime = "image/.*"
-run = "image"
-
-[[previewers]]
-mime = "video/.*"
-run = "video"
-
-[[previewers]]
-mime = "application/pdf"
-run = "pdf"
-
-[[previewers]]
-mime = "application/(zip|gzip)"
-run = "archive"
-
-[[previewers]]
-mime = "application/x-(tar|bzip.*|7z-compressed|xz|rar|iso9660-image)"
-run = "archive"
-
-[[previewers]]
-mime = "font/.*"
-run = "font"
-
-[[previewers]]
-mime = "application/vnd.ms-opentype"
-run = "font"
-
-[[previewers]]
-mime = "inode/x-empty"
-run = "empty"
-
-[[previewers]]
-name = ".*"
-run = "file"
