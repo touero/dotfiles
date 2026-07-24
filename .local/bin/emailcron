@@ -35,7 +35,11 @@ update() {
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
     export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 
-    notify-send -u normal -i mail "󰇮 Update email from remote" "There are $count unread emails"
+    notify-send \
+      -i "$HOME/.local/share/custom_icons/email.png" \
+      -u normal \
+      "Update email from remote" \
+      "There are $count unread emails"
   fi
 
   {

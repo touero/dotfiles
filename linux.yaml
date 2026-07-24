@@ -64,6 +64,11 @@
       glob: true
       path: .local/share/fcitx5/themes/*
 
+    ~/.local/share/custom_icons:
+      create: true
+      glob: true
+      path: .local/share/custom_icons/*
+
     ~/.zsh/completions/:
       create: true
       glob: true

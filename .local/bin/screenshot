@@ -4,6 +4,7 @@
 # screenshot: region / window / fullscreen, supports menu or argument
 
 mode=$1
+icon="$HOME/.local/share/custom_icons/screenshot.png"
 
 annotator=$(which satty 2>/dev/null)
 if [ -n "$annotator" ]; then
@@ -44,9 +45,9 @@ esac
 
 latest_file_after=$(ls -t "$SAVE_DIR"/* 2>/dev/null | head -n 1 || true)
 if [ "$latest_file_before" != "$latest_file_after" ]; then
-  notify-send " screenshot save to" "$latest_file_after"
+  notify-send -i "$icon" "screenshot save to" "$latest_file_after"
 elif wl-paste --type image >/dev/null 2>&1; then
-  notify-send " screenshot to clipboard"
+  notify-send -i "$icon" "screenshot to clipboard"
 else
-  notify-send "󰜺 screenshot cancel"
+  notify-send -i "$icon" "screenshot cancel"
 fi

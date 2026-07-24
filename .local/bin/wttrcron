@@ -24,7 +24,7 @@ update() {
         echo "update time: $(date '+%Y-%m-%d %H:%M:%S') in $CITY"
       } >"$WTTR"
       pkill -RTMIN+3 waybar
-      notify-send "$(cat $WTTR)"
+      notify-send -i "$HOME/.local/share/custom_icons/weather.png" "$(cat $WTTR)"
       break
     fi
     sleep 2

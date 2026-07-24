@@ -34,7 +34,7 @@ update() {
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
     export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 
-    notify-send "󰑬 Update rss from remote" "There are $count unread rss"
+    notify-send -i "$HOME/.local/share/custom_icons/rss.png" "Update rss from remote" "There are $count unread rss"
   fi
 
   {
