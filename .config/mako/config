@@ -4,25 +4,29 @@ layer=overlay
 on-notify=exec timeout 5s pw-play /usr/share/sounds/freedesktop/stereo/message.oga
 
 width=500
+height=150
 padding=10
 
-font=Monospace 12
-text-color=#ebdbb2
-background-color=#282828
+icons=1
+icon-location=left
+
+font=Iosevka Nerd Font Mono 13
+text-color=#fbf1c7
+background-color=#3c3836
 markup=1
 text-alignment=center
 
 default-timeout=7000
 max-visible=5
 
-border-size=1
-border-color=#b8bb26
+border-size=2
+border-radius=8
 
 [urgency=low]
-border-color=#a89984
+border-color=#98971d
 
 [urgency=normal]
-border-color=#b8bb26
+border-color=#d79921
 
-[urgency=high]
-border-color=#fb4934
+[urgency=critical]
+border-color=#cc241d
