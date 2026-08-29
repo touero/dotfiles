@@ -14,6 +14,8 @@ vim.api.nvim_set_keymap("n", "<S-Enter>", ":normal O<CR>", {})
 vim.api.nvim_set_keymap("v", "<Tab>", ">gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap("c", "w!!", "w !sudo tee % >/dev/null", { noremap = true })
+
 if vim.g.vscode then
   vim.api.nvim_set_keymap(
     "n",
