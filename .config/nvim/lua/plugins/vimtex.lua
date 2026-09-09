@@ -1,19 +1,16 @@
 return {
   "lervag/vimtex",
-  -- Current master requires Neovim 0.12.4+. Pin to the latest release that
-  -- supports Neovim 0.11.x; remove this after upgrading Neovim.
   tag = "v2.18",
   lazy = false,
   init = function()
-    -- MacTeX installs CLI tools here. Add it to Neovim's environment so
-    -- latexmk can also find latex/pdflatex/xelatex when it spawns them.
-    local texbin = "/Library/TeX/texbin"
-    if vim.fn.isdirectory(texbin) == 1 and not vim.env.PATH:find(texbin, 1, true) then
-      vim.env.PATH = texbin .. ":" .. vim.env.PATH
+    local is_mac = vim.fn.has("mac") == 1
+    if is_mac then
+      local texbin = "/Library/TeX/texbin"
+      if vim.fn.isdirectory(texbin) == 1 and not vim.env.PATH:find(texbin, 1, true) then
+        vim.env.PATH = texbin .. ":" .. vim.env.PATH
+      end
     end
 
-    -- Use XeLaTeX by default. VimTeX appends the engine after `options`, so
-    -- this must be set via `vimtex_compiler_latexmk_engines`, not as an option.
     vim.g.vimtex_compiler_latexmk_engines = {
       _ = "-xelatex",
       pdflatex = "-pdf",
@@ -22,8 +19,7 @@ return {
       xelatex = "-xelatex",
     }
 
-    vim.g.vimtex_compiler_latexmk = {
-      executable = "/Library/TeX/texbin/latexmk",
+    local latexmk_config = {
       options = {
         "-verbose",
         "-file-line-error",
@@ -31,5 +27,11 @@ return {
         "-interaction=nonstopmode",
       },
     }
+
+    if is_mac then
+      latexmk_config.executable = "/Library/TeX/texbin/latexmk"
+    end
+
+    vim.g.vimtex_compiler_latexmk = latexmk_config
   end,
 }
