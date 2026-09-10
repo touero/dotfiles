@@ -30,6 +30,9 @@ return {
 
     if is_mac then
       latexmk_config.executable = "/Library/TeX/texbin/latexmk"
+      vim.g.vimtex_view_method = "skim"
+    else
+      vim.g.vimtex_view_method = "zathura"
     end
 
     vim.g.vimtex_compiler_latexmk = latexmk_config
