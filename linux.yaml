@@ -50,6 +50,7 @@
     ~/.config/satty: .config/satty
     ~/.config/ghostty: .config/ghostty
     ~/.config/gtk-3.0: .config/gtk-3.0
+    ~/.config/zathura: .config/zathura
 
     ~/.local/bin/:
       glob: true

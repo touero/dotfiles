@@ -71,6 +71,7 @@ As a vimer, I prefer software similar to vim operations, which is free as in fre
 - Input Method:                         fcitx5
 - Video Player:                         mpv
 - Image Viewer:                         swayimg
+- PDF Viewer:                           zathura
 - Network Manager:                      networkmanager
 - Bluetooth Manager:                    bluetui
 - Screen Recording:                     wf-recorder + ffmpeg

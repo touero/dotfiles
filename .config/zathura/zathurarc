@@ -1,0 +1,51 @@
+# ============================================
+# Gruvbox Dark Medium for Zathura
+# ============================================
+
+# ---------- 基础背景/前景 ----------
+set default-bg     "#282828"
+set default-fg     "#ebdbb2"
+
+# ---------- 状态栏 ----------
+set statusbar-bg   "#3c3836"
+set statusbar-fg   "#ebdbb2"
+
+# ---------- 输入栏 ----------
+set inputbar-bg    "#282828"
+set inputbar-fg    "#ebdbb2"
+
+# ---------- 通知 ----------
+set notification-bg         "#282828"
+set notification-fg         "#ebdbb2"
+set notification-error-bg   "#282828"
+set notification-error-fg   "#fb4934"
+set notification-warning-bg "#282828"
+set notification-warning-fg "#fabd2f"
+
+# ---------- 补全菜单 ----------
+set completion-bg             "#282828"
+set completion-fg             "#ebdbb2"
+set completion-highlight-bg   "#504945"
+set completion-highlight-fg   "#ebdbb2"
+
+# ---------- 索引/目录 ----------
+set index-bg        "#282828"
+set index-fg        "#ebdbb2"
+set index-active-bg "#504945"
+set index-active-fg "#ebdbb2"
+
+# ---------- 加载提示 ----------
+set render-loading-bg "#282828"
+set render-loading-fg "#ebdbb2"
+
+# ---------- 高亮 ----------
+set highlight-color        "rgba(0, 0, 0, 0)"
+set highlight-active-color "rgba(0, 0, 0, 0)"
+set highlight-fg           "rgba(0, 0, 0, 0)"
+
+# ---------- 关闭搜索高亮与选择通知 ----------
+set nohlsearch true
+set selection-notification false
+
+# ---------- 不改变 PDF 内容颜色 ----------
+set recolor false
