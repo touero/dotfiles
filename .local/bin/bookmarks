@@ -48,7 +48,8 @@ bookmarks() {
   local VALUE
   VALUE=$(general_menu "$1" "bookmarks") || exit 1
   [[ -z "$VALUE" ]] && exit 0
-  DEFAULT_BROWSER="google-chrome"
+  # DEFAULT_BROWSER="google-chrome"
+  DEFAULT_BROWSER="firefox"
 
   if [[ "$VALUE" =~ ^https?:// ]]; then
     if [[ "$2" == "cp" ]]; then
