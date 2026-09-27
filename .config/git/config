@@ -45,7 +45,7 @@
 [gpg]
     program = gpg
 [user]
-    signingkey = FDC87FAB9D3B9D7862F4669E7FDDD6633D9DC07C
+    signingkey = FDC87FAB9D3B9D7862F4669E7FDDD6633D9DC07C!
 [commit]
     gpgsign = true
 [init]
