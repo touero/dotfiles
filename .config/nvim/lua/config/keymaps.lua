@@ -44,3 +44,18 @@ vim.api.nvim_set_keymap("n", "<leader>au", "", {
     vim.api.nvim_put(lines, "l", false, true)
   end,
 })
+
+vim.keymap.set("n", "<leader>q", function()
+  local buf = vim.api.nvim_get_current_buf()
+  local wins = vim.fn.win_findbuf(buf)
+
+  if #wins > 1 then
+    vim.cmd("bdelete " .. buf)
+  else
+    if vim.fn.winnr("$") == 1 then
+      vim.cmd("bdelete " .. buf)
+    else
+      vim.cmd("close")
+    end
+  end
+end, { silent = true, desc = "close current window buffer" })
