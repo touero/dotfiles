@@ -12,6 +12,14 @@ max_width = 720
 max_height = 1280
 image_filter = "nearest"
 
+[opener]
+# yazi's built-in `edit` opener runs `${EDITOR:-vi}`. On macOS the terminal is
+# not a login shell, so EDITOR (set in .zprofile) is missing and `vi` is used
+# instead of the user's Neovim config. Fall back to nvim explicitly.
+edit = [
+    { run = "${EDITOR:-nvim} %s", desc = "$EDITOR", for = "unix", block = true },
+]
+
 [plugin]
 
 prepend_preloaders = [
