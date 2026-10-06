@@ -3,20 +3,21 @@
 # @author: weiensong(touero) <touer0018@gmail.com>
 # @since: 2026
 
-# Font
+
 font-family = "Iosevka Nerd Font Mono"
 font-size = 20
 font-feature = calt
 
-# Theme: Gruvbox Dark
-background = 282828
-foreground = ebdbb2
-cursor-color = ebdbb2
-cursor-text = 282828
-selection-background = b57614
-selection-foreground = 282828
 
-# Normal colors
+background = #282828
+foreground = #ebdbb2
+
+cursor-color = #ebdbb2
+cursor-text = #282828
+
+selection-background = #b57614
+selection-foreground = #282828
+
 palette = 0=#282828
 palette = 1=#cc241d
 palette = 2=#98971a
@@ -26,7 +27,6 @@ palette = 5=#b16286
 palette = 6=#689d6a
 palette = 7=#a89984
 
-# Bright colors
 palette = 8=#928374
 palette = 9=#fb4934
 palette = 10=#b8bb26
@@ -36,19 +36,46 @@ palette = 13=#d3869b
 palette = 14=#8ec07c
 palette = 15=#ebdbb2
 
-# Cursor
+# Search
+search-background = #d79921
+search-foreground = #282828
+search-selected-background = #fabd2f
+search-selected-foreground = #282828
+
 cursor-style = bar
 cursor-style-blink = true
 
-# Window
-background-opacity = 1.0
+background-opacity = 1
 window-padding-x = 4
 window-padding-y = 4
+window-padding-balance = true
+
 window-title-font-family = "Iosevka Nerd Font Mono"
 
-# Scrollback
-scrollback-limit = 16384
-
-# Misc
-copy-on-select = clipboard
 confirm-close-surface = false
+
+scrollback-limit = 16777216
+scrollbar = never
+
+copy-on-select = clipboard
+
+keybind = ctrl+k=scroll_page_fractional:-0.5
+keybind = ctrl+j=scroll_page_fractional:0.5
+
+keybind = ctrl+shift+k=scroll_page_up
+keybind = ctrl+shift+j=scroll_page_down
+
+keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+equal=increase_font_size:1
+keybind = ctrl+kp_add=increase_font_size:1
+
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+kp_subtract=decrease_font_size:1
+
+keybind = ctrl+f=start_search
+keybind = ctrl+p=navigate_search:previous
+keybind = ctrl+n=navigate_search:next
+
+keybind = ctrl+shift+m=new_window
+
+keybind = ctrl+shift+y=copy_url_to_clipboard
