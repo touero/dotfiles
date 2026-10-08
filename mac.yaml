@@ -15,7 +15,7 @@
 
     ~/.zshrc: .zshrc
     ~/.zimrc: .zimrc
-    ~/.zprofile: .zprofile
+    # ~/.zprofile: .zprofile
     ~/.ideavimrc: ideavimrc
     ~/.aliases: .aliases
     ~/.hooks.zsh: .hooks.zsh
@@ -44,11 +44,9 @@
     ~/.local/bin/bk: .local/bin/bk
     ~/.local/bin/gbl: .local/bin/gbl
     ~/.local/bin/cpm: .local/bin/cpm
-    ~/.local/bin/fcm: .local/bin/fcm
     ~/.local/bin/edc: .local/bin/edc
     ~/.local/bin/fetch: .local/bin/fetch
-
-    ~/.local/share/wallhaven.jpg: .local/share/wallhaven.jpg
+    ~/.local/bin/tmux-fzf-window: .local/bin/tmux-fzf-window
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules ]
