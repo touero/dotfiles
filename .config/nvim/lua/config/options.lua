@@ -6,3 +6,5 @@ vim.opt.conceallevel = 0
 vim.opt.clipboard = "unnamedplus"
 vim.opt.linespace = 13
 vim.g.lazyvim_check_order = false
+-- vim.opt.spell = true
+vim.opt.spelllang = { "en", "cjk" }
