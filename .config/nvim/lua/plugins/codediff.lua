@@ -10,7 +10,7 @@ return {
         desc = "Open Git Diff",
       },
       {
-        "<leader>gh",
+        "<leader>gH",
         "<cmd>CodeDiff history<cr>",
         desc = "Open Git History",
       },
