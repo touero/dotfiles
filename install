@@ -16,25 +16,48 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
 
-# A positional component name installs only the matching ~/.config directory.
-# For example, `./install tmux` links .config/tmux without running the full
-# platform configuration. Dotbot options may follow the component name.
+# A positional component name installs only that piece instead of the full
+# platform configuration:
+#   - `./install tmux`   links .config/tmux to ~/.config/tmux
+#   - `./install .zshrc` links .zshrc to ~/.zshrc
+#   - `./install ideavimrc` (or `.ideavimrc`) links ideavimrc to ~/.ideavimrc
+# Dotbot options may follow the component name.
 COMPONENT=""
 if [ "$#" -gt 0 ] && [[ "$1" != -* ]]; then
   COMPONENT="$1"
   shift
 
-  if [[ ! "${COMPONENT}" =~ ^[A-Za-z0-9._-]+$ ]] || [ ! -d ".config/${COMPONENT}" ]; then
+  if [[ ! "${COMPONENT}" =~ ^[A-Za-z0-9._-]+$ ]]; then
     echo "Unknown component: ${COMPONENT}" >&2
-    echo "Expected a directory named .config/${COMPONENT}" >&2
     exit 2
   fi
 
   CONFIG="$(mktemp "${TMPDIR:-/tmp}/dotfiles-component.XXXXXX")"
   trap 'rm -f "${CONFIG}"' EXIT
-  printf '%s\n' \
-    '- link:' \
-    "    ~/.config/${COMPONENT}: .config/${COMPONENT}" > "${CONFIG}"
+
+  if [ -d ".config/${COMPONENT}" ]; then
+    printf '%s\n' \
+      '- link:' \
+      "    ~/.config/${COMPONENT}: .config/${COMPONENT}" > "${CONFIG}"
+  elif [ -e "${COMPONENT}" ] || [ -e "${COMPONENT#.}" ]; then
+    # Top-level file linked into ~; an undotted source (ideavimrc) gets a
+    # dotted target, matching the platform configurations.
+    SOURCE="${COMPONENT}"
+    TARGET="~/${COMPONENT}"
+    if [ ! -e "${COMPONENT}" ] && [ -e "${COMPONENT#.}" ]; then
+      SOURCE="${COMPONENT#.}"
+    elif [[ ! "${COMPONENT}" == .* ]]; then
+      TARGET="~/.${COMPONENT}"
+    fi
+    printf '%s\n' \
+      '- link:' \
+      "    ${TARGET}: ${SOURCE}" > "${CONFIG}"
+  else
+    echo "Unknown component: ${COMPONENT}" >&2
+    echo "Expected .config/${COMPONENT} or a top-level ${COMPONENT} file" >&2
+    rm -f "${CONFIG}"
+    exit 2
+  fi
 
 fi
 
