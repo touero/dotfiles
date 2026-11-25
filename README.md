@@ -28,6 +28,10 @@ sudo ./install [OPTIONS]
 # Install only one directory under .config (for example, tmux):
 ./install tmux
 
+# Install only one top-level file into ~ (for example, .zshrc or ideavimrc):
+./install .zshrc
+./install ideavimrc
+
 # Dotbot options can follow the component name:
 ./install tmux --dry-run
 ```
